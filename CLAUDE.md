@@ -13,7 +13,7 @@ Career shape: 13 years in visual communication in Athens (1998 to 2011), then 12
 Do not undo these without asking.
 
 - **UX work leads.** The two case studies, Agent X and Radio, come first. Everything else supports them.
-- **Graphic design is background, not a selling point.** He has not worked as a graphic designer in over 20 years and does not want to be hired for it. The Background section says so explicitly. Keep that line.
+- **Graphic design is background, not a selling point.** He has not worked as a graphic designer in 17 years and does not want to be hired for it. The Background section says so explicitly. Keep that line.
 - **No overclaiming.** He has never worked professionally as a UX designer. Agent X was a student project done with teacher guidance. Any sentence implying professional UX experience or independent seniority is wrong and must be fixed. This is the single most important rule in this file.
 - **Hyper Island is removed.** He was accepted to the Product Manager programme starting August 2026 and decided not to attend. Any reference to it is stale.
 - **Radio is labelled a personal project.** He directed and audited an AI-assisted iOS build in a day without writing code. The point of the piece is specifying, questioning and testing, which is product management work.

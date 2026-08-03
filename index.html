@@ -168,6 +168,19 @@
     display:block;
   }
 
+  /* Per-section progress rule. Stays at zero width unless a scroll
+     timeline drives it, so unsupporting browsers simply never see it. */
+  .row > .spine .eyebrow::after{
+    content:"";
+    display:block;
+    height:1px;
+    margin-top:0.55rem;
+    background:var(--accent);
+    opacity:.55;
+    transform:scaleX(0);
+    transform-origin:0 50%;
+  }
+
   .col{max-width:var(--measure);}
 
   h2.section{
@@ -177,6 +190,19 @@
     font-weight:400;
     margin:0 0 1.25rem;
     letter-spacing:-0.01em;
+  }
+
+  /* The heading itself is never hidden. The rule under it does the
+     revealing, so the words survive any browser that skips the motion. */
+  h2.section::after{
+    content:"";
+    display:block;
+    height:1px;
+    margin-top:0.6rem;
+    background:var(--accent);
+    opacity:.4;
+    transform:scaleX(0);
+    transform-origin:0 50%;
   }
 
   p{margin:0 0 1rem;}
@@ -380,6 +406,27 @@
 
   ::view-transition-group(*){animation-duration:.34s;}
 
+  .full-link{margin:0.9rem 0 0;}
+
+  .full-link a{
+    display:inline-flex;
+    align-items:center;
+    gap:0.45rem;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    border-bottom-color:var(--accent);
+  }
+
+  .full-link .arr{
+    display:inline-block;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1);
+  }
+
+  .full-link a:hover .arr{transform:translate(2px,-2px);}
+
   /* ---------- lists ---------- */
 
   .stack{display:grid;gap:1.6rem;}
@@ -489,13 +536,65 @@
   }
 
   /* ---------- motion ----------
-     Scroll-driven, native, no JS. Falls back to nothing where unsupported. */
+     All scroll-driven and native. No JS, no libraries. Gated twice: on
+     browser support, and on the reader actually wanting motion. */
+
+  /* Reading progress. Zero width unless a scroll timeline drives it. */
+  .progress{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:2px;
+    z-index:10;
+    background:var(--accent);
+    opacity:.85;
+    transform:scaleX(0);
+    transform-origin:0 50%;
+  }
+
+  @supports (animation-timeline:scroll()){
+    .progress{
+      animation:grow linear both;
+      animation-timeline:scroll(root);
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .progress{display:none;}
+  }
+
+  .statement .w{display:inline-block;}
+
+  /* Masthead reveal runs on load, not on scroll. It is already in view. */
+  @media (prefers-reduced-motion:no-preference){
+    .statement .w{
+      opacity:0;
+      animation:word .8s cubic-bezier(.2,.7,.3,1) forwards;
+    }
+
+    .statement .w:nth-child(1){animation-delay:.06s;}
+    .statement .w:nth-child(2){animation-delay:.17s;}
+    .statement .w:nth-child(3){animation-delay:.28s;}
+
+    /* Fraunces settles onto its optical size as the line lands. */
+    .statement{animation:settle 1.5s cubic-bezier(.2,.7,.3,1) forwards;}
+
+    .lede,.masthead .meta{
+      opacity:0;
+      animation:word .8s cubic-bezier(.2,.7,.3,1) .42s forwards;
+    }
+
+    .masthead .meta{animation-delay:.54s;}
+  }
 
   @supports (animation-timeline:view()){
     @media (prefers-reduced-motion:no-preference){
-      .row,
-      .masthead,
-      .close{
+
+      /* Each section publishes a timeline its own spine label reads. */
+      .row{view-timeline-name:--section;}
+
+      .row,.close{
         animation:rise linear both;
         animation-timeline:view();
         animation-range:entry 0% entry 55%;
@@ -507,13 +606,61 @@
         animation-range:entry 0% entry 70%;
       }
 
-      /* Margin notes drift in slightly after the text they qualify. */
+      /* Margin notes drift in after the text they qualify. */
       .note,.aside{
         animation:slip linear both;
         animation-timeline:view();
         animation-range:entry 10% entry 75%;
       }
+
+      h2.section::after{
+        animation:fill linear both;
+        animation-timeline:view();
+        animation-range:entry 15% entry 62%;
+      }
+
+      /* How far through this section you are. */
+      .row > .spine .eyebrow::after{
+        animation:fill linear both;
+        animation-timeline:--section;
+        animation-range:cover 0% cover 100%;
+      }
+
+      /* Staggers. Scroll timelines ignore animation-delay, so the offset
+         has to live in animation-range instead. */
+      .metric,.tag,.item,.pair{
+        animation:lift linear both;
+        animation-timeline:view();
+      }
+
+      .metric:nth-child(1),.tag:nth-child(1),.item:nth-child(1),.pair:nth-child(1){animation-range:entry 10% entry 46%;}
+      .metric:nth-child(2),.tag:nth-child(2),.item:nth-child(2),.pair:nth-child(2){animation-range:entry 15% entry 51%;}
+      .metric:nth-child(3),.tag:nth-child(3),.item:nth-child(3),.pair:nth-child(3){animation-range:entry 20% entry 56%;}
+      .metric:nth-child(4),.tag:nth-child(4),.item:nth-child(4),.pair:nth-child(4){animation-range:entry 25% entry 61%;}
     }
+  }
+
+  /* Hover lift uses the independent `translate` property, so the
+     scroll-driven `transform` animation cannot clobber it. */
+  .work{transition:translate .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s cubic-bezier(.2,.7,.3,1);}
+
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .work:hover{
+      translate:0 -3px;
+      box-shadow:0 2px 4px rgba(20,26,31,.05),0 20px 44px -20px rgba(20,26,31,.20);
+    }
+  }
+
+  @keyframes grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+
+  @keyframes word{
+    from{opacity:0;transform:translateY(.45em) rotate(1deg);}
+    to{opacity:1;transform:none;}
+  }
+
+  @keyframes settle{
+    from{font-variation-settings:"opsz" 9,"SOFT" 100,"WONK" 1;}
+    to{font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;}
   }
 
   @keyframes rise{
@@ -525,6 +672,13 @@
     from{opacity:0;transform:translateX(10px);}
     to{opacity:1;transform:none;}
   }
+
+  @keyframes lift{
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:none;}
+  }
+
+  @keyframes fill{from{transform:scaleX(0);}to{transform:scaleX(1);}}
 
   /* ---------- responsive ---------- */
 
@@ -590,24 +744,40 @@
     .study summary{display:none;}
     .detail-body{padding-top:0.6rem;}
 
-    .row,.masthead,.close,.work,.note,.aside{animation:none;opacity:1;transform:none;}
+    /* Nothing animated survives onto paper. */
+    .progress,.row > .spine .eyebrow::after,h2.section::after{display:none;}
+
+    .row,.masthead,.close,.work,.note,.aside,
+    h2.section,.metric,.tag,.item,.pair,.lede,
+    .statement,.statement .w,.masthead .meta{
+      animation:none;
+      opacity:1;
+      transform:none;
+      translate:none;
+      clip-path:none;
+    }
+
+    /* A printed link is useless without its address. */
+    .full-link .arr{display:none;}
+    .full-link a::after{content:" " attr(href);letter-spacing:0;text-transform:none;}
+
     .colophon,.meta a{border:0;}
     a{border-bottom:0;}
   }
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 <div class="wrap">
 
   <header class="masthead">
     <p class="name">Ioannis Koupidis · UX practitioner</p>
-    <h1 class="display statement">I don't <em>guess</em>.</h1>
+    <h1 class="display statement"><span class="w">I</span> <span class="w">don't</span> <span class="w"><em>guess</em>.</span></h1>
     <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
     <div class="meta">
-      <span>Athens &amp; Stockholm</span>
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
-      <a href="tel:+306981323092">+30 698 132 3092</a>
-      <a href="#">LinkedIn</a>
+      <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
+      <a href="https://www.linkedin.com/in/koupidisyannis/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="#">Download PDF</a>
     </div>
   </header>
@@ -619,7 +789,7 @@
       <article class="work" style="view-transition-name:study-agentx;">
         <h3>Agent X</h3>
         <p class="kind">Student project · Medieinstitutet Stockholm · 2026</p>
-        <p>How could contextual guidance help new players of a demanding shooter without flattening its difficulty? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.<span class="ref"></span><span class="note">Run with teacher guidance as part of the UX programme. My first complete research cycle.</span></p>
+        <p>How could contextual guidance help new players of Escape from Tarkov, a hardcore survival shooter, without flattening the difficulty its audience plays it for? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.<span class="ref"></span><span class="note">Run with teacher guidance as part of the UX programme. My first complete research cycle.</span></p>
         <div class="outcome">
           <span class="eyebrow">What it produced</span>
           Participants found and understood the guidance without prompting.<span class="ref"></span><span class="note">Testing also exposed language and sample limitations worth a further round.</span>
@@ -629,13 +799,13 @@
           <summary><span class="chev">›</span><span class="label-closed">Read the case study</span><span class="label-open">Close</span></summary>
           <div class="detail-body">
             <h4>The question</h4>
-            <p>New players of a demanding shooter abandon it early. Lowering the difficulty would remove the reason the existing audience plays it. The brief was to find out whether contextual guidance could carry a newcomer through the first hours without changing what the game is.</p>
+            <p>New players of Escape from Tarkov abandon it early. Lowering the difficulty would remove the reason the existing audience plays it. The brief was to find out whether guidance delivered inside the world of the game could carry a newcomer through, without changing what the game is.</p>
 
             <h4>What I did</h4>
             <ol>
-              <li>Eight semi-structured interviews with players, spanning newcomers and experienced players.</li>
-              <li>Synthesis into two personas and a journey map covering the first session.</li>
-              <li>Four wireframe views covering the moments the journey map flagged as drop-off points.</li>
+              <li>Eight text-based interviews on Discord, spanning beginners to veterans, including one player who had quit.</li>
+              <li>Synthesis into two personas, the Seeker and the Returner, and an emotional journey map.</li>
+              <li>Four wireframe views of a diegetic companion that activates only after repeated failure.</li>
               <li>Three think-aloud usability sessions against the wireframes.</li>
             </ol>
 
@@ -643,9 +813,11 @@
             <p>Participants located the guidance and understood it without being pointed at it, which was the thing being tested. The wireframes did not have to explain themselves.</p>
 
             <h4>What I would do differently</h4>
-            <p>Three test participants is too few to generalise from, and the sessions ran in a second language for some of them, which shaped how they described confusion. Both limits point at the same next step: another round, more participants, run in their first language.</p>
+            <p>The three testers were aged 40 to 46 and none of them had played Tarkov, so they did not match the Seeker profile the design targets. That left one screen, which works by deliberately staying silent, impossible to evaluate properly. The next round needs actual target players, and the report says so rather than burying it.</p>
           </div>
         </details>
+
+        <p class="full-link"><a href="https://ioanniskp.github.io/-agent-x-case-study/" target="_blank" rel="noopener">Open the full case study<span class="arr">↗</span></a></p>
 
         <div class="tags">
           <span class="tag">User research</span>
@@ -685,6 +857,8 @@
             <p>The generation step was the cheap part. The value was in specifying the thing precisely, refusing to accept output that only looked finished, and testing in conditions that resemble use. None of that required writing code, and all of it required knowing what to distrust.</p>
           </div>
         </details>
+
+        <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Open the full case study<span class="arr">↗</span></a></p>
 
         <div class="tags">
           <span class="tag">Scoping</span>
@@ -753,7 +927,7 @@
     <div class="spine"><span class="eyebrow">Background</span></div>
     <div class="col">
       <h2 class="section">Before this, thirteen years in visual communication</h2>
-      <p>Athens, 1998 to 2011. Design and production at Apolyto S.A., moving from layout and print production into project coordination. Creative consulting with fashion designer Angelos Frentzos across branding, lookbooks and Milan Fashion Week material. Branding and packaging for Barbara's Food Company. Print advertising and conference material with the marketing team at PricewaterhouseCoopers.<span class="ref"></span><span class="note">I do not sell this as a current skill. Over twenty years since I worked as a graphic designer, and not what I am asking to be hired for.</span></p>
+      <p>Athens, 1998 to 2011. Design and production at Apolyto S.A., moving from layout and print production into project coordination. Creative consulting with fashion designer Angelos Frentzos across branding, lookbooks and Milan Fashion Week material. Branding and packaging for Barbara's Food Company. Print advertising and conference material with the marketing team at PricewaterhouseCoopers.<span class="ref"></span><span class="note">I do not sell this as a current skill. Seventeen years since I worked as a graphic designer, and not what I am asking to be hired for.</span></p>
       <p>It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.</p>
     </div>
     <div></div>
@@ -782,8 +956,8 @@
     <p class="display">Available now, in Athens or Stockholm.</p>
     <div class="meta" style="margin-top:0;">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
-      <a href="tel:+306981323092">+30 698 132 3092</a>
-      <a href="#">LinkedIn</a>
+      <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
+      <a href="https://www.linkedin.com/in/koupidisyannis/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
     <p class="colophon">Set in Fraunces, Inter &amp; IBM Plex Mono</p>
   </footer>
