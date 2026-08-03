@@ -6,7 +6,7 @@
 <title>Ioannis Koupidis · UX practitioner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..500,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#EDEFF1;
@@ -17,6 +17,15 @@
     --rule:#D6DCE0;
     --accent:#2E5E4E;
     --measure:38rem;
+
+    /* editorial grid */
+    --spine:7rem;
+    --margin-col:13rem;
+    --gutter:2.5rem;
+    --card-pad:2rem;
+    /* Prose notes stop one card-padding short of the page edge so that they
+       land on the same vertical as notes sitting inside a work card. */
+    --note-pull:calc(-1 * (var(--margin-col) + var(--gutter) - var(--card-pad)));
   }
 
   *{box-sizing:border-box;}
@@ -31,10 +40,27 @@
     font-size:15.5px;
     line-height:1.62;
     -webkit-font-smoothing:antialiased;
+    counter-reset:note;
+  }
+
+  /* Faint paper tooth. Two offset gradients, no image request. */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:.5;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(20,26,31,.020) 0 1px, transparent 1px),
+      radial-gradient(circle at 70% 65%, rgba(20,26,31,.016) 0 1px, transparent 1px);
+    background-size:7px 7px, 11px 11px;
   }
 
   .wrap{
-    max-width:64rem;
+    position:relative;
+    z-index:1;
+    max-width:72rem;
     margin:0 auto;
     padding:4.5rem 2rem 6rem;
   }
@@ -43,7 +69,7 @@
 
   .display{
     font-family:Fraunces,Georgia,serif;
-    font-optical-sizing:auto;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
     font-weight:400;
     letter-spacing:-0.015em;
     line-height:1.08;
@@ -71,10 +97,21 @@
 
   /* ---------- masthead ---------- */
 
+  /* Masthead and footer sit on the same three-track grid as everything
+     else, so the statement starts where the section text starts. */
+  .masthead,.close{
+    display:grid;
+    grid-template-columns:var(--spine) minmax(0,var(--measure)) var(--margin-col);
+    column-gap:var(--gutter);
+  }
+
+  .masthead > *,.close > *{grid-column:2;}
+  .masthead .meta,.close .meta{grid-column:2 / 4;}
+
   .masthead{
     padding-bottom:3.25rem;
     border-bottom:1px solid var(--rule);
-    margin-bottom:3.25rem;
+    margin-bottom:1rem;
   }
 
   .masthead .name{
@@ -87,7 +124,7 @@
   }
 
   .statement{
-    font-size:clamp(2.1rem,5.4vw,3.4rem);
+    font-size:clamp(2.1rem,5.4vw,3.9rem);
     max-width:20ch;
     margin-bottom:1.5rem;
   }
@@ -95,6 +132,7 @@
   .statement em{
     font-style:italic;
     color:var(--accent);
+    font-variation-settings:"opsz" 144,"SOFT" 80,"WONK" 1;
   }
 
   .meta{
@@ -110,13 +148,15 @@
 
   .meta a{border-bottom-color:var(--faint);}
 
-  /* ---------- section grid ---------- */
+  /* ---------- editorial grid ----------
+     spine | measure | margin column
+     Sidenotes float out of the measure into the third track. */
 
   .row{
     display:grid;
-    grid-template-columns:9rem minmax(0,1fr);
-    gap:2.5rem;
-    padding:2.75rem 0;
+    grid-template-columns:var(--spine) minmax(0,var(--measure)) var(--margin-col);
+    column-gap:var(--gutter);
+    padding:3.25rem 0;
     border-bottom:1px solid var(--rule);
   }
 
@@ -132,7 +172,8 @@
 
   h2.section{
     font-family:Fraunces,Georgia,serif;
-    font-size:1.5rem;
+    font-variation-settings:"opsz" 48,"SOFT" 20,"WONK" 1;
+    font-size:1.6rem;
     font-weight:400;
     margin:0 0 1.25rem;
     letter-spacing:-0.01em;
@@ -141,40 +182,116 @@
   p{margin:0 0 1rem;}
   p:last-child{margin-bottom:0;}
 
+  /* ---------- sidenotes ---------- */
+
+  .ref{
+    counter-increment:note;
+    font-family:"IBM Plex Mono",monospace;
+  }
+
+  .ref::after{
+    content:counter(note);
+    font-size:0.62rem;
+    vertical-align:super;
+    line-height:0;
+    color:var(--accent);
+    margin-left:0.12em;
+    letter-spacing:0;
+  }
+
+  .note{
+    float:right;
+    clear:right;
+    width:var(--margin-col);
+    margin-right:var(--note-pull);
+    margin-bottom:1rem;
+    font-size:0.78rem;
+    line-height:1.5;
+    color:var(--muted);
+    text-align:left;
+  }
+
+  .note::before{
+    content:counter(note);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.62rem;
+    vertical-align:super;
+    line-height:0;
+    color:var(--accent);
+    margin-right:0.3em;
+  }
+
+  /* Unnumbered margin furniture: dates, counts, labels. */
+  .aside{
+    float:right;
+    clear:right;
+    width:var(--margin-col);
+    margin-right:var(--note-pull);
+    margin-bottom:1rem;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--faint);
+    line-height:1.5;
+  }
+
   /* ---------- work cards ---------- */
 
+  .work-list{counter-reset:work;}
+
   .work{
+    position:relative;
     background:var(--surface);
     border:1px solid var(--rule);
     border-radius:5px;
-    padding:1.75rem 1.75rem 1.5rem;
-    margin-bottom:1.25rem;
+    padding:var(--card-pad) var(--card-pad) 1.75rem;
+    margin-bottom:1.5rem;
+    /* Break the measure. These outrank everything else on the page. */
+    width:calc(100% + var(--margin-col) + var(--gutter));
+    max-width:none;
+    box-shadow:0 1px 2px rgba(20,26,31,.04),0 8px 24px -12px rgba(20,26,31,.10);
   }
 
   .work:last-child{margin-bottom:0;}
 
-  .work-head{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:1rem;
-    margin-bottom:0.4rem;
+  .work::before{
+    counter-increment:work;
+    content:"0" counter(work);
+    position:absolute;
+    top:var(--card-pad);
+    right:var(--card-pad);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.66rem;
+    letter-spacing:0.14em;
+    color:var(--faint);
   }
 
   .work h3{
     font-family:Fraunces,Georgia,serif;
-    font-size:1.7rem;
+    font-variation-settings:"opsz" 96,"SOFT" 40,"WONK" 1;
+    font-size:2rem;
     font-weight:400;
-    letter-spacing:-0.015em;
-    margin:0;
-    line-height:1.1;
+    letter-spacing:-0.02em;
+    margin:0 0 0.15rem;
+    line-height:1.05;
   }
 
   .work .kind{
     color:var(--muted);
     font-size:0.95rem;
     margin:0 0 1.1rem;
+    max-width:44ch;
   }
+
+  /* The card carries its own note rail. Children are held back by exactly
+     the rail width, so a note floats out into it and lands flush with the
+     card's inner edge. Same mechanism as the page grid, one level down. */
+  .work > *{width:calc(100% - var(--margin-col) - var(--gutter));}
+
+  /* Card children already start inside the padding, so their notes need the
+     full pull to reach the same vertical as the prose notes outside. */
+  .work .note{margin-right:calc(-1 * (var(--margin-col) + var(--gutter)));}
 
   .outcome{
     border-left:2px solid var(--accent);
@@ -203,6 +320,65 @@
     border-radius:3px;
     padding:0.3rem 0.55rem;
   }
+
+  /* ---------- expanding case study ---------- */
+
+  .study{margin-top:1.15rem;}
+
+  .study summary{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    cursor:pointer;
+    list-style:none;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:0.15rem;
+  }
+
+  .study summary::-webkit-details-marker{display:none;}
+  .study summary:hover{border-bottom-color:var(--accent);}
+  .study summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+  .study summary .chev{
+    display:inline-block;
+    transition:transform .25s cubic-bezier(.2,.7,.3,1);
+    font-size:0.8rem;
+    line-height:1;
+  }
+
+  .study[open] summary .chev{transform:rotate(90deg);}
+  .study[open] summary .label-closed{display:none;}
+  .study:not([open]) summary .label-open{display:none;}
+
+  .detail-body{
+    padding-top:1.25rem;
+    font-size:0.95rem;
+    color:var(--muted);
+  }
+
+  .detail-body h4{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.66rem;
+    font-weight:500;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--faint);
+    margin:1.4rem 0 0.4rem;
+  }
+
+  .detail-body h4:first-child{margin-top:0;}
+  .detail-body p{margin-bottom:0.8rem;}
+  .detail-body p:last-child{margin-bottom:0;}
+
+  .detail-body ol{margin:0;padding-left:1.1rem;}
+  .detail-body li{margin-bottom:0.35rem;}
+
+  ::view-transition-group(*){animation-duration:.34s;}
 
   /* ---------- lists ---------- */
 
@@ -238,7 +414,8 @@
   .metric b{
     display:block;
     font-family:Fraunces,Georgia,serif;
-    font-size:1.5rem;
+    font-variation-settings:"opsz" 48,"SOFT" 40,"WONK" 0;
+    font-size:1.55rem;
     font-weight:400;
     letter-spacing:-0.02em;
     line-height:1.1;
@@ -277,6 +454,16 @@
     align-self:center;
   }
 
+  .pairs-label{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.66rem;
+    font-weight:500;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--faint);
+    margin:0 0 0.6rem;
+  }
+
   .background p{font-size:0.95rem;}
 
   /* ---------- close ---------- */
@@ -288,7 +475,7 @@
   }
 
   .close .display{
-    font-size:clamp(1.6rem,3.6vw,2.3rem);
+    font-size:clamp(1.6rem,3.6vw,2.4rem);
     max-width:24ch;
     margin-bottom:1.5rem;
   }
@@ -301,36 +488,109 @@
     margin-top:4rem;
   }
 
-  /* ---------- motion ---------- */
+  /* ---------- motion ----------
+     Scroll-driven, native, no JS. Falls back to nothing where unsupported. */
 
-  .fade{opacity:0;transform:translateY(8px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards;}
-  .fade:nth-of-type(2){animation-delay:.06s;}
-  .fade:nth-of-type(3){animation-delay:.12s;}
-  @keyframes rise{to{opacity:1;transform:none;}}
+  @supports (animation-timeline:view()){
+    @media (prefers-reduced-motion:no-preference){
+      .row,
+      .masthead,
+      .close{
+        animation:rise linear both;
+        animation-timeline:view();
+        animation-range:entry 0% entry 55%;
+      }
 
-  @media (prefers-reduced-motion:reduce){
-    .fade{animation:none;opacity:1;transform:none;}
+      .work{
+        animation:rise linear both;
+        animation-timeline:view();
+        animation-range:entry 0% entry 70%;
+      }
+
+      /* Margin notes drift in slightly after the text they qualify. */
+      .note,.aside{
+        animation:slip linear both;
+        animation-timeline:view();
+        animation-range:entry 10% entry 75%;
+      }
+    }
+  }
+
+  @keyframes rise{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:none;}
+  }
+
+  @keyframes slip{
+    from{opacity:0;transform:translateX(10px);}
+    to{opacity:1;transform:none;}
   }
 
   /* ---------- responsive ---------- */
 
-  @media (max-width:720px){
-    .wrap{padding:3rem 1.25rem 4rem;}
-    .row{grid-template-columns:1fr;gap:1rem;padding:2.25rem 0;}
-    .row > .spine .eyebrow{position:static;}
-    .work{padding:1.35rem;}
-    .work-head{flex-direction:column;gap:0.25rem;}
+  /* Margin column cannot fit. Notes fold into the text column. */
+  @media (max-width:1080px){
+    .row,.masthead,.close{grid-template-columns:var(--spine) minmax(0,1fr);}
+    .col{max-width:var(--measure);}
+    .work > *{width:100%;}
+
+    /* Must be block, or the span folds back into the sentence it annotates.
+       Markers sit at paragraph ends so the break never splits a sentence. */
+    .note,.aside,.work .note{
+      display:block;
+      float:none;
+      width:auto;
+      margin:0.9rem 0 1.1rem;
+      border-left:2px solid var(--rule);
+      padding-left:0.85rem;
+      max-width:var(--measure);
+    }
+    .work{width:100%;}
   }
 
-  /* ---------- print ---------- */
+  @media (max-width:720px){
+    .wrap{padding:3rem 1.25rem 4rem;}
+    .row,.masthead,.close{grid-template-columns:1fr;gap:1rem;padding-left:0;}
+    .row{padding:2.25rem 0;}
+    .masthead > *,.close > *{grid-column:1;}
+    .row > .spine .eyebrow{position:static;margin-bottom:0.5rem;}
+    .work{padding:1.35rem;}
+    .work::before{top:1.35rem;right:1.35rem;}
+    .work h3{font-size:1.6rem;}
+    .statement{font-size:clamp(2rem,8vw,2.6rem);}
+  }
+
+  /* ---------- print ----------
+     The page doubles as the PDF source. Screen intricacy must not leak in. */
 
   @media print{
-    :root{--paper:#fff;--surface:#fff;--rule:#ccc;}
+    :root{--paper:#fff;--surface:#fff;--rule:#ccc;--spine:6rem;--margin-col:11rem;--gutter:1.5rem;}
     body{font-size:10pt;line-height:1.45;}
+    body::before{display:none;}
     .wrap{max-width:none;padding:0;}
-    .row{grid-template-columns:7rem 1fr;padding:1.1rem 0;break-inside:avoid;}
+
+    .row{
+      grid-template-columns:var(--spine) minmax(0,1fr) var(--margin-col);
+      padding:1.1rem 0;
+      break-inside:avoid;
+    }
+
     .work,.item{break-inside:avoid;}
-    .fade{animation:none;opacity:1;transform:none;}
+
+    .work{
+      width:100%;
+      box-shadow:none;
+      padding:1rem;
+      margin-bottom:0.8rem;
+    }
+
+    .note,.aside{font-size:8pt;}
+
+    /* Case studies are opened by script before printing. */
+    .study summary{display:none;}
+    .detail-body{padding-top:0.6rem;}
+
+    .row,.masthead,.close,.work,.note,.aside{animation:none;opacity:1;transform:none;}
     .colophon,.meta a{border:0;}
     a{border-bottom:0;}
   }
@@ -339,7 +599,7 @@
 <body>
 <div class="wrap">
 
-  <header class="masthead fade">
+  <header class="masthead">
     <p class="name">Ioannis Koupidis · UX practitioner</p>
     <h1 class="display statement">I don't <em>guess</em>.</h1>
     <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
@@ -352,22 +612,41 @@
     </div>
   </header>
 
-  <section class="row fade">
+  <section class="row">
     <div class="spine"><span class="eyebrow">Work</span></div>
-    <div class="col">
+    <div class="col work-list">
 
-      <article class="work">
-        <div class="work-head">
-          <h3>Agent X</h3>
-          <span class="eyebrow">2026</span>
-        </div>
-        <p class="kind">UX research and interaction design · Medieinstitutet Stockholm</p>
-        <p>How could contextual guidance help new players of a demanding shooter without flattening its difficulty? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.</p>
+      <article class="work" style="view-transition-name:study-agentx;">
+        <h3>Agent X</h3>
+        <p class="kind">Student project · Medieinstitutet Stockholm · 2026</p>
+        <p>How could contextual guidance help new players of a demanding shooter without flattening its difficulty? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.<span class="ref"></span><span class="note">Run with teacher guidance as part of the UX programme. My first complete research cycle.</span></p>
         <div class="outcome">
           <span class="eyebrow">What it produced</span>
-          Participants found and understood the guidance without prompting. Testing also exposed language and sample limitations worth a further round.
+          Participants found and understood the guidance without prompting.<span class="ref"></span><span class="note">Testing also exposed language and sample limitations worth a further round.</span>
         </div>
-        <p><a href="#">Read the case study</a></p>
+
+        <details class="study">
+          <summary><span class="chev">›</span><span class="label-closed">Read the case study</span><span class="label-open">Close</span></summary>
+          <div class="detail-body">
+            <h4>The question</h4>
+            <p>New players of a demanding shooter abandon it early. Lowering the difficulty would remove the reason the existing audience plays it. The brief was to find out whether contextual guidance could carry a newcomer through the first hours without changing what the game is.</p>
+
+            <h4>What I did</h4>
+            <ol>
+              <li>Eight semi-structured interviews with players, spanning newcomers and experienced players.</li>
+              <li>Synthesis into two personas and a journey map covering the first session.</li>
+              <li>Four wireframe views covering the moments the journey map flagged as drop-off points.</li>
+              <li>Three think-aloud usability sessions against the wireframes.</li>
+            </ol>
+
+            <h4>What came back</h4>
+            <p>Participants located the guidance and understood it without being pointed at it, which was the thing being tested. The wireframes did not have to explain themselves.</p>
+
+            <h4>What I would do differently</h4>
+            <p>Three test participants is too few to generalise from, and the sessions ran in a second language for some of them, which shaped how they described confusion. Both limits point at the same next step: another round, more participants, run in their first language.</p>
+          </div>
+        </details>
+
         <div class="tags">
           <span class="tag">User research</span>
           <span class="tag">Synthesis</span>
@@ -376,18 +655,37 @@
         </div>
       </article>
 
-      <article class="work">
-        <div class="work-head">
-          <h3>Radio</h3>
-          <span class="eyebrow">2026</span>
-        </div>
-        <p class="kind">Personal project · directing an AI-assisted iOS build</p>
-        <p>I built an internet radio player for iOS in a single working day without writing the code. I set the scope, ran a build agent, then ran a separate agent to audit its output, and tested the result on a physical device.</p>
+      <article class="work" style="view-transition-name:study-radio;">
+        <h3>Radio</h3>
+        <p class="kind">Personal project · directing an AI-assisted iOS build · 2026</p>
+        <p>I built an internet radio player for iOS in a single working day without writing the code. I set the scope, ran a build agent, then ran a separate agent to audit its output, and tested the result on a physical device.<span class="ref"></span><span class="note">The work was specifying it, questioning it and testing it. That is product management, not engineering.</span></p>
         <div class="outcome">
           <span class="eyebrow">What it produced</span>
-          The audit caught four faults that all looked finished, and device testing caught a network failure that code review had passed. The work was specifying it, questioning it and testing it.
+          The audit caught four faults that all looked finished, and device testing caught a network failure that code review had passed.
         </div>
-        <p><a href="#">Read the case study</a></p>
+
+        <details class="study">
+          <summary><span class="chev">›</span><span class="label-closed">Read the case study</span><span class="label-open">Close</span></summary>
+          <div class="detail-body">
+            <h4>The question</h4>
+            <p>If an agent can write the code, what is left for the person directing it? I wanted to find out by shipping something real in a fixed window and paying attention to where my own judgement actually mattered.</p>
+
+            <h4>How it ran</h4>
+            <ol>
+              <li>Scope set first and written down, so that finished had a definition before anything was built.</li>
+              <li>One agent building against that scope.</li>
+              <li>A second, separate agent auditing the first one's output, on the assumption that it was wrong until shown otherwise.</li>
+              <li>Testing on a physical device rather than the simulator.</li>
+            </ol>
+
+            <h4>What came back</h4>
+            <p>The audit found four faults in work that presented as complete. Device testing then caught a network failure that had passed code review, because the simulator's network conditions are not a phone's.</p>
+
+            <h4>What I take from it</h4>
+            <p>The generation step was the cheap part. The value was in specifying the thing precisely, refusing to accept output that only looked finished, and testing in conditions that resemble use. None of that required writing code, and all of it required knowing what to distrust.</p>
+          </div>
+        </details>
+
         <div class="tags">
           <span class="tag">Scoping</span>
           <span class="tag">AI-assisted delivery</span>
@@ -397,9 +695,10 @@
       </article>
 
     </div>
+    <div></div>
   </section>
 
-  <section class="row fade">
+  <section class="row">
     <div class="spine"><span class="eyebrow">Practice</span></div>
     <div class="col">
       <h2 class="section">How I work</h2>
@@ -410,7 +709,7 @@
         </div>
         <div class="item">
           <h3>Comfort with complexity and stakeholders</h3>
-          <p>Twelve years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.</p>
+          <p>Twelve years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.<span class="ref"></span><span class="note">Swedish public healthcare procurement. Regulated, audited, and slow to forgive an error.</span></p>
         </div>
         <div class="item">
           <h3>Sceptical use of AI tooling</h3>
@@ -419,17 +718,18 @@
       </div>
       <p class="inline-list" style="margin-top:1.6rem;">Figma · Miro · user interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows</p>
     </div>
+    <div></div>
   </section>
 
-  <section class="row fade">
+  <section class="row">
     <div class="spine"><span class="eyebrow">Experience</span></div>
     <div class="col">
       <div class="stack">
 
         <div class="item">
+          <span class="aside">Stockholm<br>2012 – 2025</span>
           <h3>Founder &amp; CEO · Konduko AB</h3>
-          <span class="when">Stockholm · 2012–2025</span>
-          <p>Founded and led a specialist healthcare staffing company serving Swedish public healthcare. Designed the operating system connecting procurement requirements, physician availability, contracts, schedules, invoicing and quality control. Closed the company as a deliberate decision when the regulatory landscape shifted.</p>
+          <p>Founded and led a specialist healthcare staffing company serving Swedish public healthcare. Designed the operating system connecting procurement requirements, physician availability, contracts, schedules, invoicing and quality control.<span class="ref"></span><span class="note">Closed the company as a deliberate decision when the regulatory landscape shifted.</span></p>
           <div class="metrics">
             <div class="metric"><b>25+</b><span>public procurement contracts</span></div>
             <div class="metric"><b>140+</b><span>physicians on parallel assignments</span></div>
@@ -439,38 +739,43 @@
         </div>
 
         <div class="item">
+          <span class="aside">Stockholm<br>2011 – present</span>
           <h3>Founder · NiyaCare Stockholm AB</h3>
-          <span class="when">Stockholm · 2011 – present</span>
           <p>A personal assistance company built around matching people with assistants they can rely on. Responsible for understanding individual needs, service quality and daily operations. It is where I learned what autonomy and trust actually require from a service.</p>
         </div>
 
       </div>
     </div>
+    <div></div>
   </section>
 
-  <section class="row fade background">
+  <section class="row background">
     <div class="spine"><span class="eyebrow">Background</span></div>
     <div class="col">
       <h2 class="section">Before this, thirteen years in visual communication</h2>
-      <p>Athens, 1998 to 2011. Design and production at Apolyto S.A., moving from layout and print production into project coordination. Creative consulting with fashion designer Angelos Frentzos across branding, lookbooks and Milan Fashion Week material. Branding and packaging for Barbara's Food Company. Print advertising and conference material with the marketing team at PricewaterhouseCoopers.</p>
-      <p>I do not sell this as a current skill. It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.</p>
+      <p>Athens, 1998 to 2011. Design and production at Apolyto S.A., moving from layout and print production into project coordination. Creative consulting with fashion designer Angelos Frentzos across branding, lookbooks and Milan Fashion Week material. Branding and packaging for Barbara's Food Company. Print advertising and conference material with the marketing team at PricewaterhouseCoopers.<span class="ref"></span><span class="note">I do not sell this as a current skill. Over twenty years since I worked as a graphic designer, and not what I am asking to be hired for.</span></p>
+      <p>It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.</p>
     </div>
+    <div></div>
   </section>
 
-  <section class="row fade">
+  <section class="row">
     <div class="spine"><span class="eyebrow">Education</span></div>
     <div class="col">
+      <p class="pairs-label">Qualifications</p>
       <div class="pairs">
         <div class="pair"><span>UX Design · Medieinstitutet Stockholm</span><span>2026</span></div>
         <div class="pair"><span>Graphic Design · IIEK Technografiko, Athens</span><span>1996</span></div>
       </div>
-      <div class="pairs" style="margin-top:1.6rem;">
+      <p class="pairs-label" style="margin-top:1.6rem;">Languages</p>
+      <div class="pairs">
         <div class="pair"><span>Greek</span><span>Native</span></div>
         <div class="pair"><span>English</span><span>Fluent</span></div>
         <div class="pair"><span>Swedish</span><span>Fluent</span></div>
         <div class="pair"><span>German</span><span>Basic</span></div>
       </div>
     </div>
+    <div></div>
   </section>
 
   <footer class="close">
@@ -484,5 +789,33 @@
   </footer>
 
 </div>
+
+<script>
+  // Expand case studies with a view transition where supported.
+  document.querySelectorAll('.study').forEach(function(study){
+    var summary = study.querySelector('summary');
+    summary.addEventListener('click', function(e){
+      if(!document.startViewTransition) return;
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      e.preventDefault();
+      document.startViewTransition(function(){
+        study.open = !study.open;
+      });
+    });
+  });
+
+  // The page is the PDF source, so case studies must be open on paper.
+  var reopen = [];
+  window.addEventListener('beforeprint', function(){
+    reopen = [];
+    document.querySelectorAll('.study').forEach(function(study){
+      if(!study.open){ reopen.push(study); study.open = true; }
+    });
+  });
+  window.addEventListener('afterprint', function(){
+    reopen.forEach(function(study){ study.open = false; });
+    reopen = [];
+  });
+</script>
 </body>
 </html>
