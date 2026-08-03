@@ -17,7 +17,8 @@ Do not undo these without asking.
 - **No overclaiming.** He has never worked professionally as a UX designer. Agent X was a student project done with teacher guidance. Any sentence implying professional UX experience or independent seniority is wrong and must be fixed. This is the single most important rule in this file.
 - **Hyper Island is removed.** He was accepted to the Product Manager programme starting August 2026 and decided not to attend. Any reference to it is stale.
 - **Radio is labelled a personal project.** He directed and audited an AI-assisted iOS build in a day without writing code. The point of the piece is specifying, questioning and testing, which is product management work.
-- The SEK 1.5B framework-value figure was removed from the Konduko block as a deliberate choice.
+- **The SEK 1.5B+ figure is back, with its limits stated.** It was removed once, then restored on 4 Aug 2026 after comparing against the EY CV, which kept the number and footnoted it. The sidenote saying these were procurement estimates and not guaranteed spend or revenue is the reason the figure is allowed to stand. Never show the number without it.
+- **The Athens years carry titles and dates.** Graphic design stays de-emphasised in tone, but the four roles are listed with dates so the CV still works as an employment record. De-emphasising a period is not a reason to leave a thirteen-year hole in the dates.
 - **Tools are not a strength and must not be listed as one.** Miro was removed because he does not know what it is. Figma is basic and is stated as basic in a sidenote rather than sitting in a skills list. Do not add tool names back without checking he actually uses them.
 
 ## Voice
@@ -51,7 +52,11 @@ Print styles exist and must keep working, since the page doubles as the PDF sour
 - The PDF download link is still a placeholder. LinkedIn and both case studies are live: Agent X at `https://ioanniskp.github.io/-agent-x-case-study/`, Radio at `https://ioanniskp.github.io/radio/`
 - The masthead lede still describes research as habitual practice, which the Practice section contradicts by admitting one cycle. Unresolved
 - Konduko is described as twelve years in the body but dated 2012 to 2025, which spans thirteen
-- The Background section dates the Athens period to 2011, but the graphic design gap is stated as seventeen years. Both can be true if the last years were coordination rather than design, but the arithmetic invites a question
+- Resolved by the EY folder: the Medieinstitutet programme ran Mar to Jun 2026, so it is complete, not expected. And Apolyto ended in 2009, which is what makes "seventeen years" correct even though the Athens era ran to 2011 through consulting
+
+## Sibling CVs
+
+`../CV-Athens-Greece EY/` is a per-employer adaptation with a different design: single column, 720px, warm cream and terracotta, portrait photo, EN/EL toggle, and a 2-page A4 PDF built from `cv-data.json` through templates. It is the better conventional CV; this one is the better portfolio piece. Two cautions if reusing it: it still says he will begin the Hyper Island programme in August 2026, which is stale and wrong, and its tagline and closing use the marketing register this project's voice guide bans.
 
 ## Quality floor
 

@@ -451,8 +451,10 @@
 
   .metrics{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(7rem,1fr));
-    gap:1rem;
+    /* 9rem min yields three columns at the measure, so five metrics land
+       3 + 2 instead of orphaning one on its own row. */
+    grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));
+    gap:1rem 1.25rem;
     margin:1.15rem 0 0;
     padding-top:1.15rem;
     border-top:1px solid var(--rule);
@@ -687,6 +689,7 @@
       .metric:nth-child(2),.tag:nth-child(2),.item:nth-child(2),.pair:nth-child(2){animation-range:entry 15% entry 51%;}
       .metric:nth-child(3),.tag:nth-child(3),.item:nth-child(3),.pair:nth-child(3){animation-range:entry 20% entry 56%;}
       .metric:nth-child(4),.tag:nth-child(4),.item:nth-child(4),.pair:nth-child(4){animation-range:entry 25% entry 61%;}
+      .metric:nth-child(5),.tag:nth-child(5),.item:nth-child(5),.pair:nth-child(5){animation-range:entry 30% entry 66%;}
     }
   }
 
@@ -827,7 +830,7 @@
 <div class="wrap">
 
   <header class="masthead">
-    <p class="name">Ioannis Koupidis · UX practitioner</p>
+    <p class="name">Ioannis Koupidis · UX practitioner<span class="aside">Athens or Stockholm<br>Will relocate for the role</span></p>
     <h1 class="display statement"><span class="w">I</span> <span class="w">don't</span> <span class="w"><em>guess</em>.</span></h1>
     <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
     <div class="meta">
@@ -964,8 +967,10 @@
             <div class="metric"><b>25+</b><span>public procurement contracts</span></div>
             <div class="metric"><b>140+</b><span>physicians on parallel assignments</span></div>
             <div class="metric"><b>All regions</b><span>framework coverage in Sweden</span></div>
+            <div class="metric"><b>SEK 1.5B+</b><span>aggregate estimated value of awarded frameworks<span class="ref"></span></span></div>
             <div class="metric"><b>ISO 9001<br>&amp; 14001</b><span>certified operations</span></div>
           </div>
+          <span class="note">Procurement estimates, not guaranteed spend and not company revenue. Actual placements depended on regional demand and physician availability.</span>
         </div>
 
         <div class="item">
@@ -983,8 +988,15 @@
     <div class="spine"><span class="eyebrow">Background</span></div>
     <div class="col">
       <h2 class="section">Before this, thirteen years in visual communication</h2>
-      <p>Athens, 1998 to 2011. Design and production at Apolyto S.A., moving from layout and print production into project coordination. Creative consulting with fashion designer Angelos Frentzos across branding, lookbooks and Milan Fashion Week material. Branding and packaging for Barbara's Food Company. Print advertising and conference material with the marketing team at PricewaterhouseCoopers.<span class="ref"></span><span class="note">I do not sell this as a current skill. Seventeen years since I worked as a graphic designer, and not what I am asking to be hired for.</span></p>
+      <p>Athens, 1998 to 2011. Layout and print production first, then project coordination, branding, packaging and campaign work for fashion, food and professional services clients.<span class="ref"></span><span class="note">I do not sell this as a current skill. Seventeen years since I worked as a graphic designer, and not what I am asking to be hired for.</span></p>
       <p>It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.</p>
+
+      <div class="pairs" style="margin-top:1.5rem;">
+        <div class="pair"><span>Graphic Designer, later Project Manager · Apolyto S.A.</span><span>1998 &ndash; 2009</span></div>
+        <div class="pair"><span>Creative Consultant · Angelos Frentzos S.A.</span><span>2004 &ndash; 2011</span></div>
+        <div class="pair"><span>Creative Consultant · Barbara's Food Company</span><span>2009 &ndash; 2010</span></div>
+        <div class="pair"><span>Design Consultant · PricewaterhouseCoopers</span><span>2004 &ndash; 2009</span></div>
+      </div>
     </div>
     <div></div>
   </section>
