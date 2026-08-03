@@ -18,6 +18,7 @@ Do not undo these without asking.
 - **Hyper Island is removed.** He was accepted to the Product Manager programme starting August 2026 and decided not to attend. Any reference to it is stale.
 - **Radio is labelled a personal project.** He directed and audited an AI-assisted iOS build in a day without writing code. The point of the piece is specifying, questioning and testing, which is product management work.
 - The SEK 1.5B framework-value figure was removed from the Konduko block as a deliberate choice.
+- **Tools are not a strength and must not be listed as one.** Miro was removed because he does not know what it is. Figma is basic and is stated as basic in a sidenote rather than sitting in a skills list. Do not add tool names back without checking he actually uses them.
 
 ## Voice
 
@@ -33,15 +34,24 @@ Keep these. The typefaces in particular are a settled preference.
 
 Tokens are CSS variables at the top of `index.html`:
 `--paper:#EDEFF1` `--surface:#FFFFFF` `--ink:#141A1F` `--muted:#5C6771`
-`--faint:#8C979F` `--rule:#D6DCE0` `--accent:#2E5E4E` `--measure:38rem`
+`--faint:#8C979F` `--rule:#D6DCE0` `--accent:#8C2F39` `--measure:38rem`
 
-Layout is a two-column grid: a 9rem left spine holding sticky mono section labels, and a content column capped at `--measure`. Collapses to one column under 720px. Print styles exist and should keep working, since the page doubles as the PDF source.
+The accent has been green (`#2E5E4E`) and blue (`#1550B8`), both rejected, and is now maroon. Any replacement should hold about 7:1 on white and 6:1 on paper, since the accent is used for small mono text.
+
+Layout is a three-column editorial grid: `--spine:7rem` for sticky mono section labels, `--measure:38rem` for text, and `--margin-col:13rem` for marginalia, separated by `--gutter:2.5rem`. Sidenotes are floated out of the measure into the margin column with a negative margin. Work cards break the measure to the right and carry their own note rail, which is why `--card-pad` and `--note-pull` exist: they keep card notes and prose notes on one vertical. Collapses to two columns under 1080px, where notes fold inline as blocks, and to one column under 720px.
+
+Motion is entirely native scroll-driven CSS (`animation-timeline: view()` and `scroll()`), gated on `@supports` and `prefers-reduced-motion`. No JavaScript and no libraries. The only script in the file toggles case studies with a view transition and opens them before printing.
+
+Print styles exist and must keep working, since the page doubles as the PDF source. Everything animated is reset there, and links print their full URL.
 
 ## Open questions
 
 - Whether the header label "UX practitioner" is the right description
 - Whether the Greek and English toggle from the previous version gets rebuilt
-- Case study links and the LinkedIn and PDF links are placeholders
+- The PDF download link is still a placeholder. LinkedIn and both case studies are live: Agent X at `https://ioanniskp.github.io/-agent-x-case-study/`, Radio at `https://ioanniskp.github.io/radio/`
+- The masthead lede still describes research as habitual practice, which the Practice section contradicts by admitting one cycle. Unresolved
+- Konduko is described as twelve years in the body but dated 2012 to 2025, which spans thirteen
+- The Background section dates the Athens period to 2011, but the graphic design gap is stated as seventeen years. Both can be true if the last years were coordination rather than design, but the arithmetic invites a question
 
 ## Quality floor
 
