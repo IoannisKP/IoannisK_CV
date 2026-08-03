@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ioannis Koupidis · UX practitioner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEFF1;
+    --surface:#FFFFFF;
+    --ink:#141A1F;
+    --muted:#5C6771;
+    --faint:#8C979F;
+    --rule:#D6DCE0;
+    --accent:#2E5E4E;
+    --measure:38rem;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{-webkit-text-size-adjust:100%;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;
+    font-size:15.5px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:64rem;
+    margin:0 auto;
+    padding:4.5rem 2rem 6rem;
+  }
+
+  /* ---------- type roles ---------- */
+
+  .display{
+    font-family:Fraunces,Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:400;
+    letter-spacing:-0.015em;
+    line-height:1.08;
+    margin:0;
+  }
+
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:0.66rem;
+    font-weight:500;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--faint);
+  }
+
+  .lede{
+    font-size:1.06rem;
+    color:var(--muted);
+    max-width:var(--measure);
+  }
+
+  a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);}
+  a:hover{border-bottom-color:var(--accent);color:var(--accent);}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+  /* ---------- masthead ---------- */
+
+  .masthead{
+    padding-bottom:3.25rem;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:3.25rem;
+  }
+
+  .masthead .name{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:0 0 1.75rem;
+  }
+
+  .statement{
+    font-size:clamp(2.1rem,5.4vw,3.4rem);
+    max-width:20ch;
+    margin-bottom:1.5rem;
+  }
+
+  .statement em{
+    font-style:italic;
+    color:var(--accent);
+  }
+
+  .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem 1.5rem;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    color:var(--muted);
+    margin-top:2.25rem;
+  }
+
+  .meta a{border-bottom-color:var(--faint);}
+
+  /* ---------- section grid ---------- */
+
+  .row{
+    display:grid;
+    grid-template-columns:9rem minmax(0,1fr);
+    gap:2.5rem;
+    padding:2.75rem 0;
+    border-bottom:1px solid var(--rule);
+  }
+
+  .row:last-of-type{border-bottom:0;}
+
+  .row > .spine .eyebrow{
+    position:sticky;
+    top:2rem;
+    display:block;
+  }
+
+  .col{max-width:var(--measure);}
+
+  h2.section{
+    font-family:Fraunces,Georgia,serif;
+    font-size:1.5rem;
+    font-weight:400;
+    margin:0 0 1.25rem;
+    letter-spacing:-0.01em;
+  }
+
+  p{margin:0 0 1rem;}
+  p:last-child{margin-bottom:0;}
+
+  /* ---------- work cards ---------- */
+
+  .work{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:5px;
+    padding:1.75rem 1.75rem 1.5rem;
+    margin-bottom:1.25rem;
+  }
+
+  .work:last-child{margin-bottom:0;}
+
+  .work-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:0.4rem;
+  }
+
+  .work h3{
+    font-family:Fraunces,Georgia,serif;
+    font-size:1.7rem;
+    font-weight:400;
+    letter-spacing:-0.015em;
+    margin:0;
+    line-height:1.1;
+  }
+
+  .work .kind{
+    color:var(--muted);
+    font-size:0.95rem;
+    margin:0 0 1.1rem;
+  }
+
+  .outcome{
+    border-left:2px solid var(--accent);
+    padding:0.15rem 0 0.15rem 0.95rem;
+    margin:1.15rem 0 1.25rem;
+  }
+
+  .outcome .eyebrow{color:var(--accent);display:block;margin-bottom:0.2rem;}
+
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.4rem;
+    margin-top:1.1rem;
+    padding-top:1.1rem;
+    border-top:1px solid var(--rule);
+  }
+
+  .tag{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.65rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    background:var(--paper);
+    border-radius:3px;
+    padding:0.3rem 0.55rem;
+  }
+
+  /* ---------- lists ---------- */
+
+  .stack{display:grid;gap:1.6rem;}
+
+  .item h3{
+    font-size:1rem;
+    font-weight:600;
+    margin:0 0 0.15rem;
+  }
+
+  .item .when{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--faint);
+    display:block;
+    margin-bottom:0.45rem;
+  }
+
+  .item p{color:var(--muted);}
+
+  .metrics{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(7rem,1fr));
+    gap:1rem;
+    margin:1.15rem 0 0;
+    padding-top:1.15rem;
+    border-top:1px solid var(--rule);
+  }
+
+  .metric b{
+    display:block;
+    font-family:Fraunces,Georgia,serif;
+    font-size:1.5rem;
+    font-weight:400;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+  }
+
+  .metric span{
+    font-size:0.78rem;
+    color:var(--muted);
+    line-height:1.35;
+    display:block;
+    margin-top:0.15rem;
+  }
+
+  .inline-list{
+    color:var(--muted);
+    font-size:0.95rem;
+  }
+
+  .pairs{display:grid;gap:0.45rem;}
+
+  .pair{
+    display:flex;
+    justify-content:space-between;
+    gap:1.5rem;
+    border-bottom:1px dotted var(--rule);
+    padding-bottom:0.45rem;
+  }
+
+  .pair span:last-child{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.7rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--faint);
+    white-space:nowrap;
+    align-self:center;
+  }
+
+  .background p{font-size:0.95rem;}
+
+  /* ---------- close ---------- */
+
+  .close{
+    padding-top:3.25rem;
+    border-top:1px solid var(--rule);
+    margin-top:2.75rem;
+  }
+
+  .close .display{
+    font-size:clamp(1.6rem,3.6vw,2.3rem);
+    max-width:24ch;
+    margin-bottom:1.5rem;
+  }
+
+  .colophon{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    color:var(--faint);
+    margin-top:4rem;
+  }
+
+  /* ---------- motion ---------- */
+
+  .fade{opacity:0;transform:translateY(8px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards;}
+  .fade:nth-of-type(2){animation-delay:.06s;}
+  .fade:nth-of-type(3){animation-delay:.12s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  @media (prefers-reduced-motion:reduce){
+    .fade{animation:none;opacity:1;transform:none;}
+  }
+
+  /* ---------- responsive ---------- */
+
+  @media (max-width:720px){
+    .wrap{padding:3rem 1.25rem 4rem;}
+    .row{grid-template-columns:1fr;gap:1rem;padding:2.25rem 0;}
+    .row > .spine .eyebrow{position:static;}
+    .work{padding:1.35rem;}
+    .work-head{flex-direction:column;gap:0.25rem;}
+  }
+
+  /* ---------- print ---------- */
+
+  @media print{
+    :root{--paper:#fff;--surface:#fff;--rule:#ccc;}
+    body{font-size:10pt;line-height:1.45;}
+    .wrap{max-width:none;padding:0;}
+    .row{grid-template-columns:7rem 1fr;padding:1.1rem 0;break-inside:avoid;}
+    .work,.item{break-inside:avoid;}
+    .fade{animation:none;opacity:1;transform:none;}
+    .colophon,.meta a{border:0;}
+    a{border-bottom:0;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead fade">
+    <p class="name">Ioannis Koupidis · UX practitioner</p>
+    <h1 class="display statement">I don't <em>guess</em>.</h1>
+    <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
+    <div class="meta">
+      <span>Athens &amp; Stockholm</span>
+      <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
+      <a href="tel:+306981323092">+30 698 132 3092</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Download PDF</a>
+    </div>
+  </header>
+
+  <section class="row fade">
+    <div class="spine"><span class="eyebrow">Work</span></div>
+    <div class="col">
+
+      <article class="work">
+        <div class="work-head">
+          <h3>Agent X</h3>
+          <span class="eyebrow">2026</span>
+        </div>
+        <p class="kind">UX research and interaction design · Medieinstitutet Stockholm</p>
+        <p>How could contextual guidance help new players of a demanding shooter without flattening its difficulty? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.</p>
+        <div class="outcome">
+          <span class="eyebrow">What it produced</span>
+          Participants found and understood the guidance without prompting. Testing also exposed language and sample limitations worth a further round.
+        </div>
+        <p><a href="#">Read the case study</a></p>
+        <div class="tags">
+          <span class="tag">User research</span>
+          <span class="tag">Synthesis</span>
+          <span class="tag">Wireframes</span>
+          <span class="tag">Usability testing</span>
+        </div>
+      </article>
+
+      <article class="work">
+        <div class="work-head">
+          <h3>Radio</h3>
+          <span class="eyebrow">2026</span>
+        </div>
+        <p class="kind">Personal project · directing an AI-assisted iOS build</p>
+        <p>I built an internet radio player for iOS in a single working day without writing the code. I set the scope, ran a build agent, then ran a separate agent to audit its output, and tested the result on a physical device.</p>
+        <div class="outcome">
+          <span class="eyebrow">What it produced</span>
+          The audit caught four faults that all looked finished, and device testing caught a network failure that code review had passed. The work was specifying it, questioning it and testing it.
+        </div>
+        <p><a href="#">Read the case study</a></p>
+        <div class="tags">
+          <span class="tag">Scoping</span>
+          <span class="tag">AI-assisted delivery</span>
+          <span class="tag">Critical evaluation</span>
+          <span class="tag">Device testing</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="row fade">
+    <div class="spine"><span class="eyebrow">Practice</span></div>
+    <div class="col">
+      <h2 class="section">How I work</h2>
+      <div class="stack">
+        <div class="item">
+          <h3>Research that survives contact with users</h3>
+          <p>Interviews, synthesis, personas, journey mapping, wireframing and think-aloud testing. So far that is one complete cycle, run as a student project at Medieinstitutet with teachers to steer me. I am looking for the role where it becomes daily practice.</p>
+        </div>
+        <div class="item">
+          <h3>Comfort with complexity and stakeholders</h3>
+          <p>Twelve years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.</p>
+        </div>
+        <div class="item">
+          <h3>Sceptical use of AI tooling</h3>
+          <p>I use generative and agent-based workflows daily, and I assume their output is wrong until tested. Auditing is the part that matters.</p>
+        </div>
+      </div>
+      <p class="inline-list" style="margin-top:1.6rem;">Figma · Miro · user interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows</p>
+    </div>
+  </section>
+
+  <section class="row fade">
+    <div class="spine"><span class="eyebrow">Experience</span></div>
+    <div class="col">
+      <div class="stack">
+
+        <div class="item">
+          <h3>Founder &amp; CEO · Konduko AB</h3>
+          <span class="when">Stockholm · 2012–2025</span>
+          <p>Founded and led a specialist healthcare staffing company serving Swedish public healthcare. Designed the operating system connecting procurement requirements, physician availability, contracts, schedules, invoicing and quality control. Closed the company as a deliberate decision when the regulatory landscape shifted.</p>
+          <div class="metrics">
+            <div class="metric"><b>25+</b><span>public procurement contracts</span></div>
+            <div class="metric"><b>140+</b><span>physicians on parallel assignments</span></div>
+            <div class="metric"><b>All regions</b><span>framework coverage in Sweden</span></div>
+            <div class="metric"><b>ISO 9001<br>&amp; 14001</b><span>certified operations</span></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <h3>Founder · NiyaCare Stockholm AB</h3>
+          <span class="when">Stockholm · 2011 – present</span>
+          <p>A personal assistance company built around matching people with assistants they can rely on. Responsible for understanding individual needs, service quality and daily operations. It is where I learned what autonomy and trust actually require from a service.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="row fade background">
+    <div class="spine"><span class="eyebrow">Background</span></div>
+    <div class="col">
+      <h2 class="section">Before this, thirteen years in visual communication</h2>
+      <p>Athens, 1998 to 2011. Design and production at Apolyto S.A., moving from layout and print production into project coordination. Creative consulting with fashion designer Angelos Frentzos across branding, lookbooks and Milan Fashion Week material. Branding and packaging for Barbara's Food Company. Print advertising and conference material with the marketing team at PricewaterhouseCoopers.</p>
+      <p>I do not sell this as a current skill. It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.</p>
+    </div>
+  </section>
+
+  <section class="row fade">
+    <div class="spine"><span class="eyebrow">Education</span></div>
+    <div class="col">
+      <div class="pairs">
+        <div class="pair"><span>UX Design · Medieinstitutet Stockholm</span><span>2026</span></div>
+        <div class="pair"><span>Graphic Design · IIEK Technografiko, Athens</span><span>1996</span></div>
+      </div>
+      <div class="pairs" style="margin-top:1.6rem;">
+        <div class="pair"><span>Greek</span><span>Native</span></div>
+        <div class="pair"><span>English</span><span>Fluent</span></div>
+        <div class="pair"><span>Swedish</span><span>Fluent</span></div>
+        <div class="pair"><span>German</span><span>Basic</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="close">
+    <p class="display">Available now, in Athens or Stockholm.</p>
+    <div class="meta" style="margin-top:0;">
+      <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
+      <a href="tel:+306981323092">+30 698 132 3092</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <p class="colophon">Set in Fraunces, Inter &amp; IBM Plex Mono</p>
+  </footer>
+
+</div>
+</body>
+</html>
