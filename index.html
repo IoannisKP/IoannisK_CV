@@ -527,6 +527,50 @@
     margin-bottom:1.5rem;
   }
 
+  .pullquote{margin:0 0 2rem;}
+
+  /* Negative indent hangs the opening quote mark in the margin, so the
+     first letter still lines up with the column above it. */
+  .pullquote .display{
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 70,"WONK" 1;
+    font-size:clamp(1.75rem,4vw,2.65rem);
+    max-width:21ch;
+    margin-bottom:0;
+    text-indent:-0.28em;
+    text-wrap:balance;
+  }
+
+  .cta-line{margin:0 0 2.5rem;}
+
+  .cta{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    border:1px solid var(--accent);
+    border-radius:3px;
+    padding:0.75rem 1.15rem;
+    transition:background-color .22s ease,color .22s ease;
+  }
+
+  .cta:hover{
+    background:var(--accent);
+    color:var(--surface);
+    border-color:var(--accent);
+  }
+
+  .cta .arr{
+    display:inline-block;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1);
+  }
+
+  .cta:hover .arr{transform:translateX(3px);}
+
   .colophon{
     font-family:"IBM Plex Mono",monospace;
     font-size:0.66rem;
@@ -761,6 +805,12 @@
     .full-link .arr{display:none;}
     .full-link a::after{content:" " attr(href);letter-spacing:0;text-transform:none;}
 
+    /* The button is a screen affordance. On paper the address below carries it. */
+    .cta{border:0;padding:0;}
+    .cta .arr{display:none;}
+    .pullquote{margin-bottom:1.2rem;}
+    .cta-line{margin-bottom:1.2rem;}
+
     .colophon,.meta a{border:0;}
     a{border-bottom:0;}
   }
@@ -953,7 +1003,12 @@
   </section>
 
   <footer class="close">
-    <p class="display">Available now, in Athens or Stockholm.</p>
+    <blockquote class="pullquote">
+      <p class="display">&ldquo;I would rather be corrected early than right too late.&rdquo;</p>
+    </blockquote>
+
+    <p class="cta-line"><a class="cta" href="mailto:gkoupidis@gmail.com">Get in touch<span class="arr">&rarr;</span></a></p>
+
     <div class="meta" style="margin-top:0;">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
       <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
