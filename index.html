@@ -527,7 +527,15 @@
     margin-bottom:1.5rem;
   }
 
-  .pullquote{margin:0 0 2rem;}
+  .pullquote{margin:0 0 1.35rem;}
+
+  /* The quote borrows the authority; this line is the one doing the work. */
+  .close-line{
+    font-size:1.06rem;
+    color:var(--muted);
+    max-width:34ch;
+    margin:0 0 2rem;
+  }
 
   /* Negative indent hangs the opening quote mark in the margin, so the
      first letter still lines up with the column above it. */
@@ -555,6 +563,7 @@
     border:1px solid var(--accent);
     border-radius:3px;
     padding:0.75rem 1.15rem;
+    white-space:nowrap;
     transition:background-color .22s ease,color .22s ease;
   }
 
@@ -808,7 +817,8 @@
     /* The button is a screen affordance. On paper the address below carries it. */
     .cta{border:0;padding:0;}
     .cta .arr{display:none;}
-    .pullquote{margin-bottom:1.2rem;}
+    .pullquote{margin-bottom:0.8rem;}
+    .close-line{margin-bottom:0.8rem;}
     .cta-line{margin-bottom:1.2rem;}
 
     .colophon,.meta a{border:0;}
@@ -1004,8 +1014,11 @@
 
   <footer class="close">
     <blockquote class="pullquote">
-      <p class="display">&ldquo;I would rather be corrected early than right too late.&rdquo;</p>
+      <span class="aside">Heraclitus<br>c. 500 BC</span>
+      <p class="display">&ldquo;You cannot step into the same river twice.&rdquo;</p>
     </blockquote>
+
+    <p class="close-line">Users and technology keep moving. A design is never finished, which is why I test rather than assume.</p>
 
     <p class="cta-line"><a class="cta" href="mailto:gkoupidis@gmail.com">Get in touch<span class="arr">&rarr;</span></a></p>
 
