@@ -29,15 +29,21 @@ Plain, direct prose. No flourishes, no marketing language, no em dashes. Short d
 
 Keep these. The typefaces in particular are a settled preference.
 
-- **Fraunces** for display: name statement, section heads, metric numerals
+- **Fraunces** for display: name statement, section heads, metric numerals, and the numbered margin notes in italic at `opsz 14`
 - **Inter** for body, 15.5px, line height 1.62
 - **IBM Plex Mono** for eyebrows, labels, dates, uppercase with wide tracking
 
-Tokens are CSS variables at the top of `index.html`:
-`--paper:#EDEFF1` `--surface:#FFFFFF` `--ink:#141A1F` `--muted:#5C6771`
-`--faint:#8C979F` `--rule:#D6DCE0` `--accent:#8C2F39` `--measure:38rem`
+The right-hand margin holds two different kinds of content and they are typeset differently on purpose. Numbered prose notes are Fraunces italic, so the margin reads as a different kind of text rather than body copy tipped over. Mono metadata such as dates and the location is IBM Plex Mono uppercase, because it is labelling, not commentary. The reference numerals stay mono in both places, since they are apparatus and should match the marker in the text.
 
-The accent has been green (`#2E5E4E`) and blue (`#1550B8`), both rejected, and is now maroon. Any replacement should hold about 7:1 on white and 6:1 on paper, since the accent is used for small mono text.
+Tokens are CSS variables at the top of `index.html`:
+`--paper:#F5F2EC` `--surface:#FDFBF7` `--ink:#191714` `--muted:#57524A`
+`--faint:#6E675C` `--rule:#E0DAD0` `--accent:#23405F` `--accent-2:#9C5324` `--measure:38rem`
+
+**Two accents with separate jobs.** Navy carries anything interactive or structural: links, the italic word in the masthead and the closing statement, outcome borders, the CTA, section rules, the spine progress. Copper carries quantities only: metric numerals and sidenote reference markers. Do not let one take the other's work, since the point of the pair is that a single accent had been doing five jobs.
+
+**The paper is warm deliberately.** It was cool grey (`#EDEFF1`) through three rejected accents: green `#2E5E4E`, blue `#1550B8`, maroon `#8C2F39`. The accent was never the problem. Warm pigment on cold ground reads as unresolved and fights Fraunces. Do not return to a cool paper without rethinking the accents too.
+
+Every colour used for text clears WCAG AA on paper: ink 16.0, muted 6.9, faint 5.0, navy 9.5, copper 5.5. Check any token you change. `--faint` was previously `#8C979F` at 2.59:1, which failed outright and made the spine labels nearly invisible.
 
 Layout is a three-column editorial grid: `--spine:7rem` for sticky mono section labels, `--measure:38rem` for text, and `--margin-col:13rem` for marginalia, separated by `--gutter:2.5rem`. Sidenotes are floated out of the measure into the margin column with a negative margin. Work cards break the measure to the right and carry their own note rail, which is why `--card-pad` and `--note-pull` exist: they keep card notes and prose notes on one vertical. Collapses to two columns under 1080px, where notes fold inline as blocks, and to one column under 720px.
 

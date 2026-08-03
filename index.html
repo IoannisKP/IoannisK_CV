@@ -9,13 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..500,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#EDEFF1;
-    --surface:#FFFFFF;
-    --ink:#141A1F;
-    --muted:#5C6771;
-    --faint:#8C979F;
-    --rule:#D6DCE0;
-    --accent:#8C2F39;
+    /* Warm book stock. The cool grey fought Fraunces and made every warm
+       accent look unresolved. Navy carries anything interactive, copper
+       carries quantities, so the accent is not doing five jobs at once. */
+    --paper:#F5F2EC;
+    --surface:#FDFBF7;
+    --ink:#191714;
+    --muted:#57524A;
+    --faint:#6E675C;
+    --rule:#E0DAD0;
+    --accent:#23405F;
+    --accent-2:#9C5324;
     --measure:38rem;
 
     /* editorial grid */
@@ -52,8 +56,8 @@
     z-index:0;
     opacity:.5;
     background:
-      radial-gradient(circle at 20% 30%, rgba(20,26,31,.020) 0 1px, transparent 1px),
-      radial-gradient(circle at 70% 65%, rgba(20,26,31,.016) 0 1px, transparent 1px);
+      radial-gradient(circle at 20% 30%, rgba(25,23,20,.022) 0 1px, transparent 1px),
+      radial-gradient(circle at 70% 65%, rgba(25,23,20,.018) 0 1px, transparent 1px);
     background-size:7px 7px, 11px 11px;
   }
 
@@ -162,10 +166,14 @@
 
   .row:last-of-type{border-bottom:0;}
 
+  /* Section labels were 0.66rem on --faint, which measured 2.59:1 against
+     the old paper. Larger, and on --muted, which is ~7:1. */
   .row > .spine .eyebrow{
     position:sticky;
     top:2rem;
     display:block;
+    font-size:0.75rem;
+    color:var(--muted);
   }
 
   /* Per-section progress rule. Stays at zero width unless a scroll
@@ -220,7 +228,7 @@
     font-size:0.62rem;
     vertical-align:super;
     line-height:0;
-    color:var(--accent);
+    color:var(--accent-2);
     margin-left:0.12em;
     letter-spacing:0;
   }
@@ -231,19 +239,27 @@
     width:var(--margin-col);
     margin-right:var(--note-pull);
     margin-bottom:1rem;
-    font-size:0.78rem;
-    line-height:1.5;
+    /* Serif italic, not slanted Inter. Makes the margin read as a different
+       kind of text rather than the body text tipped over. */
+    font-family:Fraunces,Georgia,serif;
+    font-variation-settings:"opsz" 14,"SOFT" 40,"WONK" 0;
+    font-style:italic;
+    font-size:0.86rem;
+    line-height:1.48;
     color:var(--muted);
     text-align:left;
   }
 
+  /* Marker stays mono even though the note is serif: it is apparatus,
+     not prose, and it should match the marker in the text. */
   .note::before{
     content:counter(note);
     font-family:"IBM Plex Mono",monospace;
+    font-style:normal;
     font-size:0.62rem;
     vertical-align:super;
     line-height:0;
-    color:var(--accent);
+    color:var(--accent-2);
     margin-right:0.3em;
   }
 
@@ -276,7 +292,7 @@
     /* Break the measure. These outrank everything else on the page. */
     width:calc(100% + var(--margin-col) + var(--gutter));
     max-width:none;
-    box-shadow:0 1px 2px rgba(20,26,31,.04),0 8px 24px -12px rgba(20,26,31,.10);
+    box-shadow:0 1px 2px rgba(25,23,20,.05),0 8px 24px -12px rgba(25,23,20,.12);
   }
 
   .work:last-child{margin-bottom:0;}
@@ -462,6 +478,7 @@
 
   .metric b{
     display:block;
+    color:var(--accent-2);
     font-family:Fraunces,Georgia,serif;
     font-variation-settings:"opsz" 48,"SOFT" 40,"WONK" 0;
     font-size:1.55rem;
@@ -700,7 +717,7 @@
   @media (hover:hover) and (prefers-reduced-motion:no-preference){
     .work:hover{
       translate:0 -3px;
-      box-shadow:0 2px 4px rgba(20,26,31,.05),0 20px 44px -20px rgba(20,26,31,.20);
+      box-shadow:0 2px 4px rgba(25,23,20,.06),0 20px 44px -20px rgba(25,23,20,.22);
     }
   }
 
