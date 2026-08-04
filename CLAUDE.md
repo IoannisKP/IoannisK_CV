@@ -47,11 +47,7 @@ Every colour used for text clears WCAG AA on paper: ink 16.0, muted 6.9, faint 5
 
 Layout is a three-column editorial grid: `--spine:7rem` for sticky mono section labels, `--measure:38rem` for text, and `--margin-col:13rem` for marginalia, separated by `--gutter:2.5rem`. Sidenotes are floated out of the measure into the margin column with a negative margin. Work cards break the measure to the right and carry their own note rail, which is why `--card-pad` and `--note-pull` exist: they keep card notes and prose notes on one vertical. Collapses to two columns under 1080px, where notes fold inline as blocks, and to one column under 720px.
 
-Motion is native CSS, gated on `@supports` and `prefers-reduced-motion`. Section and card reveals use scroll-driven timelines (`animation-timeline: view()` and `scroll()`). No libraries, and **no animation loop anywhere** — nothing runs `requestAnimationFrame`.
-
-The script in the file does exactly two things: it toggles the case studies open with a view transition, and it builds the ambient dot field once at load.
-
-**The dot field** is a fixed grid behind the content. Positions never move; only the radii breathe, via a CSS `scale` keyframe. The phase offset is `(column + row) × WAVE`, which makes the swell travel diagonally, plus a random `JITTER` so the wavefront is ragged rather than ruled. Both constants sit at the top of the script. Jitter much larger than WAVE and it stops reading as a wave at all. Dots are `--ink` at `fill-opacity .075`, masked by a radial gradient so the field fades to nothing at the edges, and hidden in print. Spacing widens to 78px below 700px viewport width, because the desktop density would otherwise put ~490 animations on a phone for a texture nobody can see. This replaced an older static two-gradient paper texture; running both at once only made mud.
+Motion is entirely native scroll-driven CSS (`animation-timeline: view()` and `scroll()`), gated on `@supports` and `prefers-reduced-motion`. No JavaScript and no libraries. The only script in the file toggles the case studies open with a view transition.
 
 Print styles must keep working, since the page is its own PDF source. Everything animated is reset there, and outbound links print their full URL after the link text.
 

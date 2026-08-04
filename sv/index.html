@@ -47,34 +47,18 @@
     counter-reset:note;
   }
 
-  /* Ambient dot field, replacing the older static paper tooth: two dot
-     systems at once only made mud. The grid never moves. Each dot breathes
-     in place, and the phase is offset by (column + row) so the swell travels
-     diagonally, with a jitter so the wavefront is never a straight ruler.
-     Script builds the grid once; CSS does all the animating. */
-  .dotfield{
+  /* Faint paper tooth. Two offset gradients, no image request. */
+  body::before{
+    content:"";
     position:fixed;
     inset:0;
-    z-index:0;
     pointer-events:none;
-    -webkit-mask-image:radial-gradient(ellipse 76% 66% at 50% 44%, #000 25%, transparent 100%);
-    mask-image:radial-gradient(ellipse 76% 66% at 50% 44%, #000 25%, transparent 100%);
-  }
-
-  .dotfield circle{
-    fill:var(--ink);
-    transform-box:fill-box;
-    transform-origin:center;
-    animation:breathe 11s ease-in-out infinite;
-  }
-
-  @keyframes breathe{
-    0%,100%{transform:scale(.5);opacity:.4;}
-    50%    {transform:scale(1.75);opacity:1;}
-  }
-
-  @media (prefers-reduced-motion:reduce){
-    .dotfield circle{animation:none;transform:scale(1);}
+    z-index:0;
+    opacity:.5;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(25,23,20,.022) 0 1px, transparent 1px),
+      radial-gradient(circle at 70% 65%, rgba(25,23,20,.018) 0 1px, transparent 1px);
+    background-size:7px 7px, 11px 11px;
   }
 
   .wrap{
@@ -978,8 +962,6 @@
     /* Paper cannot switch language, and inline it collides with the label. */
     .langs{display:none;}
 
-    .dotfield{display:none;}
-
     .colophon,.meta a{border:0;}
     a{border-bottom:0;}
   }
@@ -990,7 +972,6 @@
 <link rel="alternate" hreflang="el" href="../el/">
 </head>
 <body>
-<div class="dotfield" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"></div>
 <div class="wrap">
 
@@ -1204,57 +1185,6 @@
 </div>
 
 <script>
-  // Ambient dot field. Builds the grid once and hands every dot to CSS: the
-  // phase offset (column + row) makes the swell travel diagonally, and the
-  // jitter stops the wavefront reading as a ruled line. There is no animation
-  // loop here, so this costs nothing per frame beyond what CSS already does.
-  (function () {
-    var host = document.querySelector('.dotfield');
-    if (!host) return;
-
-    // Tuning lives here. WAVE controls how fast the swell travels; JITTER
-    // controls how ragged the wavefront is. Jitter much larger than WAVE and
-    // the wave stops reading as a wave at all.
-    var WAVE   = 0.40; // seconds of delay added per diagonal step
-    var JITTER = 1.8;  // seconds of random smear on that delay
-    var RADIUS = 1.6;  // px, before the CSS scale
-    var NS     = 'http://www.w3.org/2000/svg';
-
-    function build() {
-      // Wider spacing on small screens: the same density would put several
-      // hundred animations on a phone for a texture nobody can see anyway.
-      var SPACING = window.innerWidth < 700 ? 78 : 58;
-      var cols = Math.ceil(window.innerWidth / SPACING) + 2;
-      var rows = Math.ceil(window.innerHeight / SPACING) + 2;
-      var svg = document.createElementNS(NS, 'svg');
-      svg.setAttribute('width', '100%');
-      svg.setAttribute('height', '100%');
-
-      for (var y = 0; y < rows; y++) {
-        for (var x = 0; x < cols; x++) {
-          var c = document.createElementNS(NS, 'circle');
-          c.setAttribute('cx', x * SPACING);
-          c.setAttribute('cy', y * SPACING);
-          c.setAttribute('r', RADIUS);
-          c.setAttribute('fill-opacity', '.075');
-          // negative delay starts each dot mid-cycle, so nothing pulses in unison
-          var delay = (x + y) * WAVE + (Math.random() - 0.5) * JITTER;
-          c.style.animationDelay = (-delay).toFixed(2) + 's';
-          svg.appendChild(c);
-        }
-      }
-      host.replaceChildren(svg);
-    }
-
-    build();
-
-    var t;
-    window.addEventListener('resize', function () {
-      clearTimeout(t);
-      t = setTimeout(build, 250);
-    });
-  })();
-
   // Expand case studies with a view transition where supported.
   document.querySelectorAll('.study').forEach(function(study){
     var summary = study.querySelector('summary');
