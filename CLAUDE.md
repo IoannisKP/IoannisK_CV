@@ -67,8 +67,10 @@ It runs to three pages at roughly 93% / 91% / 28% fill. Two pages is not reachab
 
 ## Open questions
 
-- Whether the header label "UX practitioner" is the right description
-- Whether the Greek and English toggle from the previous version gets rebuilt
+- ~~Whether the header label is right~~ **Settled 4 Aug 2026: "UX research & product".** It was "UX practitioner", which both the Greek and Swedish translators independently flagged as their hardest string, and which the Greek rendering turned into "UX professional" — implying professional UX experience. The new label is chosen to match the evidence rather than the ambition: eight interviews, two personas, a journey map and three think-aloud sessions are research; Radio is product direction. There is comparatively little design evidence, which is why "designer" is not in it. "Junior" was considered and rejected: it anchors readers to expect someone in their twenties and invites them to discount twelve years of running a company.
+- The EN / SV / EL switcher is agreed in principle but not built. Translations exist as `CV-el.md` and `CV-sv.md`, each giving the English source above every string. Placement agreed: masthead margin above `STOCKHOLM`, repeated in the footer, **not** fixed or persistent. Architecture (three files vs one file plus JS) still undecided.
+
+**Greek needs two font substitutions, not one.** Verified against Google Fonts: Fraunces has no Greek subset, and neither does IBM Plex Mono. Inter and EB Garamond both do. So on the Greek view the display serif becomes EB Garamond at remapped weights 575/620, and the mono becomes Noto Sans Mono. Inter is unchanged. Swedish needs nothing.
 - Every link now resolves. LinkedIn, the PDF download, and both case studies: Agent X at `https://ioanniskp.github.io/-agent-x-case-study/`, Radio at `https://ioanniskp.github.io/radio/`
 - The masthead lede still describes research as habitual practice, which the Practice section contradicts by admitting one cycle. Unresolved
 - Konduko is described as twelve years in the body but dated 2012 to 2025, which spans thirteen
