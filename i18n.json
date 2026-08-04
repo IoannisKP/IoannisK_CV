@@ -1,0 +1,462 @@
+{
+ "Ioannis Koupidis · UX research & product": {
+  "el": "Ioannis Koupidis · UX research & product",
+  "sv": "Ioannis Koupidis · UX-research & produkt"
+ },
+ "Stockholm": {
+  "el": "Στοκχόλμη",
+  "sv": "Stockholm"
+ },
+ "I don't guess.": {
+  "el": "Δεν μαντεύω.",
+  "sv": "Jag gissar inte."
+ },
+ "I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.": {
+  "el": "Κάνω συνεντεύξεις, συνθέτω όσα μου είπαν, τους δίνω κάτι να δοκιμάσουν και το αλλάζω όταν το testing δείχνει ότι έκανα λάθος.",
+  "sv": "Jag intervjuar människor, sammanställer det de sagt, låter dem prova något och ändrar det när testerna visar att jag hade fel."
+ },
+ "gkoupidis@gmail.com": {
+  "el": "gkoupidis@gmail.com",
+  "sv": "gkoupidis@gmail.com"
+ },
+ "+46 (0) 73-955 82 53": {
+  "el": "+46 (0) 73-955 82 53",
+  "sv": "+46 (0) 73-955 82 53"
+ },
+ "LinkedIn": {
+  "el": "LinkedIn",
+  "sv": "LinkedIn"
+ },
+ "Download PDF": {
+  "el": "Λήψη PDF",
+  "sv": "Ladda ner PDF"
+ },
+ "Work": {
+  "el": "Προϋπηρεσία",
+  "sv": "Projekt"
+ },
+ "Agent X": {
+  "el": "Agent X",
+  "sv": "Agent X"
+ },
+ "Student project · Medieinstitutet Stockholm · 2026": {
+  "el": "Φοιτητικό project · Medieinstitutet Stockholm · 2026",
+  "sv": "Studentprojekt · Medieinstitutet Stockholm · 2026"
+ },
+ "How could contextual guidance help new players of Escape from Tarkov, a hardcore survival shooter, without flattening the difficulty its audience plays it for? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.": {
+  "el": "Πώς θα μπορούσε η καθοδήγηση μέσα στο context του Escape from Tarkov, ενός hardcore survival shooter, να βοηθήσει νέους παίκτες χωρίς να μειώσει τη δυσκολία για την οποία το επιλέγει το κοινό του; Έκανα οκτώ συνεντεύξεις με παίκτες και συνέθεσα τα ευρήματα σε δύο personas και ένα journey map. Στη συνέχεια σχεδίασα τέσσερα wireframe views και τα δοκίμασα σε τρία think-aloud sessions.",
+  "sv": "Hur skulle kontextuell vägledning kunna hjälpa nya spelare i Escape from Tarkov, en hardcore survival shooter, utan att sänka den svårighetsgrad som publiken spelar det för? Jag genomförde åtta intervjuer med spelare och sammanställde materialet i två personas och en journey map. Därefter utformade jag fyra wireframe-vyer och testade dem i tre tänka-högt-sessioner."
+ },
+ "Run with teacher guidance as part of the UX programme. My first complete research cycle.": {
+  "el": "Έγινε με καθοδήγηση καθηγητών, στο πλαίσιο του προγράμματος UX. Ο πρώτος ολοκληρωμένος κύκλος έρευνας που έχω κάνει.",
+  "sv": "Genomfördes med lärarhandledning inom UX-utbildningen. Min första fullständiga researchcykel."
+ },
+ "What it produced": {
+  "el": "Τι προέκυψε",
+  "sv": "Resultat"
+ },
+ "Participants found and understood the guidance without prompting.": {
+  "el": "Οι συμμετέχοντες βρήκαν και κατάλαβαν την καθοδήγηση χωρίς προτροπή.",
+  "sv": "Deltagarna hittade och förstod vägledningen utan hjälp."
+ },
+ "Testing also exposed language and sample limitations worth a further round.": {
+  "el": "Το testing ανέδειξε επίσης περιορισμούς στη γλώσσα και στο δείγμα που χρειάζονται έναν ακόμη γύρο.",
+  "sv": "Testningen visade också begränsningar i språk och urval som motiverar ytterligare en omgång."
+ },
+ "›": {
+  "el": "›",
+  "sv": "›"
+ },
+ "Read the case study": {
+  "el": "Δείτε το case study",
+  "sv": "Läs fallstudien"
+ },
+ "Close": {
+  "el": "Κλείσιμο",
+  "sv": "Stäng"
+ },
+ "The question": {
+  "el": "Το ερώτημα",
+  "sv": "Frågan"
+ },
+ "New players of Escape from Tarkov abandon it early. Lowering the difficulty would remove the reason the existing audience plays it. The brief was to find out whether guidance delivered inside the world of the game could carry a newcomer through, without changing what the game is.": {
+  "el": "Οι νέοι παίκτες εγκαταλείπουν νωρίς το Escape from Tarkov. Αν μειωνόταν η δυσκολία, θα χανόταν ο λόγος για τον οποίο το παίζει το υπάρχον κοινό του. Το brief ήταν να διερευνηθεί αν η καθοδήγηση μέσα στον κόσμο του παιχνιδιού θα μπορούσε να βοηθήσει έναν νέο παίκτη να προχωρήσει, χωρίς να αλλάξει αυτό που είναι το παιχνίδι.",
+  "sv": "Nya spelare i Escape from Tarkov slutar spela tidigt. Om svårighetsgraden sänktes skulle skälet till att den befintliga publiken spelar försvinna. Briefen var att ta reda på om vägledning inne i spelvärlden kunde hjälpa en ny spelare att ta sig vidare, utan att förändra vad spelet är."
+ },
+ "What I did": {
+  "el": "Τι έκανα",
+  "sv": "Vad jag gjorde"
+ },
+ "Eight text-based interviews on Discord, spanning beginners to veterans, including one player who had quit.": {
+  "el": "Οκτώ γραπτές συνεντεύξεις στο Discord, από αρχάριους έως έμπειρους παίκτες, ανάμεσά τους και ένας παίκτης που το είχε εγκαταλείψει.",
+  "sv": "Åtta textbaserade intervjuer på Discord, från nybörjare till veteraner, däribland en spelare som hade slutat."
+ },
+ "Synthesis into two personas, the Seeker and the Returner, and an emotional journey map.": {
+  "el": "Σύνθεση σε δύο personas, τον Seeker και τον Returner, και σε ένα emotional journey map.",
+  "sv": "Syntes till två personas, Seeker och Returner, samt en emotionell journey map."
+ },
+ "Four wireframe views of a diegetic companion that activates only after repeated failure.": {
+  "el": "Τέσσερα wireframe views ενός diegetic companion που ενεργοποιείται μόνο έπειτα από επανειλημμένη αποτυχία.",
+  "sv": "Fyra wireframe-vyer av en diegetisk följeslagare som aktiveras först efter upprepade misslyckanden."
+ },
+ "Three think-aloud usability sessions against the wireframes.": {
+  "el": "Τρία think-aloud usability sessions πάνω στα wireframes.",
+  "sv": "Tre användbarhetstester med tänka-högt-metoden utifrån wireframes."
+ },
+ "What came back": {
+  "el": "Τι έδειξαν τα αποτελέσματα",
+  "sv": "Vad det visade"
+ },
+ "Participants located the guidance and understood it without being pointed at it, which was the thing being tested. The wireframes did not have to explain themselves.": {
+  "el": "Οι συμμετέχοντες εντόπισαν και κατάλαβαν την καθοδήγηση χωρίς να τους υποδειχθεί, που ήταν ακριβώς αυτό που εξεταζόταν. Τα wireframes δεν χρειάστηκαν επεξήγηση.",
+  "sv": "Deltagarna hittade och förstod vägledningen utan att den pekades ut för dem, vilket var det som testades. Wireframes behövde inte förklara sig själva."
+ },
+ "What I would do differently": {
+  "el": "Τι θα έκανα διαφορετικά",
+  "sv": "Vad jag skulle göra annorlunda"
+ },
+ "The three testers were aged 40 to 46 and none of them had played Tarkov, so they did not match the Seeker profile the design targets. That left one screen, which works by deliberately staying silent, impossible to evaluate properly. The next round needs actual target players, and the report says so rather than burying it.": {
+  "el": "Οι τρεις testers ήταν 40 έως 46 ετών και κανένας δεν είχε παίξει Tarkov, οπότε δεν ταίριαζαν στο προφίλ Seeker στο οποίο απευθύνεται το design. Έτσι, ένα screen που λειτουργεί μένοντας σκόπιμα σιωπηλό δεν μπορούσε να αξιολογηθεί σωστά. Ο επόμενος γύρος χρειάζεται πραγματικούς παίκτες από το target group, και η αναφορά το δηλώνει καθαρά αντί να το αποκρύπτει.",
+  "sv": "De tre testarna var 40 till 46 år och ingen av dem hade spelat Tarkov, så de motsvarade inte Seeker-profilen som designen riktar sig till. Därför gick en skärm, som fungerar genom att medvetet vara tyst, inte att utvärdera ordentligt. Nästa omgång behöver faktiska spelare ur målgruppen, och rapporten säger det uttryckligen i stället för att gömma undan det."
+ },
+ "Open the full case study": {
+  "el": "Ανοίξτε ολόκληρο το case study",
+  "sv": "Öppna hela fallstudien"
+ },
+ "↗": {
+  "el": "↗",
+  "sv": "↗"
+ },
+ "User research": {
+  "el": "User research",
+  "sv": "Användarundersökning"
+ },
+ "Synthesis": {
+  "el": "Synthesis",
+  "sv": "Syntes"
+ },
+ "Wireframes": {
+  "el": "Wireframes",
+  "sv": "Wireframes"
+ },
+ "Usability testing": {
+  "el": "Usability testing",
+  "sv": "Användbarhetstestning"
+ },
+ "Radio": {
+  "el": "Radio",
+  "sv": "Radio"
+ },
+ "Personal project · directing an AI-assisted iOS build · 2026": {
+  "el": "Προσωπικό project · καθοδήγηση ενός AI-assisted iOS build · 2026",
+  "sv": "Personligt projekt · styrning av ett AI-assisterat iOS-bygge · 2026"
+ },
+ "I built an internet radio player for iOS in a single working day without writing the code. I set the scope, ran a build agent, then ran a separate agent to audit its output, and tested the result on a physical device.": {
+  "el": "Έφτιαξα ένα internet radio player για iOS μέσα σε μία εργάσιμη ημέρα, χωρίς να γράψω τον κώδικα. Όρισα το scope, χρησιμοποίησα έναν agent για το build και μετά έναν δεύτερο, ξεχωριστό agent για να ελέγξει το αποτέλεσμα. Στο τέλος το δοκίμασα σε φυσική συσκευή.",
+  "sv": "Jag byggde en internetradiospelare för iOS på en arbetsdag utan att skriva koden. Jag satte omfattningen, körde en byggagent och därefter en separat agent för att granska resultatet. Sedan testade jag det på en fysisk enhet."
+ },
+ "The work was specifying it, questioning it and testing it. That is product management, not engineering.": {
+  "el": "Η δουλειά ήταν να ορίσω τις προδιαγραφές, να αμφισβητήσω το αποτέλεσμα και να το δοκιμάσω. Αυτό είναι product management, όχι engineering.",
+  "sv": "Arbetet bestod i att specificera, ifrågasätta och testa det. Det är produktledning, inte ingenjörsarbete."
+ },
+ "The audit caught four faults that all looked finished, and device testing caught a network failure that code review had passed.": {
+  "el": "Ο έλεγχος εντόπισε τέσσερα σφάλματα που έμοιαζαν όλα ολοκληρωμένα, και το device testing εντόπισε μια αστοχία δικτύου που είχε περάσει το code review.",
+  "sv": "Granskningen hittade fyra fel som alla såg färdiga ut, och testningen på enheten hittade ett nätverksfel som hade passerat kodgranskningen."
+ },
+ "If an agent can write the code, what is left for the person directing it? I wanted to find out by shipping something real in a fixed window and paying attention to where my own judgement actually mattered.": {
+  "el": "Αν ένας agent μπορεί να γράψει τον κώδικα, τι μένει για τον άνθρωπο που τον κατευθύνει; Ήθελα να το διαπιστώσω παραδίδοντας κάτι πραγματικό μέσα σε συγκεκριμένο χρονικό περιθώριο και παρατηρώντας πού είχε πράγματι σημασία η δική μου κρίση.",
+  "sv": "Om en agent kan skriva koden, vad återstår då för personen som styr den? Jag ville ta reda på det genom att bygga något verkligt inom en fast tidsram och uppmärksamma var mitt eget omdöme faktiskt hade betydelse."
+ },
+ "How it ran": {
+  "el": "Πώς έγινε",
+  "sv": "Så gick det till"
+ },
+ "Scope set first and written down, so that finished had a definition before anything was built.": {
+  "el": "Το scope ορίστηκε και καταγράφηκε πρώτα, ώστε το «ολοκληρωμένο» να έχει ορισμό πριν κατασκευαστεί οτιδήποτε.",
+  "sv": "Omfattningen fastställdes och skrevs ner först, så att det fanns en definition av färdigt innan något byggdes."
+ },
+ "One agent building against that scope.": {
+  "el": "Ένας agent έκανε το build βάσει αυτού του scope.",
+  "sv": "En agent byggde utifrån den omfattningen."
+ },
+ "A second, separate agent auditing the first one's output, on the assumption that it was wrong until shown otherwise.": {
+  "el": "Ένας δεύτερος, ξεχωριστός agent έλεγξε το αποτέλεσμα του πρώτου, με την παραδοχή ότι ήταν λάθος μέχρι να αποδειχθεί το αντίθετο.",
+  "sv": "En andra, separat agent granskade den första agentens resultat, med utgångspunkten att det var fel tills motsatsen hade visats."
+ },
+ "Testing on a physical device rather than the simulator.": {
+  "el": "Testing σε φυσική συσκευή αντί για simulator.",
+  "sv": "Testning på en fysisk enhet i stället för i simulatorn."
+ },
+ "The audit found four faults in work that presented as complete. Device testing then caught a network failure that had passed code review, because the simulator's network conditions are not a phone's.": {
+  "el": "Ο έλεγχος βρήκε τέσσερα σφάλματα σε δουλειά που παρουσιαζόταν ως ολοκληρωμένη. Στη συνέχεια, το device testing εντόπισε μια αστοχία δικτύου που είχε περάσει το code review, επειδή οι συνθήκες δικτύου του simulator δεν είναι ίδιες με ενός τηλεφώνου.",
+  "sv": "Granskningen hittade fyra fel i arbete som framstod som färdigt. Testningen på enheten hittade sedan ett nätverksfel som hade passerat kodgranskningen, eftersom simulatorns nätverksförhållanden inte är desamma som en telefons."
+ },
+ "What I take from it": {
+  "el": "Τι κρατάω από αυτό",
+  "sv": "Det jag tar med mig"
+ },
+ "The generation step was the cheap part. The value was in specifying the thing precisely, refusing to accept output that only looked finished, and testing in conditions that resemble use. None of that required writing code, and all of it required knowing what to distrust.": {
+  "el": "Το generation ήταν το φθηνό μέρος. Η αξία βρισκόταν στο να ορίσω με ακρίβεια τι έπρεπε να γίνει, να μην αποδεχτώ ένα αποτέλεσμα που απλώς έμοιαζε ολοκληρωμένο και να κάνω testing σε συνθήκες που μοιάζουν με πραγματική χρήση. Τίποτα από αυτά δεν απαιτούσε να γράψω κώδικα, και όλα απαιτούσαν να ξέρω τι να αντιμετωπίσω με δυσπιστία.",
+  "sv": "Genereringen var den billiga delen. Värdet låg i att specificera det exakt, vägra godta resultat som bara såg färdiga ut och testa under förhållanden som liknar verklig användning. Inget av det krävde att jag skrev kod, och allt krävde att jag visste vad jag skulle misstro."
+ },
+ "Scoping": {
+  "el": "Scoping",
+  "sv": "Avgränsning"
+ },
+ "AI-assisted delivery": {
+  "el": "AI-assisted delivery",
+  "sv": "AI-assisterad leverans"
+ },
+ "Critical evaluation": {
+  "el": "Κριτική αξιολόγηση",
+  "sv": "Kritisk utvärdering"
+ },
+ "Device testing": {
+  "el": "Device testing",
+  "sv": "Testning på fysisk enhet"
+ },
+ "Practice": {
+  "el": "Πρακτική",
+  "sv": "Arbetssätt"
+ },
+ "How I work": {
+  "el": "Πώς δουλεύω",
+  "sv": "Så arbetar jag"
+ },
+ "Research that survives contact with users": {
+  "el": "Έρευνα που αντέχει στην επαφή με τους χρήστες",
+  "sv": "Research som håller i mötet med användare"
+ },
+ "Interviews, synthesis, personas, journey mapping, wireframing and think-aloud testing. So far that is one complete cycle, run as a student project at Medieinstitutet with teachers to steer me. I am looking for the role where it becomes daily practice.": {
+  "el": "Συνεντεύξεις, synthesis, personas, journey mapping, wireframing και think-aloud testing. Μέχρι στιγμής, αυτός είναι ένας ολοκληρωμένος κύκλος, που έγινε ως φοιτητικό project στο Medieinstitutet με καθοδήγηση από καθηγητές. Αναζητώ τον ρόλο όπου αυτό θα γίνει καθημερινή πρακτική.",
+  "sv": "Intervjuer, syntes, personas, kartläggning av användarresor, wireframes och tänka-högt-testning. Hittills är det en komplett cykel, genomförd som ett studentprojekt på Medieinstitutet med lärare som handledde mig. Jag söker rollen där det blir en del av det dagliga arbetet."
+ },
+ "Comfort with complexity and stakeholders": {
+  "el": "Άνεση με την πολυπλοκότητα και τους stakeholders",
+  "sv": "Bekväm med komplexitet och intressenter"
+ },
+ "Twelve years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.": {
+  "el": "Δώδεκα χρόνια στη διοίκηση μιας ρυθμιζόμενης εταιρείας υπηρεσιών με έμαθαν να κρατώ ένα σύστημα στο μυαλό μου, να μετατρέπω απαιτήσεις σε κάτι εφαρμόσιμο και να αποφασίζω με ελλιπή δεδομένα.",
+  "sv": "Tolv år med ansvar för ett reglerat tjänsteföretag lärde mig att hålla ett system i huvudet, omsätta krav till något genomförbart och fatta beslut med ofullständig information."
+ },
+ "Swedish public healthcare procurement. Regulated, audited, and slow to forgive an error.": {
+  "el": "Δημόσιες προμήθειες στον χώρο της υγείας στη Σουηδία. Ρυθμιζόμενες, ελεγχόμενες και με λάθη που δύσκολα συγχωρούνται.",
+  "sv": "Svensk offentlig upphandling inom hälso- och sjukvård. Reglerad, granskad och med små marginaler för misstag."
+ },
+ "Sceptical use of AI tooling": {
+  "el": "Χρήση εργαλείων AI με κριτική στάση",
+  "sv": "Skeptisk användning av AI-verktyg"
+ },
+ "I use generative and agent-based workflows daily, and I assume their output is wrong until tested. Auditing is the part that matters.": {
+  "el": "Χρησιμοποιώ καθημερινά generative και agent-based workflows και θεωρώ το αποτέλεσμά τους λάθος μέχρι να δοκιμαστεί. Ο έλεγχος είναι το μέρος που έχει σημασία.",
+  "sv": "Jag använder generativa och agentbaserade arbetsflöden dagligen och utgår från att resultatet är fel tills det har testats. Granskningen är den del som spelar roll."
+ },
+ "User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows": {
+  "el": "User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows",
+  "sv": "Användarintervjuer · personas · kartläggning av användarresor · wireframes · användbarhetstestning · AI-assisterade arbetsflöden"
+ },
+ "Figma at a basic level. Enough to wireframe, not enough to claim it as a strength.": {
+  "el": "Figma σε βασικό επίπεδο. Αρκετό για wireframes, όχι αρκετό για να το παρουσιάσω ως δυνατό μου σημείο.",
+  "sv": "Figma på grundläggande nivå. Tillräckligt för att göra wireframes, inte tillräckligt för att kalla det en styrka."
+ },
+ "Experience": {
+  "el": "Εμπειρία",
+  "sv": "Erfarenhet"
+ },
+ "2012 – 2025": {
+  "el": "2012 – 2025",
+  "sv": "2012 – 2025"
+ },
+ "Founder & CEO · Konduko AB": {
+  "el": "Ιδρυτής & CEO · Konduko AB",
+  "sv": "Grundare & VD · Konduko AB"
+ },
+ "Founded and led a specialist healthcare staffing company serving Swedish public healthcare. Designed the operating system connecting procurement requirements, physician availability, contracts, schedules, invoicing and quality control.": {
+  "el": "Ίδρυσα και διοίκησα μια εταιρεία εξειδικευμένης στελέχωσης στον χώρο της υγείας, με πελάτες στη δημόσια υγεία της Σουηδίας. Σχεδίασα το σύστημα λειτουργίας που συνέδεε τις απαιτήσεις των δημόσιων προμηθειών, τη διαθεσιμότητα των γιατρών, τις συμβάσεις, τα προγράμματα, την τιμολόγηση και τον ποιοτικό έλεγχο.",
+  "sv": "Grundade och ledde ett specialiserat bemanningsföretag inom vården som arbetade mot svensk offentlig hälso- och sjukvård. Utformade verksamhetens system för att koppla samman upphandlingskrav, läkares tillgänglighet, avtal, scheman, fakturering och kvalitetskontroll."
+ },
+ "Closed the company as a deliberate decision when the regulatory landscape shifted.": {
+  "el": "Έκλεισα την εταιρεία με συνειδητή απόφαση, όταν άλλαξε το ρυθμιστικό πλαίσιο.",
+  "sv": "Avvecklade företaget genom ett medvetet beslut när regelverket förändrades."
+ },
+ "25+": {
+  "el": "25+",
+  "sv": "25+"
+ },
+ "public procurement contracts": {
+  "el": "συμβάσεις δημόσιων προμηθειών",
+  "sv": "offentliga upphandlingsavtal"
+ },
+ "140+": {
+  "el": "140+",
+  "sv": "140+"
+ },
+ "physicians on parallel assignments": {
+  "el": "γιατροί σε παράλληλες αναθέσεις",
+  "sv": "läkare i parallella uppdrag"
+ },
+ "All regions": {
+  "el": "Όλες οι περιφέρειες",
+  "sv": "Alla regioner"
+ },
+ "framework coverage in Sweden": {
+  "el": "κάλυψη μέσω συμβάσεων-πλαισίων στη Σουηδία",
+  "sv": "täckning genom ramavtal i Sverige"
+ },
+ "SEK 1.5B+": {
+  "el": "1,5 δισ. SEK",
+  "sv": "1,5 md SEK"
+ },
+ "aggregate estimated value of awarded frameworks": {
+  "el": "συνολική εκτιμώμενη αξία των συμβάσεων-πλαισίων που ανατέθηκαν",
+  "sv": "sammanlagt uppskattat värde på tilldelade ramavtal"
+ },
+ "ISO 9001 & 14001": {
+  "el": "ISO 9001 & 14001",
+  "sv": "ISO 9001 & 14001"
+ },
+ "certified operations": {
+  "el": "πιστοποιημένη λειτουργία",
+  "sv": "certifierad verksamhet"
+ },
+ "Procurement estimates, not guaranteed spend and not company revenue. Actual placements depended on regional demand and physician availability.": {
+  "el": "Εκτιμήσεις δημόσιων προμηθειών, όχι εγγυημένη δαπάνη ούτε έσοδα της εταιρείας. Οι πραγματικές τοποθετήσεις εξαρτιόνταν από τη ζήτηση κάθε περιφέρειας και τη διαθεσιμότητα των γιατρών.",
+  "sv": "Upphandlingarnas uppskattningar, inte garanterade utgifter och inte företagets omsättning. Faktiska uppdrag berodde på regionernas efterfrågan och läkarnas tillgänglighet."
+ },
+ "2011 – present": {
+  "el": "2011 – σήμερα",
+  "sv": "2011 – idag"
+ },
+ "Founder · NiyaCare Stockholm AB": {
+  "el": "Ιδρυτής · NiyaCare Stockholm AB",
+  "sv": "Grundare · NiyaCare Stockholm AB"
+ },
+ "A personal assistance company built around matching people with assistants they can rely on. Responsible for understanding individual needs, service quality and daily operations. It is where I learned what autonomy and trust actually require from a service.": {
+  "el": "Μια εταιρεία προσωπικής βοήθειας, οργανωμένη γύρω από την αντιστοίχιση ανθρώπων με βοηθούς στους οποίους μπορούν να βασίζονται. Υπεύθυνος για την κατανόηση των ατομικών αναγκών, την ποιότητα των υπηρεσιών και την καθημερινή λειτουργία. Εκεί έμαθα τι απαιτούν στην πράξη η αυτονομία και η εμπιστοσύνη από μια υπηρεσία.",
+  "sv": "Ett företag inom personlig assistans, uppbyggt kring att matcha människor med assistenter de kan lita på. Ansvarig för att förstå individuella behov, tjänstens kvalitet och den dagliga verksamheten. Det är där jag lärde mig vad självbestämmande och tillit faktiskt kräver av en tjänst."
+ },
+ "Background": {
+  "el": "Προηγούμενη εμπειρία",
+  "sv": "Bakgrund"
+ },
+ "Before this, thirteen years in visual communication": {
+  "el": "Πριν από αυτό, δεκατρία χρόνια στην οπτική επικοινωνία",
+  "sv": "Dessförinnan: tretton år inom visuell kommunikation"
+ },
+ "Athens, 1998 to 2011. Layout and print production first, then project coordination, branding, packaging and campaign work for fashion, food and professional services clients.": {
+  "el": "Αθήνα, 1998 έως 2011. Αρχικά layout και παραγωγή εντύπων, έπειτα συντονισμός projects, branding, packaging και δουλειά σε καμπάνιες για πελάτες στους κλάδους της μόδας, των τροφίμων και των επαγγελματικών υπηρεσιών.",
+  "sv": "Aten, 1998 till 2011. Först layout och trycksaksproduktion, därefter projektkoordinering, varumärkesarbete, förpackningar och kampanjer för kunder inom mode, livsmedel och professionella tjänster."
+ },
+ "I do not sell this as a current skill. Seventeen years since I worked as a graphic designer, and not what I am asking to be hired for.": {
+  "el": "Δεν το παρουσιάζω ως σημερινό skill. Έχουν περάσει δεκαεπτά χρόνια από τότε που εργάστηκα ως graphic designer και δεν είναι αυτό για το οποίο ζητώ να προσληφθώ.",
+  "sv": "Jag framställer inte detta som en aktuell kompetens. Det är sjutton år sedan jag arbetade som grafisk designer, och det är inte det jag söker anställning för."
+ },
+ "It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.": {
+  "el": "Γι' αυτό καταλαβαίνω γρήγορα τα layouts και γι' αυτό το briefing πελατών και η υποστήριξη μιας απόφασης μου φαίνονται συνηθισμένα, όχι δύσκολα.",
+  "sv": "Det är därför jag snabbt läser av layouter, och därför det känns vardagligt snarare än svårt att briefa kunder och försvara ett beslut."
+ },
+ "Graphic Designer, later Project Manager · Apolyto S.A.": {
+  "el": "Γραφίστας, αργότερα Project Manager · Apolyto S.A.",
+  "sv": "Grafisk designer, senare projektledare · Apolyto S.A."
+ },
+ "1998 – 2009": {
+  "el": "1998 – 2009",
+  "sv": "1998 – 2009"
+ },
+ "Creative Consultant · Angelos Frentzos S.A.": {
+  "el": "Σύμβουλος δημιουργικού · Angelos Frentzos S.A.",
+  "sv": "Kreativ konsult · Angelos Frentzos S.A."
+ },
+ "2004 – 2011": {
+  "el": "2004 – 2011",
+  "sv": "2004 – 2011"
+ },
+ "Creative Consultant · Barbara's Food Company": {
+  "el": "Σύμβουλος δημιουργικού · Barbara's Food Company",
+  "sv": "Kreativ konsult · Barbara's Food Company"
+ },
+ "2009 – 2010": {
+  "el": "2009 – 2010",
+  "sv": "2009 – 2010"
+ },
+ "Design Consultant · PricewaterhouseCoopers": {
+  "el": "Σύμβουλος design · PricewaterhouseCoopers",
+  "sv": "Designkonsult · PricewaterhouseCoopers"
+ },
+ "2004 – 2009": {
+  "el": "2004 – 2009",
+  "sv": "2004 – 2009"
+ },
+ "Education": {
+  "el": "Εκπαίδευση",
+  "sv": "Utbildning"
+ },
+ "Qualifications": {
+  "el": "Τίτλοι σπουδών",
+  "sv": "Utbildningar"
+ },
+ "UX Design · Medieinstitutet Stockholm": {
+  "el": "UX Design · Medieinstitutet Stockholm",
+  "sv": "UX-design · Medieinstitutet Stockholm"
+ },
+ "2026": {
+  "el": "2026",
+  "sv": "2026"
+ },
+ "Graphic Design · IIEK Technografiko, Athens": {
+  "el": "Graphic Design · IIEK Technografiko, Αθήνα",
+  "sv": "Grafisk design · IIEK Technografiko, Aten"
+ },
+ "1996": {
+  "el": "1996",
+  "sv": "1996"
+ },
+ "Languages": {
+  "el": "Γλώσσες",
+  "sv": "Språk"
+ },
+ "Greek": {
+  "el": "Ελληνικά",
+  "sv": "Grekiska"
+ },
+ "Native": {
+  "el": "Μητρική γλώσσα",
+  "sv": "Modersmål"
+ },
+ "English": {
+  "el": "Αγγλικά",
+  "sv": "Engelska"
+ },
+ "Fluent": {
+  "el": "Άπταιστα",
+  "sv": "Flytande"
+ },
+ "Swedish": {
+  "el": "Σουηδικά",
+  "sv": "Svenska"
+ },
+ "German": {
+  "el": "Γερμανικά",
+  "sv": "Tyska"
+ },
+ "Basic": {
+  "el": "Βασικά",
+  "sv": "Grundläggande"
+ },
+ "I like the product work that lives in the details: clear flows, consistent patterns, and solutions teams can actually build.": {
+  "el": "Μου αρέσει η δουλειά στο product που κρίνεται στις λεπτομέρειες: ξεκάθαρα flows, συνεπή patterns και λύσεις που οι ομάδες μπορούν πράγματι να υλοποιήσουν.",
+  "sv": "Det produktarbete jag gillar finns i detaljerna: tydliga flöden, konsekventa mönster och lösningar som team faktiskt kan bygga."
+ },
+ "Get in touch": {
+  "el": "Επικοινωνία",
+  "sv": "Hör av dig"
+ },
+ "→": {
+  "el": "→",
+  "sv": "→"
+ },
+ "Set in Fraunces, Inter & IBM Plex Mono": {
+  "el": "Με γραμματοσειρές Fraunces, Inter & IBM Plex Mono",
+  "sv": "Satt med Fraunces, Inter & IBM Plex Mono"
+ }
+}

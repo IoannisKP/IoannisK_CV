@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ioannis Koupidis · UX research &amp; product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..500,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Noto+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     /* Warm book stock. The cool grey fought Fraunces and made every warm
@@ -966,59 +966,81 @@
     a{border-bottom:0;}
   }
 </style>
+
+<style>
+  /* Greek typeface substitutions. See CLAUDE.md. */
+  .display,h2.section,.work h3,.metric b,.note,.pullquote .display,.statement em,
+  .pullquote em{
+    font-family:'EB Garamond',Georgia,serif;
+    font-variation-settings:normal;
+    font-weight:575;
+  }
+  .metric b{font-weight:620;}
+  .statement{letter-spacing:-0.01em;}
+
+  .eyebrow,.masthead .name,.meta,.tag,.pair span:last-child,.aside,.ref,
+  .colophon,.study summary,.full-link a,.cta,.pairs-label,.detail-body h4,
+  .langs,.note::before,.work::before{
+    font-family:'Noto Sans Mono',ui-monospace,monospace;
+  }
+</style>
+
+<link rel="alternate" hreflang="en" href="../">
+<link rel="alternate" hreflang="sv" href="../sv/">
+<link rel="alternate" hreflang="el" href="./">
 </head>
 <body>
 <div class="progress" aria-hidden="true"></div>
 <div class="wrap">
 
   <header class="masthead">
-    <p class="name">Ioannis Koupidis · <span class="role">UX research &amp; product</span><!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="./" hreflang="en" aria-current="page">EN</a><span class="sep" aria-hidden="true">/</span><a href="sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="el/" hreflang="el">EL</a></span><!--/LANGS--><span class="aside">Stockholm</span></p>
-    <h1 class="display statement"><span class="w">I</span> <span class="w">don't</span> <span class="w"><em>guess</em>.</span></h1>
-    <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
+    <p class="name">Ioannis Koupidis · <span class="role">UX research &amp; product</span><!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="../" hreflang="en">EN</a><span class="sep" aria-hidden="true">/</span><a href="../sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="./" hreflang="el" aria-current="page">EL</a></span><!--/LANGS--><span class="aside">Στοκχόλμη</span></p>
+    <h1 class="display statement"><span class="w">Δεν</span> <span class="w"><em>μαντεύω</em>.</span></h1>
+    <p class="lede">Κάνω συνεντεύξεις, συνθέτω όσα μου είπαν, τους δίνω κάτι να δοκιμάσουν και το αλλάζω όταν το testing δείχνει ότι έκανα λάθος.</p>
     <div class="meta">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
       <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
       <a href="https://www.linkedin.com/in/koupidisyannis/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="Ioannis-Koupidis-CV.pdf" download>Download PDF</a>
+      <a href="Ioannis-Koupidis-CV-el.pdf" download>Λήψη PDF</a>
     </div>
   </header>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Work</span></div>
+    <div class="spine"><span class="eyebrow">Προϋπηρεσία</span></div>
     <div class="col work-list">
 
       <article class="work" style="view-transition-name:study-agentx;">
         <h3>Agent X</h3>
-        <p class="kind">Student project · Medieinstitutet Stockholm · 2026</p>
-        <p>How could contextual guidance help new players of Escape from Tarkov, a hardcore survival shooter, without flattening the difficulty its audience plays it for? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.<span class="ref"></span><span class="note">Run with teacher guidance as part of the UX programme. My first complete research cycle.</span></p>
+        <p class="kind">Φοιτητικό project · Medieinstitutet Stockholm · 2026</p>
+        <p>Πώς θα μπορούσε η καθοδήγηση μέσα στο context του Escape from Tarkov, ενός hardcore survival shooter, να βοηθήσει νέους παίκτες χωρίς να μειώσει τη δυσκολία για την οποία το επιλέγει το κοινό του; Έκανα οκτώ συνεντεύξεις με παίκτες και συνέθεσα τα ευρήματα σε δύο personas και ένα journey map. Στη συνέχεια σχεδίασα τέσσερα wireframe views και τα δοκίμασα σε τρία think-aloud sessions.<span class="ref"></span><span class="note">Έγινε με καθοδήγηση καθηγητών, στο πλαίσιο του προγράμματος UX. Ο πρώτος ολοκληρωμένος κύκλος έρευνας που έχω κάνει.</span></p>
         <div class="outcome">
-          <span class="eyebrow">What it produced</span>
-          Participants found and understood the guidance without prompting.<span class="ref"></span><span class="note">Testing also exposed language and sample limitations worth a further round.</span>
+          <span class="eyebrow">Τι προέκυψε</span>
+          Οι συμμετέχοντες βρήκαν και κατάλαβαν την καθοδήγηση χωρίς προτροπή.<span class="ref"></span><span class="note">Το testing ανέδειξε επίσης περιορισμούς στη γλώσσα και στο δείγμα που χρειάζονται έναν ακόμη γύρο.</span>
         </div>
 
         <details class="study">
-          <summary><span class="chev">›</span><span class="label-closed">Read the case study</span><span class="label-open">Close</span></summary>
+          <summary><span class="chev">›</span><span class="label-closed">Δείτε το case study</span><span class="label-open">Κλείσιμο</span></summary>
           <div class="detail-body">
-            <h4>The question</h4>
-            <p>New players of Escape from Tarkov abandon it early. Lowering the difficulty would remove the reason the existing audience plays it. The brief was to find out whether guidance delivered inside the world of the game could carry a newcomer through, without changing what the game is.</p>
+            <h4>Το ερώτημα</h4>
+            <p>Οι νέοι παίκτες εγκαταλείπουν νωρίς το Escape from Tarkov. Αν μειωνόταν η δυσκολία, θα χανόταν ο λόγος για τον οποίο το παίζει το υπάρχον κοινό του. Το brief ήταν να διερευνηθεί αν η καθοδήγηση μέσα στον κόσμο του παιχνιδιού θα μπορούσε να βοηθήσει έναν νέο παίκτη να προχωρήσει, χωρίς να αλλάξει αυτό που είναι το παιχνίδι.</p>
 
-            <h4>What I did</h4>
+            <h4>Τι έκανα</h4>
             <ol>
-              <li>Eight text-based interviews on Discord, spanning beginners to veterans, including one player who had quit.</li>
-              <li>Synthesis into two personas, the Seeker and the Returner, and an emotional journey map.</li>
-              <li>Four wireframe views of a diegetic companion that activates only after repeated failure.</li>
-              <li>Three think-aloud usability sessions against the wireframes.</li>
+              <li>Οκτώ γραπτές συνεντεύξεις στο Discord, από αρχάριους έως έμπειρους παίκτες, ανάμεσά τους και ένας παίκτης που το είχε εγκαταλείψει.</li>
+              <li>Σύνθεση σε δύο personas, τον Seeker και τον Returner, και σε ένα emotional journey map.</li>
+              <li>Τέσσερα wireframe views ενός diegetic companion που ενεργοποιείται μόνο έπειτα από επανειλημμένη αποτυχία.</li>
+              <li>Τρία think-aloud usability sessions πάνω στα wireframes.</li>
             </ol>
 
-            <h4>What came back</h4>
-            <p>Participants located the guidance and understood it without being pointed at it, which was the thing being tested. The wireframes did not have to explain themselves.</p>
+            <h4>Τι έδειξαν τα αποτελέσματα</h4>
+            <p>Οι συμμετέχοντες εντόπισαν και κατάλαβαν την καθοδήγηση χωρίς να τους υποδειχθεί, που ήταν ακριβώς αυτό που εξεταζόταν. Τα wireframes δεν χρειάστηκαν επεξήγηση.</p>
 
-            <h4>What I would do differently</h4>
-            <p>The three testers were aged 40 to 46 and none of them had played Tarkov, so they did not match the Seeker profile the design targets. That left one screen, which works by deliberately staying silent, impossible to evaluate properly. The next round needs actual target players, and the report says so rather than burying it.</p>
+            <h4>Τι θα έκανα διαφορετικά</h4>
+            <p>Οι τρεις testers ήταν 40 έως 46 ετών και κανένας δεν είχε παίξει Tarkov, οπότε δεν ταίριαζαν στο προφίλ Seeker στο οποίο απευθύνεται το design. Έτσι, ένα screen που λειτουργεί μένοντας σκόπιμα σιωπηλό δεν μπορούσε να αξιολογηθεί σωστά. Ο επόμενος γύρος χρειάζεται πραγματικούς παίκτες από το target group, και η αναφορά το δηλώνει καθαρά αντί να το αποκρύπτει.</p>
           </div>
         </details>
 
-        <p class="full-link"><a href="https://ioanniskp.github.io/-agent-x-case-study/" target="_blank" rel="noopener">Open the full case study<span class="arr">↗</span></a></p>
+        <p class="full-link"><a href="https://ioanniskp.github.io/-agent-x-case-study/" target="_blank" rel="noopener">Ανοίξτε ολόκληρο το case study<span class="arr">↗</span></a></p>
 
         <div class="tags">
           <span class="tag">User research</span>
@@ -1030,41 +1052,41 @@
 
       <article class="work" style="view-transition-name:study-radio;">
         <h3>Radio</h3>
-        <p class="kind">Personal project · directing an AI-assisted iOS build · 2026</p>
-        <p>I built an internet radio player for iOS in a single working day without writing the code. I set the scope, ran a build agent, then ran a separate agent to audit its output, and tested the result on a physical device.<span class="ref"></span><span class="note">The work was specifying it, questioning it and testing it. That is product management, not engineering.</span></p>
+        <p class="kind">Προσωπικό project · καθοδήγηση ενός AI-assisted iOS build · 2026</p>
+        <p>Έφτιαξα ένα internet radio player για iOS μέσα σε μία εργάσιμη ημέρα, χωρίς να γράψω τον κώδικα. Όρισα το scope, χρησιμοποίησα έναν agent για το build και μετά έναν δεύτερο, ξεχωριστό agent για να ελέγξει το αποτέλεσμα. Στο τέλος το δοκίμασα σε φυσική συσκευή.<span class="ref"></span><span class="note">Η δουλειά ήταν να ορίσω τις προδιαγραφές, να αμφισβητήσω το αποτέλεσμα και να το δοκιμάσω. Αυτό είναι product management, όχι engineering.</span></p>
         <div class="outcome">
-          <span class="eyebrow">What it produced</span>
-          The audit caught four faults that all looked finished, and device testing caught a network failure that code review had passed.
+          <span class="eyebrow">Τι προέκυψε</span>
+          Ο έλεγχος εντόπισε τέσσερα σφάλματα που έμοιαζαν όλα ολοκληρωμένα, και το device testing εντόπισε μια αστοχία δικτύου που είχε περάσει το code review.
         </div>
 
         <details class="study">
-          <summary><span class="chev">›</span><span class="label-closed">Read the case study</span><span class="label-open">Close</span></summary>
+          <summary><span class="chev">›</span><span class="label-closed">Δείτε το case study</span><span class="label-open">Κλείσιμο</span></summary>
           <div class="detail-body">
-            <h4>The question</h4>
-            <p>If an agent can write the code, what is left for the person directing it? I wanted to find out by shipping something real in a fixed window and paying attention to where my own judgement actually mattered.</p>
+            <h4>Το ερώτημα</h4>
+            <p>Αν ένας agent μπορεί να γράψει τον κώδικα, τι μένει για τον άνθρωπο που τον κατευθύνει; Ήθελα να το διαπιστώσω παραδίδοντας κάτι πραγματικό μέσα σε συγκεκριμένο χρονικό περιθώριο και παρατηρώντας πού είχε πράγματι σημασία η δική μου κρίση.</p>
 
-            <h4>How it ran</h4>
+            <h4>Πώς έγινε</h4>
             <ol>
-              <li>Scope set first and written down, so that finished had a definition before anything was built.</li>
-              <li>One agent building against that scope.</li>
-              <li>A second, separate agent auditing the first one's output, on the assumption that it was wrong until shown otherwise.</li>
-              <li>Testing on a physical device rather than the simulator.</li>
+              <li>Το scope ορίστηκε και καταγράφηκε πρώτα, ώστε το «ολοκληρωμένο» να έχει ορισμό πριν κατασκευαστεί οτιδήποτε.</li>
+              <li>Ένας agent έκανε το build βάσει αυτού του scope.</li>
+              <li>Ένας δεύτερος, ξεχωριστός agent έλεγξε το αποτέλεσμα του πρώτου, με την παραδοχή ότι ήταν λάθος μέχρι να αποδειχθεί το αντίθετο.</li>
+              <li>Testing σε φυσική συσκευή αντί για simulator.</li>
             </ol>
 
-            <h4>What came back</h4>
-            <p>The audit found four faults in work that presented as complete. Device testing then caught a network failure that had passed code review, because the simulator's network conditions are not a phone's.</p>
+            <h4>Τι έδειξαν τα αποτελέσματα</h4>
+            <p>Ο έλεγχος βρήκε τέσσερα σφάλματα σε δουλειά που παρουσιαζόταν ως ολοκληρωμένη. Στη συνέχεια, το device testing εντόπισε μια αστοχία δικτύου που είχε περάσει το code review, επειδή οι συνθήκες δικτύου του simulator δεν είναι ίδιες με ενός τηλεφώνου.</p>
 
-            <h4>What I take from it</h4>
-            <p>The generation step was the cheap part. The value was in specifying the thing precisely, refusing to accept output that only looked finished, and testing in conditions that resemble use. None of that required writing code, and all of it required knowing what to distrust.</p>
+            <h4>Τι κρατάω από αυτό</h4>
+            <p>Το generation ήταν το φθηνό μέρος. Η αξία βρισκόταν στο να ορίσω με ακρίβεια τι έπρεπε να γίνει, να μην αποδεχτώ ένα αποτέλεσμα που απλώς έμοιαζε ολοκληρωμένο και να κάνω testing σε συνθήκες που μοιάζουν με πραγματική χρήση. Τίποτα από αυτά δεν απαιτούσε να γράψω κώδικα, και όλα απαιτούσαν να ξέρω τι να αντιμετωπίσω με δυσπιστία.</p>
           </div>
         </details>
 
-        <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Open the full case study<span class="arr">↗</span></a></p>
+        <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Ανοίξτε ολόκληρο το case study<span class="arr">↗</span></a></p>
 
         <div class="tags">
           <span class="tag">Scoping</span>
           <span class="tag">AI-assisted delivery</span>
-          <span class="tag">Critical evaluation</span>
+          <span class="tag">Κριτική αξιολόγηση</span>
           <span class="tag">Device testing</span>
         </div>
       </article>
@@ -1074,51 +1096,51 @@
   </section>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Practice</span></div>
+    <div class="spine"><span class="eyebrow">Πρακτική</span></div>
     <div class="col">
-      <h2 class="section">How I work</h2>
+      <h2 class="section">Πώς δουλεύω</h2>
       <div class="stack">
         <div class="item">
-          <h3>Research that survives contact with users</h3>
-          <p>Interviews, synthesis, personas, journey mapping, wireframing and think-aloud testing. So far that is one complete cycle, run as a student project at Medieinstitutet with teachers to steer me. I am looking for the role where it becomes daily practice.</p>
+          <h3>Έρευνα που αντέχει στην επαφή με τους χρήστες</h3>
+          <p>Συνεντεύξεις, synthesis, personas, journey mapping, wireframing και think-aloud testing. Μέχρι στιγμής, αυτός είναι ένας ολοκληρωμένος κύκλος, που έγινε ως φοιτητικό project στο Medieinstitutet με καθοδήγηση από καθηγητές. Αναζητώ τον ρόλο όπου αυτό θα γίνει καθημερινή πρακτική.</p>
         </div>
         <div class="item">
-          <h3>Comfort with complexity and stakeholders</h3>
-          <p>Twelve years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.<span class="ref"></span><span class="note">Swedish public healthcare procurement. Regulated, audited, and slow to forgive an error.</span></p>
+          <h3>Άνεση με την πολυπλοκότητα και τους stakeholders</h3>
+          <p>Δώδεκα χρόνια στη διοίκηση μιας ρυθμιζόμενης εταιρείας υπηρεσιών με έμαθαν να κρατώ ένα σύστημα στο μυαλό μου, να μετατρέπω απαιτήσεις σε κάτι εφαρμόσιμο και να αποφασίζω με ελλιπή δεδομένα.<span class="ref"></span><span class="note">Δημόσιες προμήθειες στον χώρο της υγείας στη Σουηδία. Ρυθμιζόμενες, ελεγχόμενες και με λάθη που δύσκολα συγχωρούνται.</span></p>
         </div>
         <div class="item">
-          <h3>Sceptical use of AI tooling</h3>
-          <p>I use generative and agent-based workflows daily, and I assume their output is wrong until tested. Auditing is the part that matters.</p>
+          <h3>Χρήση εργαλείων AI με κριτική στάση</h3>
+          <p>Χρησιμοποιώ καθημερινά generative και agent-based workflows και θεωρώ το αποτέλεσμά τους λάθος μέχρι να δοκιμαστεί. Ο έλεγχος είναι το μέρος που έχει σημασία.</p>
         </div>
       </div>
-      <p class="inline-list" style="margin-top:1.6rem;">User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows<span class="ref"></span><span class="note">Figma at a basic level. Enough to wireframe, not enough to claim it as a strength.</span></p>
+      <p class="inline-list" style="margin-top:1.6rem;">User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows<span class="ref"></span><span class="note">Figma σε βασικό επίπεδο. Αρκετό για wireframes, όχι αρκετό για να το παρουσιάσω ως δυνατό μου σημείο.</span></p>
     </div>
     <div></div>
   </section>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Experience</span></div>
+    <div class="spine"><span class="eyebrow">Εμπειρία</span></div>
     <div class="col">
       <div class="stack">
 
         <div class="item">
-          <span class="aside">Stockholm<br>2012 – 2025</span>
-          <h3>Founder &amp; CEO · Konduko AB</h3>
-          <p>Founded and led a specialist healthcare staffing company serving Swedish public healthcare. Designed the operating system connecting procurement requirements, physician availability, contracts, schedules, invoicing and quality control.<span class="ref"></span><span class="note">Closed the company as a deliberate decision when the regulatory landscape shifted.</span></p>
+          <span class="aside">Στοκχόλμη<br>2012 – 2025</span>
+          <h3>Ιδρυτής &amp; CEO · Konduko AB</h3>
+          <p>Ίδρυσα και διοίκησα μια εταιρεία εξειδικευμένης στελέχωσης στον χώρο της υγείας, με πελάτες στη δημόσια υγεία της Σουηδίας. Σχεδίασα το σύστημα λειτουργίας που συνέδεε τις απαιτήσεις των δημόσιων προμηθειών, τη διαθεσιμότητα των γιατρών, τις συμβάσεις, τα προγράμματα, την τιμολόγηση και τον ποιοτικό έλεγχο.<span class="ref"></span><span class="note">Έκλεισα την εταιρεία με συνειδητή απόφαση, όταν άλλαξε το ρυθμιστικό πλαίσιο.</span></p>
           <div class="metrics">
-            <div class="metric"><b>25+</b><span>public procurement contracts</span></div>
-            <div class="metric"><b>140+</b><span>physicians on parallel assignments</span></div>
-            <div class="metric"><b>All regions</b><span>framework coverage in Sweden</span></div>
-            <div class="metric"><b>SEK 1.5B+</b><span>aggregate estimated value of awarded frameworks<span class="ref"></span></span></div>
-            <div class="metric"><b>ISO 9001<br>&amp; 14001</b><span>certified operations</span></div>
+            <div class="metric"><b>25+</b><span>συμβάσεις δημόσιων προμηθειών</span></div>
+            <div class="metric"><b>140+</b><span>γιατροί σε παράλληλες αναθέσεις</span></div>
+            <div class="metric"><b>Όλες οι περιφέρειες</b><span>κάλυψη μέσω συμβάσεων-πλαισίων στη Σουηδία</span></div>
+            <div class="metric"><b>1,5 δισ. SEK</b><span>συνολική εκτιμώμενη αξία των συμβάσεων-πλαισίων που ανατέθηκαν<span class="ref"></span></span></div>
+            <div class="metric"><b>ISO 9001<br>&amp; 14001</b><span>πιστοποιημένη λειτουργία</span></div>
           </div>
-          <span class="note">Procurement estimates, not guaranteed spend and not company revenue. Actual placements depended on regional demand and physician availability.</span>
+          <span class="note">Εκτιμήσεις δημόσιων προμηθειών, όχι εγγυημένη δαπάνη ούτε έσοδα της εταιρείας. Οι πραγματικές τοποθετήσεις εξαρτιόνταν από τη ζήτηση κάθε περιφέρειας και τη διαθεσιμότητα των γιατρών.</span>
         </div>
 
         <div class="item">
-          <span class="aside">Stockholm<br>2011 – present</span>
-          <h3>Founder · NiyaCare Stockholm AB</h3>
-          <p>A personal assistance company built around matching people with assistants they can rely on. Responsible for understanding individual needs, service quality and daily operations. It is where I learned what autonomy and trust actually require from a service.</p>
+          <span class="aside">Στοκχόλμη<br>2011 – σήμερα</span>
+          <h3>Ιδρυτής · NiyaCare Stockholm AB</h3>
+          <p>Μια εταιρεία προσωπικής βοήθειας, οργανωμένη γύρω από την αντιστοίχιση ανθρώπων με βοηθούς στους οποίους μπορούν να βασίζονται. Υπεύθυνος για την κατανόηση των ατομικών αναγκών, την ποιότητα των υπηρεσιών και την καθημερινή λειτουργία. Εκεί έμαθα τι απαιτούν στην πράξη η αυτονομία και η εμπιστοσύνη από μια υπηρεσία.</p>
         </div>
 
       </div>
@@ -1127,36 +1149,36 @@
   </section>
 
   <section class="row background">
-    <div class="spine"><span class="eyebrow">Background</span></div>
+    <div class="spine"><span class="eyebrow">Προηγούμενη εμπειρία</span></div>
     <div class="col">
-      <h2 class="section">Before this, thirteen years in visual communication</h2>
-      <p>Athens, 1998 to 2011. Layout and print production first, then project coordination, branding, packaging and campaign work for fashion, food and professional services clients.<span class="ref"></span><span class="note">I do not sell this as a current skill. Seventeen years since I worked as a graphic designer, and not what I am asking to be hired for.</span></p>
-      <p>It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.</p>
+      <h2 class="section">Πριν από αυτό, δεκατρία χρόνια στην οπτική επικοινωνία</h2>
+      <p>Αθήνα, 1998 έως 2011. Αρχικά layout και παραγωγή εντύπων, έπειτα συντονισμός projects, branding, packaging και δουλειά σε καμπάνιες για πελάτες στους κλάδους της μόδας, των τροφίμων και των επαγγελματικών υπηρεσιών.<span class="ref"></span><span class="note">Δεν το παρουσιάζω ως σημερινό skill. Έχουν περάσει δεκαεπτά χρόνια από τότε που εργάστηκα ως graphic designer και δεν είναι αυτό για το οποίο ζητώ να προσληφθώ.</span></p>
+      <p>Γι' αυτό καταλαβαίνω γρήγορα τα layouts και γι' αυτό το briefing πελατών και η υποστήριξη μιας απόφασης μου φαίνονται συνηθισμένα, όχι δύσκολα.</p>
 
       <div class="pairs" style="margin-top:1.5rem;">
-        <div class="pair"><span>Graphic Designer, later Project Manager · Apolyto S.A.</span><span>1998 &ndash; 2009</span></div>
-        <div class="pair"><span>Creative Consultant · Angelos Frentzos S.A.</span><span>2004 &ndash; 2011</span></div>
-        <div class="pair"><span>Creative Consultant · Barbara's Food Company</span><span>2009 &ndash; 2010</span></div>
-        <div class="pair"><span>Design Consultant · PricewaterhouseCoopers</span><span>2004 &ndash; 2009</span></div>
+        <div class="pair"><span>Γραφίστας, αργότερα Project Manager · Apolyto S.A.</span><span>1998 – 2009</span></div>
+        <div class="pair"><span>Σύμβουλος δημιουργικού · Angelos Frentzos S.A.</span><span>2004 – 2011</span></div>
+        <div class="pair"><span>Σύμβουλος δημιουργικού · Barbara's Food Company</span><span>2009 – 2010</span></div>
+        <div class="pair"><span>Σύμβουλος design · PricewaterhouseCoopers</span><span>2004 – 2009</span></div>
       </div>
     </div>
     <div></div>
   </section>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Education</span></div>
+    <div class="spine"><span class="eyebrow">Εκπαίδευση</span></div>
     <div class="col">
-      <p class="pairs-label">Qualifications</p>
+      <p class="pairs-label">Τίτλοι σπουδών</p>
       <div class="pairs">
         <div class="pair"><span>UX Design · Medieinstitutet Stockholm</span><span>2026</span></div>
-        <div class="pair"><span>Graphic Design · IIEK Technografiko, Athens</span><span>1996</span></div>
+        <div class="pair"><span>Graphic Design · IIEK Technografiko, Αθήνα</span><span>1996</span></div>
       </div>
-      <p class="pairs-label" style="margin-top:1.6rem;">Languages</p>
+      <p class="pairs-label" style="margin-top:1.6rem;">Γλώσσες</p>
       <div class="pairs">
-        <div class="pair"><span>Greek</span><span>Native</span></div>
-        <div class="pair"><span>English</span><span>Fluent</span></div>
-        <div class="pair"><span>Swedish</span><span>Fluent</span></div>
-        <div class="pair"><span>German</span><span>Basic</span></div>
+        <div class="pair"><span>Ελληνικά</span><span>Μητρική γλώσσα</span></div>
+        <div class="pair"><span>Αγγλικά</span><span>Άπταιστα</span></div>
+        <div class="pair"><span>Σουηδικά</span><span>Άπταιστα</span></div>
+        <div class="pair"><span>Γερμανικά</span><span>Βασικά</span></div>
       </div>
     </div>
     <div></div>
@@ -1164,18 +1186,18 @@
 
   <footer class="close">
     <blockquote class="pullquote">
-      <p class="display">I like the product work that lives in the <em>details</em>: clear flows, consistent patterns, and solutions teams can actually build.</p>
+      <p class="display">Μου αρέσει η δουλειά στο product που κρίνεται στις <em>λεπτομέρειες</em>: ξεκάθαρα flows, συνεπή patterns και λύσεις που οι ομάδες μπορούν πράγματι να υλοποιήσουν.</p>
     </blockquote>
 
-    <p class="cta-line"><a class="cta" href="mailto:gkoupidis@gmail.com">Get in touch<span class="arr">&rarr;</span></a></p>
+    <p class="cta-line"><a class="cta" href="mailto:gkoupidis@gmail.com">Επικοινωνία<span class="arr">→</span></a></p>
 
     <div class="meta" style="margin-top:0;">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
       <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
       <a href="https://www.linkedin.com/in/koupidisyannis/" target="_blank" rel="noopener">LinkedIn</a>
-      <!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="./" hreflang="en" aria-current="page">EN</a><span class="sep" aria-hidden="true">/</span><a href="sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="el/" hreflang="el">EL</a></span><!--/LANGS-->
+      <!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="../" hreflang="en">EN</a><span class="sep" aria-hidden="true">/</span><a href="../sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="./" hreflang="el" aria-current="page">EL</a></span><!--/LANGS-->
     </div>
-    <p class="colophon">Set in Fraunces, Inter &amp; IBM Plex Mono</p>
+    <p class="colophon">Με γραμματοσειρές EB Garamond, Inter &amp; Noto Sans Mono</p>
   </footer>
 
 </div>

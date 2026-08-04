@@ -68,9 +68,27 @@ It runs to three pages at roughly 93% / 91% / 28% fill. Two pages is not reachab
 ## Open questions
 
 - ~~Whether the header label is right~~ **Settled 4 Aug 2026: "UX research & product".** It was "UX practitioner", which both the Greek and Swedish translators independently flagged as their hardest string, and which the Greek rendering turned into "UX professional" — implying professional UX experience. The new label is chosen to match the evidence rather than the ambition: eight interviews, two personas, a journey map and three think-aloud sessions are research; Radio is product direction. There is comparatively little design evidence, which is why "designer" is not in it. "Junior" was considered and rejected: it anchors readers to expect someone in their twenties and invites them to discount twelve years of running a company.
-- The EN / SV / EL switcher is agreed in principle but not built. Translations exist as `CV-el.md` and `CV-sv.md`, each giving the English source above every string. Placement agreed: masthead margin above `STOCKHOLM`, repeated in the footer, **not** fixed or persistent. Architecture (three files vs one file plus JS) still undecided.
+## Languages
 
-**Greek needs two font substitutions, not one.** Verified against Google Fonts: Fraunces has no Greek subset, and neither does IBM Plex Mono. Inter and EB Garamond both do. So on the Greek view the display serif becomes EB Garamond at remapped weights 575/620, and the mono becomes Noto Sans Mono. Inter is unchanged. Swedish needs nothing.
+The CV ships in three languages as three separate documents, laid out for GitHub Pages:
+
+```
+/index.html      →  <site>/        English  (source of truth AND the template)
+/sv/index.html   →  <site>/sv/     Swedish
+/el/index.html   →  <site>/el/     Greek
+```
+
+Each language has its own URL you can send to an employer, its own `<html lang>`, and its own PDF sitting beside it. The switcher is three ordinary links with relative hrefs, so it works at any base path and needs no JavaScript.
+
+**Never edit `sv/` or `el/` by hand — they are generated and will be overwritten.** Edit English in `index.html`, then run `./make-pdf.command`, which runs `build.py` first and then prints all three PDFs. Editing English without rebuilding leaves the other two languages and all three PDFs stale.
+
+`build.py` replaces whole text nodes matching `i18n.json`. Three things it cannot reach by substitution are declared as constants at the top of the script: the masthead statement and the closing statement each carry an `<em>` accent word whose placement is an editorial choice per language, and the Greek colophon has to name the fonts Greek actually uses. If you add a string with inline markup inside it, it needs the same treatment.
+
+`i18n.json` is generated from `CV-el.md` and `CV-sv.md`, which hold the English source above every translation. Those two files are the human-reviewable record; the JSON is the machine-readable one.
+
+**Greek needs two font substitutions, not one.** Verified against Google Fonts: Fraunces has no Greek subset, and neither does IBM Plex Mono. Inter and EB Garamond both do. So the Greek build swaps the display serif to EB Garamond at weights 575/620 and the mono to Noto Sans Mono, via an override block appended at build time. Inter is unchanged. Swedish needs nothing.
+
+**A recurring trap worth knowing.** Anything positioned into the margin column uses `margin-right: var(--note-pull)`, a large negative margin. Every such element also needs a reset inside the `max-width:1080px` block, or it flies off-screen once the margin column collapses. This has now bitten the portrait and the language switcher. If you add margin furniture, add the reset at the same time.
 - Every link now resolves. LinkedIn, the PDF download, and both case studies: Agent X at `https://ioanniskp.github.io/-agent-x-case-study/`, Radio at `https://ioanniskp.github.io/radio/`
 - The masthead lede still describes research as habitual practice, which the Practice section contradicts by admitting one cycle. Unresolved
 - Konduko is described as twelve years in the body but dated 2012 to 2025, which spans thirteen
