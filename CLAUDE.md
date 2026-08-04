@@ -47,7 +47,11 @@ Every colour used for text clears WCAG AA on paper: ink 16.0, muted 6.9, faint 5
 
 Layout is a three-column editorial grid: `--spine:7rem` for sticky mono section labels, `--measure:38rem` for text, and `--margin-col:13rem` for marginalia, separated by `--gutter:2.5rem`. Sidenotes are floated out of the measure into the margin column with a negative margin. Work cards break the measure to the right and carry their own note rail, which is why `--card-pad` and `--note-pull` exist: they keep card notes and prose notes on one vertical. Collapses to two columns under 1080px, where notes fold inline as blocks, and to one column under 720px.
 
-Motion is entirely native scroll-driven CSS (`animation-timeline: view()` and `scroll()`), gated on `@supports` and `prefers-reduced-motion`. No JavaScript and no libraries. The only script in the file toggles the case studies open with a view transition.
+**There is no JavaScript on this page.** The only `<script>` is a `type="speculationrules"` block, which is declarative JSON, not code. Everything moves in CSS.
+
+Section and card reveals use scroll-driven timelines (`animation-timeline: view()` and `scroll()`). The case studies animate open via `::details-content` with `interpolate-size: allow-keywords` on the root, which is what makes `height: auto` animatable. Switching language uses cross-document view transitions (`@view-transition { navigation: auto }`), with the speculation rules prerendering a sibling language on hover so the switch is instant as well as smooth. All of it is gated on `@supports` or degrades silently: without support the details snap open and the language links navigate normally.
+
+A JS click handler used to wrap the details toggle in `startViewTransition`. It was removed because its snapshot cross-fade fought the native height animation. Do not reintroduce it.
 
 Print styles must keep working, since the page is its own PDF source. Everything animated is reset there, and outbound links print their full URL after the link text.
 

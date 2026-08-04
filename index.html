@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..500,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="speculationrules">
+{"prerender":[{"where":{"selector_matches":".langs a"},"eagerness":"moderate"}]}
+</script>
 <style>
   :root{
     /* Warm book stock. The cool grey fought Fraunces and made every warm
@@ -32,9 +35,29 @@
     --note-pull:calc(-1 * (var(--margin-col) + var(--gutter) - var(--card-pad)));
   }
 
+  /* Switching language is a real navigation between three documents, but it
+     should not look like one. Browsers without support just navigate. */
+  @view-transition{navigation:auto;}
+
+  @media (prefers-reduced-motion:no-preference){
+    ::view-transition-old(root){animation:vt-out .22s cubic-bezier(.4,0,1,1) both;}
+    ::view-transition-new(root){animation:vt-in .34s cubic-bezier(0,0,.2,1) both;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){
+      animation:none !important;
+    }
+  }
+
+  @keyframes vt-out{to{opacity:0;transform:translateY(-6px);}}
+  @keyframes vt-in{from{opacity:0;transform:translateY(8px);}}
+
   *{box-sizing:border-box;}
 
-  html{-webkit-text-size-adjust:100%;}
+  /* interpolate-size lets the case studies animate to height:auto, which CSS
+     could not do until recently. Without support they snap open as before. */
+  html{-webkit-text-size-adjust:100%;interpolate-size:allow-keywords;}
 
   body{
     margin:0;
@@ -398,6 +421,17 @@
   /* ---------- expanding case study ---------- */
 
   .study{margin-top:1.15rem;}
+
+  /* Animates open/close instead of snapping. Browsers that do not know
+     ::details-content drop the whole rule and behave exactly as before. */
+  .study::details-content{
+    block-size:0;
+    overflow:hidden;
+    transition:block-size .42s cubic-bezier(.2,.7,.3,1),
+               content-visibility .42s allow-discrete;
+  }
+
+  .study[open]::details-content{block-size:auto;}
 
   .study summary{
     display:inline-flex;
@@ -1180,22 +1214,5 @@
 
 </div>
 
-<script>
-  // Expand case studies with a view transition where supported.
-  document.querySelectorAll('.study').forEach(function(study){
-    var summary = study.querySelector('summary');
-    summary.addEventListener('click', function(e){
-      if(!document.startViewTransition) return;
-      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      e.preventDefault();
-      document.startViewTransition(function(){
-        study.open = !study.open;
-      });
-    });
-  });
-
-  // Case studies are hidden in print, so no open-before-print handling is
-  // needed: the printed URL takes the reader to the full study instead.
-</script>
 </body>
 </html>
