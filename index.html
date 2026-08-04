@@ -263,6 +263,21 @@
     margin-right:0.3em;
   }
 
+  /* Author photo. Right edge lands on the same vertical as every margin
+     note, so the portrait belongs to the margin column rather than sitting
+     beside it. 432px asset for a 144px box keeps it crisp at 3x. */
+  .portrait{
+    float:right;
+    clear:right;
+    display:block;
+    width:9rem;
+    height:9rem;
+    margin-right:var(--note-pull);
+    margin-bottom:0.9rem;
+    border-radius:5px;
+    border:1px solid var(--rule);
+  }
+
   /* Unnumbered margin furniture: dates, counts, labels. */
   .aside{
     float:right;
@@ -765,6 +780,14 @@
        conjures an implicit third column and squeezes everything else. */
     .masthead .meta,.close .meta{grid-column:2;}
 
+    /* No margin column to pull into, so it stacks instead of flying off. */
+    .portrait{
+      float:none;
+      width:6.5rem;
+      height:6.5rem;
+      margin:0.4rem 0 1rem;
+    }
+
     /* Must be block, or the span folds back into the sentence it annotates.
        Markers sit at paragraph ends so the break never splits a sentence. */
     .note,.aside,.work .note{
@@ -854,7 +877,7 @@
 <div class="wrap">
 
   <header class="masthead">
-    <p class="name">Ioannis Koupidis · UX practitioner<span class="aside">Stockholm</span></p>
+    <p class="name">Ioannis Koupidis · UX practitioner<img class="portrait" src="portrait-web.jpg" alt="Ioannis Koupidis" width="144" height="144"><span class="aside">Stockholm</span></p>
     <h1 class="display statement"><span class="w">I</span> <span class="w">don't</span> <span class="w"><em>guess</em>.</span></h1>
     <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
     <div class="meta">

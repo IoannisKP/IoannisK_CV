@@ -51,6 +51,16 @@ Motion is entirely native scroll-driven CSS (`animation-timeline: view()` and `s
 
 Print styles exist and must keep working, since the page doubles as the PDF source. Everything animated is reset there, and links print their full URL.
 
+## Portrait
+
+`portrait-web.jpg` is a 432px asset displayed at 144px (9rem) in the masthead margin, right-aligned to the same vertical as every margin note. `portrait.jpg` is the untouched original and should be kept.
+
+Provenance, so nobody has to re-derive it: the original is a street selfie. The background and shirt were replaced with a generative edit, which also straightened the head slightly and removed the wide-angle selfie distortion. The likeness is accurate. Two defects in that output were dealt with here: a generated sparkle watermark on the shirt was inpainted out, and both collar points came back frayed, which is why the display size is capped at 144px, where the fray is not visible. Do not enlarge the portrait past about 150px without regenerating the source, and do not use this asset for anything print-large.
+
+The tone is a soft warm treatment, 78% desaturated with the red channel lifted and blue pulled back, so it sits in the ivory paper rather than on it. A full duotone was tried and reads cold against this palette.
+
+If the CV is ever sent to the UK, US, Canada or Ireland, remove the portrait: a photo is expected in Greece and normal in Sweden, but there it is a screening liability.
+
 ## Open questions
 
 - Whether the header label "UX practitioner" is the right description
