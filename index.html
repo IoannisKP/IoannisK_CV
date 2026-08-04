@@ -831,12 +831,14 @@
        conjures an implicit third column and squeezes everything else. */
     .masthead .meta,.close .meta{grid-column:2;}
 
-    /* No margin column left to pull into, so the negative margin would throw
-       the switcher off-screen. Same trap the notes have below. */
+    /* Two separate traps here. Without float:none the negative margin throws
+       the switcher off-screen; without display:block it stays inline and runs
+       straight into the role label, reading as "PRODUCTEN / SV / EL". */
     .langs{
+      display:block;
       float:none;
       width:auto;
-      margin:0 0 1.1rem;
+      margin:0.85rem 0 1.1rem;
     }
 
     /* Must be block, or the span folds back into the sentence it annotates.
