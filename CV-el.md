@@ -66,7 +66,7 @@ Each entry gives the English source first and the Greek translation beneath it. 
 > Work
 
 **Greek**
-> Δουλειά
+> Προϋπηρεσία
 
 ### Agent X
 
@@ -824,6 +824,7 @@ Each entry gives the English source first and the Greek translation beneath it. 
 - **Figma:** **σε βασικό επίπεδο** and the limitation that follows are retained without softening.
 - **“Could carry a newcomer through”:** I chose **θα μπορούσε να βοηθήσει έναν νέο παίκτη να προχωρήσει**, weaker and more natural than wording that would claim the guidance successfully “onboards” or “guides” the player.
 - **“Taught me”:** I kept **με έμαθαν** rather than “μου έδωσαν expertise”, which would overstate the claim.
+- **Work (section label):** Rendered as **Προϋπηρεσία** at Ioannis's instruction, replacing the literal **Δουλειά**. Note that προϋπηρεσία normally denotes prior employment, while the two entries beneath it are a student project and a personal project, both labelled as such.
 - **“Auditing”:** Depending on the team, Greek practitioners may also say *audit*. I used **έλεγχος** because it is natural and does not imply a formal certified audit.
 - **Numbers:** Counts and year ranges are preserved. I rendered **SEK 1.5B+** exactly in the requested local form, **1,5 δισ. SEK**; the following caveat still makes clear that this was an estimate, not spend or revenue.
 - **“All regions”:** **Όλες οι περιφέρειες** is the closest compact Greek rendering of Sweden’s regional authorities. It does not imply geographic operations beyond the framework coverage stated underneath.
