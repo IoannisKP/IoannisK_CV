@@ -53,11 +53,23 @@ Print styles exist and must keep working, since the page doubles as the PDF sour
 
 ## Portrait
 
-`portrait-web.jpg` is a 432px asset displayed at 144px (9rem) in the masthead margin, right-aligned to the same vertical as every margin note. `portrait.jpg` is the untouched original and should be kept.
+`portrait-web.jpg` is a 432px asset displayed at 144px (9rem) in the masthead margin, right-aligned to the same vertical as every margin note. It is generated from `portrait.jpg`, which is the corrected 512px source. The untouched street selfie this all began from is **not** in this folder; the only copy is `../CV-Athens-Greece EY/portrait.jpg`.
 
-Provenance, so nobody has to re-derive it: the original is a street selfie. The background and shirt were replaced with a generative edit, which also straightened the head slightly and removed the wide-angle selfie distortion. The likeness is accurate. Two defects in that output were dealt with here: a generated sparkle watermark on the shirt was inpainted out, and both collar points came back frayed, which is why the display size is capped at 144px, where the fray is not visible. Do not enlarge the portrait past about 150px without regenerating the source, and do not use this asset for anything print-large.
+Provenance, so nobody re-derives it: the original was a street selfie with a graffitied shutter, bollards and strangers behind him. Background and shirt were replaced with a generative edit, which also straightened the head slightly and removed the wide-angle selfie distortion. The likeness is accurate. Earlier attempts had two defects, both now resolved in the source: a generated sparkle watermark on the shirt, and frayed collar points. The current source is clean at full size and was checked for stamps across the bottom strip and lower right.
 
-The tone is a soft warm treatment, 78% desaturated with the red channel lifted and blue pulled back, so it sits in the ivory paper rather than on it. A full duotone was tried and reads cold against this palette.
+To regenerate the web asset after any change to the source:
+
+```
+python3 -c "
+from PIL import Image, ImageOps
+im=Image.open('portrait.jpg').convert('RGB')
+g=ImageOps.grayscale(im).convert('RGB')
+m=Image.blend(im,g,0.78); r,gr,b=m.split()
+r=r.point(lambda v:min(255,int(v*1.045))); b=b.point(lambda v:int(v*0.965))
+Image.merge('RGB',(r,gr,b)).resize((432,432),Image.LANCZOS).save('portrait-web.jpg',quality=88,optimize=True,progressive=True)"
+```
+
+That is the soft warm treatment: 78% desaturated, red channel lifted, blue pulled back, so it sits in the ivory paper rather than on it. A full duotone was tried and reads cold against this palette.
 
 If the CV is ever sent to the UK, US, Canada or Ireland, remove the portrait: a photo is expected in Greece and normal in Sweden, but there it is a screening liability.
 
