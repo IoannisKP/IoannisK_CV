@@ -263,21 +263,6 @@
     margin-right:0.3em;
   }
 
-  /* Author photo. Right edge lands on the same vertical as every margin
-     note, so the portrait belongs to the margin column rather than sitting
-     beside it. 432px asset for a 144px box keeps it crisp at 3x. */
-  .portrait{
-    float:right;
-    clear:right;
-    display:block;
-    width:9rem;
-    height:9rem;
-    margin-right:var(--note-pull);
-    margin-bottom:0.9rem;
-    border-radius:5px;
-    border:1px solid var(--rule);
-  }
-
   /* Unnumbered margin furniture: dates, counts, labels. */
   .aside{
     float:right;
@@ -780,14 +765,6 @@
        conjures an implicit third column and squeezes everything else. */
     .masthead .meta,.close .meta{grid-column:2;}
 
-    /* No margin column to pull into, so it stacks instead of flying off. */
-    .portrait{
-      float:none;
-      width:6.5rem;
-      height:6.5rem;
-      margin:0.4rem 0 1rem;
-    }
-
     /* Must be block, or the span folds back into the sentence it annotates.
        Markers sit at paragraph ends so the break never splits a sentence. */
     .note,.aside,.work .note{
@@ -817,36 +794,118 @@
   /* ---------- print ----------
      The page doubles as the PDF source. Screen intricacy must not leak in. */
 
+  /* ---------- print ----------
+     The three-track editorial grid does not paginate: sections cannot fit a
+     page, so each is pushed to a fresh one and the PDF runs to nine pages.
+     On paper the grid collapses to a single column, section labels become
+     ruled headers, and margin notes fold inline as small footnotes. */
+
   @media print{
-    :root{--paper:#fff;--surface:#fff;--rule:#ccc;--spine:6rem;--margin-col:11rem;--gutter:1.5rem;}
-    body{font-size:10pt;line-height:1.45;}
+    @page{size:A4;margin:13mm 14mm;}
+
+    :root{--paper:#fff;--surface:#fff;--rule:#c9c4bb;}
+
+    html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    body{font-size:9.4pt;line-height:1.42;}
     body::before{display:none;}
     .wrap{max-width:none;padding:0;}
 
-    .row{
-      grid-template-columns:var(--spine) minmax(0,1fr) var(--margin-col);
-      padding:1.1rem 0;
-      break-inside:avoid;
+    /* one column everywhere */
+    .row,.masthead,.close{display:block;padding-left:0;}
+    .row{padding:9pt 0 0;border-bottom:0;break-inside:auto;}
+    .col,.lede,.close-line{max-width:none;}
+    .work > *{width:100%;}
+
+    /* section label becomes a ruled header */
+    .row > .spine{margin-bottom:5pt;}
+    .row > .spine .eyebrow{
+      position:static;
+      display:flex;
+      align-items:center;
+      gap:8pt;
+      font-size:7.2pt;
+      color:var(--muted);
+    }
+    .row > .spine .eyebrow::after{
+      content:"";
+      display:block;
+      flex:1;
+      height:1px;
+      margin:0;
+      background:var(--rule);
+      opacity:1;
+      transform:none;
+      animation:none;
     }
 
-    .work,.item{break-inside:avoid;}
+    h2.section{font-size:12.5pt;margin-bottom:5pt;}
+    h2.section::after{display:none;}
 
+    /* margin apparatus folds inline, small */
+    .note,.aside,.work .note{
+      float:none;
+      display:block;
+      width:auto;
+      max-width:none;
+      margin:4pt 0 5pt;
+      padding-left:7pt;
+      border-left:1px solid var(--rule);
+      font-size:7.8pt;
+      line-height:1.36;
+    }
+    .aside{display:inline-block;border:0;padding:0;margin:0 0 3pt;}
+    /* Otherwise it reads "UX PRACTITIONERSTOCKHOLM". */
+    .masthead .aside{margin-left:9pt;}
+    .masthead .aside::before{content:"· ";}
+
+    /* masthead */
+    .statement{font-size:23pt;margin-bottom:6pt;}
+    .lede{font-size:10pt;}
+    .masthead{padding-bottom:9pt;margin-bottom:0;}
+    .masthead .meta{margin-top:9pt;font-size:8pt;gap:3pt 12pt;}
+
+    /* work cards */
     .work{
       width:100%;
       box-shadow:none;
-      padding:1rem;
-      margin-bottom:0.8rem;
+      padding:8pt 9pt;
+      margin-bottom:7pt;
+      break-inside:avoid;
     }
+    .work h3{font-size:14pt;}
+    .work .kind{font-size:8.6pt;margin-bottom:5pt;}
+    .outcome{margin:6pt 0;padding-left:7pt;}
+    .tags{margin-top:6pt;padding-top:6pt;}
+    .tag{font-size:6.6pt;padding:1.5pt 4pt;}
 
-    .note,.aside{font-size:8pt;}
+    .item{break-inside:avoid;}
+    .stack{gap:8pt;}
+    /* Five explicit columns, or ISO orphans onto a row of its own. */
+    .metrics{grid-template-columns:repeat(5,minmax(0,1fr));gap:5pt 7pt;margin-top:6pt;padding-top:6pt;}
+    .metric b{font-size:11.5pt;}
+    .metric span{font-size:7.2pt;}
+    .pair{padding-bottom:3pt;}
+    .pairs{gap:3pt;break-inside:avoid;}
+    /* Keep a label with the list it introduces. */
+    .pairs-label{break-after:avoid;margin-bottom:3pt;}
 
-    /* Case studies are opened by script before printing. */
-    .study summary{display:none;}
-    .detail-body{padding-top:0.6rem;}
+    /* case studies stay closed; the printed URL carries the reader there */
+    .study{display:none;}
+    .full-link{margin-top:6pt;}
+    .full-link .arr{display:none;}
+    .full-link a::after{content:" " attr(href);letter-spacing:0;text-transform:none;}
 
-    /* Nothing animated survives onto paper. */
-    .progress,.row > .spine .eyebrow::after,h2.section::after{display:none;}
+    /* closing */
+    .close{padding-top:10pt;margin-top:9pt;}
+    .pullquote{margin-bottom:7pt;}
+    .pullquote .display{font-size:14pt;line-height:1.3;max-width:none;}
+    .cta{border:0;padding:0;}
+    .cta .arr{display:none;}
+    .cta-line{margin-bottom:7pt;}
+    .colophon{margin-top:10pt;font-size:7pt;}
 
+    /* nothing animated survives onto paper */
+    .progress{display:none;}
     .row,.masthead,.close,.work,.note,.aside,
     h2.section,.metric,.tag,.item,.pair,.lede,
     .statement,.statement .w,.masthead .meta{
@@ -857,15 +916,8 @@
       clip-path:none;
     }
 
-    /* A printed link is useless without its address. */
-    .full-link .arr{display:none;}
-    .full-link a::after{content:" " attr(href);letter-spacing:0;text-transform:none;}
-
-    /* The button is a screen affordance. On paper the address below carries it. */
-    .cta{border:0;padding:0;}
-    .cta .arr{display:none;}
-    .pullquote{margin-bottom:1rem;}
-    .cta-line{margin-bottom:1.2rem;}
+    /* Offering the reader a download of the thing they are holding. */
+    .meta a[download]{display:none;}
 
     .colophon,.meta a{border:0;}
     a{border-bottom:0;}
@@ -877,14 +929,14 @@
 <div class="wrap">
 
   <header class="masthead">
-    <p class="name">Ioannis Koupidis · UX practitioner<img class="portrait" src="portrait-web.jpg" alt="Ioannis Koupidis" width="144" height="144"><span class="aside">Stockholm</span></p>
+    <p class="name">Ioannis Koupidis · UX practitioner<span class="aside">Stockholm</span></p>
     <h1 class="display statement"><span class="w">I</span> <span class="w">don't</span> <span class="w"><em>guess</em>.</span></h1>
     <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
     <div class="meta">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
       <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
       <a href="https://www.linkedin.com/in/koupidisyannis/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="#">Download PDF</a>
+      <a href="Ioannis-Koupidis-CV.pdf" download>Download PDF</a>
     </div>
   </header>
 

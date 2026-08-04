@@ -51,27 +51,19 @@ Motion is entirely native scroll-driven CSS (`animation-timeline: view()` and `s
 
 Print styles exist and must keep working, since the page doubles as the PDF source. Everything animated is reset there, and links print their full URL.
 
-## Portrait
+## No portrait
 
-`portrait-web.jpg` is a 432px asset displayed at 144px (9rem) in the masthead margin, right-aligned to the same vertical as every margin note. It is generated from `portrait.jpg`, which is the corrected 512px source. The untouched street selfie this all began from is **not** in this folder; the only copy is `../CV-Athens-Greece EY/portrait.jpg`.
+There is deliberately no photograph on this CV. Ioannis decided on 4 Aug 2026 that a headshot invites a first impression based on looks and creates reactions that would not exist without it. Do not add one back without asking. It also means this CV needs no separate variant for the UK, US, Canada or Ireland, where a photo is a screening liability.
 
-Provenance, so nobody re-derives it: the original was a street selfie with a graffitied shutter, bollards and strangers behind him. Background and shirt were replaced with a generative edit, which also straightened the head slightly and removed the wide-angle selfie distortion. The likeness is accurate. Earlier attempts had two defects, both now resolved in the source: a generated sparkle watermark on the shirt, and frayed collar points. The current source is clean at full size and was checked for stamps across the bottom strip and lower right.
+`portrait.jpg` (the corrected 512px source) and `portrait-web.jpg` (the 432px treated asset) are still in the folder if the decision is ever reversed. The untouched street selfie they came from lives only in `../CV-Athens-Greece EY/portrait.jpg`.
 
-To regenerate the web asset after any change to the source:
+## PDF
 
-```
-python3 -c "
-from PIL import Image, ImageOps
-im=Image.open('portrait.jpg').convert('RGB')
-g=ImageOps.grayscale(im).convert('RGB')
-m=Image.blend(im,g,0.78); r,gr,b=m.split()
-r=r.point(lambda v:min(255,int(v*1.045))); b=b.point(lambda v:int(v*0.965))
-Image.merge('RGB',(r,gr,b)).resize((432,432),Image.LANCZOS).save('portrait-web.jpg',quality=88,optimize=True,progressive=True)"
-```
+`Ioannis-Koupidis-CV.pdf` is generated from `index.html` itself, not from a separate source file. Run `./make-pdf.command`, or the Chrome headless call inside it. **Regenerate after any content change**, or the download link serves a stale CV.
 
-That is the soft warm treatment: 78% desaturated, red channel lifted, blue pulled back, so it sits in the ivory paper rather than on it. A full duotone was tried and reads cold against this palette.
+The `@media print` block is a real layout, not a set of tweaks. On screen the page is a three-track editorial grid; that grid does not paginate, and printing it directly produced a nine-page PDF where each section was pushed onto a fresh page. In print the grid collapses to a single column, section labels become ruled headers, margin notes fold inline as small footnotes, and the case studies are hidden entirely so their printed URLs carry the reader instead.
 
-If the CV is ever sent to the UK, US, Canada or Ireland, remove the portrait: a photo is expected in Greece and normal in Sweden, but there it is a screening liability.
+It runs to three pages at roughly 93% / 91% / 28% fill. Two pages is not reachable without either splitting a work card across a page break or compressing the type past comfort: pages one and two cap out around 90% because `break-inside: avoid` on `.work` and `.item` pushes whole blocks. Do not chase two pages by removing those rules.
 
 ## Open questions
 
