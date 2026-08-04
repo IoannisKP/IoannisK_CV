@@ -47,9 +47,9 @@ Every colour used for text clears WCAG AA on paper: ink 16.0, muted 6.9, faint 5
 
 Layout is a three-column editorial grid: `--spine:7rem` for sticky mono section labels, `--measure:38rem` for text, and `--margin-col:13rem` for marginalia, separated by `--gutter:2.5rem`. Sidenotes are floated out of the measure into the margin column with a negative margin. Work cards break the measure to the right and carry their own note rail, which is why `--card-pad` and `--note-pull` exist: they keep card notes and prose notes on one vertical. Collapses to two columns under 1080px, where notes fold inline as blocks, and to one column under 720px.
 
-Motion is entirely native scroll-driven CSS (`animation-timeline: view()` and `scroll()`), gated on `@supports` and `prefers-reduced-motion`. No JavaScript and no libraries. The only script in the file toggles case studies with a view transition and opens them before printing.
+Motion is entirely native scroll-driven CSS (`animation-timeline: view()` and `scroll()`), gated on `@supports` and `prefers-reduced-motion`. No JavaScript and no libraries. The only script in the file toggles the case studies open with a view transition.
 
-Print styles exist and must keep working, since the page doubles as the PDF source. Everything animated is reset there, and links print their full URL.
+Print styles must keep working, since the page is its own PDF source. Everything animated is reset there, and outbound links print their full URL after the link text.
 
 ## No portrait
 
@@ -69,7 +69,7 @@ It runs to three pages at roughly 93% / 91% / 28% fill. Two pages is not reachab
 
 - Whether the header label "UX practitioner" is the right description
 - Whether the Greek and English toggle from the previous version gets rebuilt
-- The PDF download link is still a placeholder. LinkedIn and both case studies are live: Agent X at `https://ioanniskp.github.io/-agent-x-case-study/`, Radio at `https://ioanniskp.github.io/radio/`
+- Every link now resolves. LinkedIn, the PDF download, and both case studies: Agent X at `https://ioanniskp.github.io/-agent-x-case-study/`, Radio at `https://ioanniskp.github.io/radio/`
 - The masthead lede still describes research as habitual practice, which the Practice section contradicts by admitting one cycle. Unresolved
 - Konduko is described as twelve years in the body but dated 2012 to 2025, which spans thirteen
 - Resolved by the EY folder: the Medieinstitutet programme ran Mar to Jun 2026, so it is complete, not expected. And Apolyto ended in 2009, which is what makes "seventeen years" correct even though the Athens era ran to 2011 through consulting

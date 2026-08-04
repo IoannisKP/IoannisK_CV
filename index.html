@@ -1150,18 +1150,8 @@
     });
   });
 
-  // The page is the PDF source, so case studies must be open on paper.
-  var reopen = [];
-  window.addEventListener('beforeprint', function(){
-    reopen = [];
-    document.querySelectorAll('.study').forEach(function(study){
-      if(!study.open){ reopen.push(study); study.open = true; }
-    });
-  });
-  window.addEventListener('afterprint', function(){
-    reopen.forEach(function(study){ study.open = false; });
-    reopen = [];
-  });
+  // Case studies are hidden in print, so no open-before-print handling is
+  // needed: the printed URL takes the reader to the full study instead.
 </script>
 </body>
 </html>
