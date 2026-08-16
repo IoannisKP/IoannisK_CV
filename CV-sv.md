@@ -31,10 +31,10 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Jag gissar inte.
 
 **English source**
-> I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.
+> Interview, synthesise, put it in front of people, change what the testing says I got wrong. That is the method I trained in and the one I want to be held to.
 
 **Swedish**
-> Jag intervjuar människor, sammanställer det de sagt, låter dem prova något och ändrar det när testerna visar att jag hade fel.
+> Intervjua, sammanställa, låta människor prova, ändra det som testerna visar att jag fått fel. Det är metoden jag är utbildad i och den jag vill bli bedömd efter.
 
 **English source**
 > gkoupidis@gmail.com
@@ -60,10 +60,10 @@ Each entry gives the English source first and the Swedish translation beneath it
 **Swedish**
 > Ladda ner PDF
 
-## Work
+## Projects
 
 **English source**
-> Work
+> Projects
 
 **Swedish**
 > Projekt
@@ -86,31 +86,25 @@ Each entry gives the English source first and the Swedish translation beneath it
 > How could contextual guidance help new players of Escape from Tarkov, a hardcore survival shooter, without flattening the difficulty its audience plays it for? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.
 
 **Swedish**
-> Hur skulle kontextuell vägledning kunna hjälpa nya spelare i Escape from Tarkov, en hardcore survival shooter, utan att sänka den svårighetsgrad som publiken spelar det för? Jag genomförde åtta intervjuer med spelare och sammanställde materialet i två personas och en journey map. Därefter utformade jag fyra wireframe-vyer och testade dem i tre tänka-högt-sessioner.
+> Hur skulle vägledning inne i Escape from Tarkovs spelvärld kunna hjälpa nya spelare, utan att göra spelet enklare och ta bort den svårighet som målgruppen uppskattar? Jag genomförde åtta spelarintervjuer och sammanställde materialet i två personas och en journey map. Därefter tog jag fram fyra wireframe-vyer och testade dem i tre tänka-högt-sessioner.
 
 **English source — numbered caveat 1**
-> Run with teacher guidance as part of the UX programme. My first complete research cycle.
+> My first complete research cycle, run under supervision. The write-up names its own sample problem rather than burying it.
 
 **Swedish**
-> Genomfördes med lärarhandledning inom UX-utbildningen. Min första fullständiga researchcykel.
+> Min första hela researchcykel, genomförd under handledning. I rapporten beskriver jag urvalsproblemet öppet i stället för att gömma undan det.
 
 **English source**
 > What it produced
 
 **Swedish**
-> Resultat
+> Vad det visade
 
 **English source**
 > Participants found and understood the guidance without prompting.
 
 **Swedish**
-> Deltagarna hittade och förstod vägledningen utan hjälp.
-
-**English source — numbered caveat 2**
-> Testing also exposed language and sample limitations worth a further round.
-
-**Swedish**
-> Testningen visade också begränsningar i språk och urval som motiverar ytterligare en omgång.
+> Deltagarna hittade och förstod vägledningen utan att få någon hjälp.
 
 **English source**
 > ›
@@ -140,7 +134,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > New players of Escape from Tarkov abandon it early. Lowering the difficulty would remove the reason the existing audience plays it. The brief was to find out whether guidance delivered inside the world of the game could carry a newcomer through, without changing what the game is.
 
 **Swedish**
-> Nya spelare i Escape from Tarkov slutar spela tidigt. Om svårighetsgraden sänktes skulle skälet till att den befintliga publiken spelar försvinna. Briefen var att ta reda på om vägledning inne i spelvärlden kunde hjälpa en ny spelare att ta sig vidare, utan att förändra vad spelet är.
+> Nya spelare lämnar Escape from Tarkov tidigt. Att sänka svårighetsgraden skulle ta bort en viktig anledning till att den befintliga målgruppen spelar. Uppgiften var att ta reda på om vägledning inne i spelvärlden kunde hjälpa en ny spelare vidare, utan att förändra vad spelet är.
 
 **English source**
 > What I did
@@ -158,7 +152,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Synthesis into two personas, the Seeker and the Returner, and an emotional journey map.
 
 **Swedish**
-> Syntes till två personas, Seeker och Returner, samt en emotionell journey map.
+> Sammanställning i två personas, Seeker och Returner, samt en emotionell journey map.
 
 **English source**
 > Four wireframe views of a diegetic companion that activates only after repeated failure.
@@ -176,13 +170,13 @@ Each entry gives the English source first and the Swedish translation beneath it
 > What came back
 
 **Swedish**
-> Vad det visade
+> Vad testerna visade
 
 **English source**
 > Participants located the guidance and understood it without being pointed at it, which was the thing being tested. The wireframes did not have to explain themselves.
 
 **Swedish**
-> Deltagarna hittade och förstod vägledningen utan att den pekades ut för dem, vilket var det som testades. Wireframes behövde inte förklara sig själva.
+> Deltagarna hittade och förstod vägledningen utan att någon pekade ut den. Det var precis det som testades. Wireframesen behövde inte förklaras.
 
 **English source**
 > What I would do differently
@@ -194,7 +188,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > The three testers were aged 40 to 46 and none of them had played Tarkov, so they did not match the Seeker profile the design targets. That left one screen, which works by deliberately staying silent, impossible to evaluate properly. The next round needs actual target players, and the report says so rather than burying it.
 
 **Swedish**
-> De tre testarna var 40 till 46 år och ingen av dem hade spelat Tarkov, så de motsvarade inte Seeker-profilen som designen riktar sig till. Därför gick en skärm, som fungerar genom att medvetet vara tyst, inte att utvärdera ordentligt. Nästa omgång behöver faktiska spelare ur målgruppen, och rapporten säger det uttryckligen i stället för att gömma undan det.
+> De tre testarna var 40 till 46 år och ingen av dem hade spelat Tarkov. De motsvarade därför inte Seeker-profilen som lösningen riktar sig till. Det gjorde att en vy, som fungerar genom att medvetet inte ge någon information, inte kunde utvärderas ordentligt. Nästa omgång behöver faktiska spelare ur målgruppen. Rapporten säger det uttryckligen i stället för att gömma undan det.
 
 **English source**
 > Open the full case study
@@ -212,7 +206,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > User research
 
 **Swedish**
-> Användarundersökning
+> Användarresearch
 
 **English source**
 > Synthesis
@@ -232,127 +226,49 @@ Each entry gives the English source first and the Swedish translation beneath it
 **Swedish**
 > Användbarhetstestning
 
-### Radio
+### Scribe
 
 **English source**
-> Radio
+> Scribe
 
 **Swedish**
-> Radio
+> Scribe
 
 **English source**
-> Personal project · directing an AI-assisted iOS build · 2026
+> Personal project · directing an AI-assisted macOS build · 2026
 
 **Swedish**
-> Personligt projekt · styrning av ett AI-assisterat iOS-bygge · 2026
+> Personligt projekt · ledning av ett AI-assisterat macOS-bygge · 2026
 
 **English source**
-> I built an internet radio player for iOS in a single working day without writing the code. I set the scope, ran a build agent, then ran a separate agent to audit its output, and tested the result on a physical device.
+> A Mac app that records a meeting and transcribes it on the machine, with nothing uploaded. I wrote the specification and the acceptance criteria, ran build agents against them, then checked the result by hand: record thirty seconds, open the folder, play the file, read the byte count.
 
 **Swedish**
-> Jag byggde en internetradiospelare för iOS på en arbetsdag utan att skriva koden. Jag satte omfattningen, körde en byggagent och därefter en separat agent för att granska resultatet. Sedan testade jag det på en fysisk enhet.
+> En Mac-app som spelar in ett möte och transkriberar det lokalt på datorn, utan att något laddas upp. Jag skrev specifikationen och acceptanskriterierna, lät AI-agenter bygga utifrån dem och kontrollerade sedan resultatet för hand: jag spelade in trettio sekunder, öppnade mappen, spelade upp filen och kontrollerade filstorleken i byte.
 
-**English source — numbered caveat 3**
-> The work was specifying it, questioning it and testing it. That is product management, not engineering.
+**English source**
+> Most of the product decisions were refusals. No cloud transcription, no stored voiceprints, no recording that starts itself from a calendar. A session is an ordinary folder of files, so the recordings still open if the app goes away.
 
 **Swedish**
-> Arbetet bestod i att specificera, ifrågasätta och testa det. Det är produktledning, inte ingenjörsarbete.
+> De flesta produktbesluten handlade om vad jag valde att inte bygga. Ingen transkribering i molnet, inga sparade röstprofiler och ingen inspelning som startar automatiskt från kalendern. En session är en vanlig mapp med filer, så inspelningarna går att öppna även om appen försvinner.
+
+**English source — numbered caveat 2**
+> Sixteen seconds before the first text appears is a constraint of transcribing locally. Saying so on screen was cheaper than pretending otherwise.
+
+**Swedish**
+> Sexton sekunders väntan innan den första texten visas är en konsekvens av lokal transkribering. Att säga det i gränssnittet var enklare än att låtsas som att väntan inte fanns.
 
 **English source**
 > What it produced
 
 **Swedish**
-> Resultat
-
-**English source**
-> The audit caught four faults that all looked finished, and device testing caught a network failure that code review had passed.
-
-**Swedish**
-> Granskningen hittade fyra fel som alla såg färdiga ut, och testningen på enheten hittade ett nätverksfel som hade passerat kodgranskningen.
-
-**English source**
-> ›
-
-**Swedish**
-> ›
-
-**English source**
-> Read the case study
-
-**Swedish**
-> Läs fallstudien
-
-**English source**
-> Close
-
-**Swedish**
-> Stäng
-
-**English source**
-> The question
-
-**Swedish**
-> Frågan
-
-**English source**
-> If an agent can write the code, what is left for the person directing it? I wanted to find out by shipping something real in a fixed window and paying attention to where my own judgement actually mattered.
-
-**Swedish**
-> Om en agent kan skriva koden, vad återstår då för personen som styr den? Jag ville ta reda på det genom att bygga något verkligt inom en fast tidsram och uppmärksamma var mitt eget omdöme faktiskt hade betydelse.
-
-**English source**
-> How it ran
-
-**Swedish**
-> Så gick det till
-
-**English source**
-> Scope set first and written down, so that finished had a definition before anything was built.
-
-**Swedish**
-> Omfattningen fastställdes och skrevs ner först, så att det fanns en definition av färdigt innan något byggdes.
-
-**English source**
-> One agent building against that scope.
-
-**Swedish**
-> En agent byggde utifrån den omfattningen.
-
-**English source**
-> A second, separate agent auditing the first one's output, on the assumption that it was wrong until shown otherwise.
-
-**Swedish**
-> En andra, separat agent granskade den första agentens resultat, med utgångspunkten att det var fel tills motsatsen hade visats.
-
-**English source**
-> Testing on a physical device rather than the simulator.
-
-**Swedish**
-> Testning på en fysisk enhet i stället för i simulatorn.
-
-**English source**
-> What came back
-
-**Swedish**
 > Vad det visade
 
 **English source**
-> The audit found four faults in work that presented as complete. Device testing then caught a network failure that had passed code review, because the simulator's network conditions are not a phone's.
+> Four defects survived 283 passing tests, including transcripts that appeared on screen and were never written to disk. Each one needed a person to listen to the output.
 
 **Swedish**
-> Granskningen hittade fyra fel i arbete som framstod som färdigt. Testningen på enheten hittade sedan ett nätverksfel som hade passerat kodgranskningen, eftersom simulatorns nätverksförhållanden inte är desamma som en telefons.
-
-**English source**
-> What I take from it
-
-**Swedish**
-> Det jag tar med mig
-
-**English source**
-> The generation step was the cheap part. The value was in specifying the thing precisely, refusing to accept output that only looked finished, and testing in conditions that resemble use. None of that required writing code, and all of it required knowing what to distrust.
-
-**Swedish**
-> Genereringen var den billiga delen. Värdet låg i att specificera det exakt, vägra godta resultat som bara såg färdiga ut och testa under förhållanden som liknar verklig användning. Inget av det krävde att jag skrev kod, och allt krävde att jag visste vad jag skulle misstro.
+> Fyra fel tog sig igenom 283 godkända tester. Bland annat visades transkript på skärmen utan att någonsin skrivas till disk. För att hitta vart och ett av felen behövde en människa lyssna på resultatet.
 
 **English source**
 > Open the full case study
@@ -367,22 +283,120 @@ Each entry gives the English source first and the Swedish translation beneath it
 > ↗
 
 **English source**
+> Source on GitHub
+
+**Swedish (kept in English: a repository label a technical reader already reads in English)**
+> Source on GitHub
+
+**English source**
+> Specification
+
+**Swedish**
+> Specifikation
+
+**English source**
+> Product decisions
+
+**Swedish**
+> Produktbeslut
+
+**English source**
+> Privacy by default
+
+**Swedish**
+> Inbyggt integritetsskydd
+
+**English source**
+> Manual verification
+
+**Swedish**
+> Manuell verifiering
+
+**English source — PDF only, condensed**
+> A Mac app that records a meeting and transcribes it on the machine, with nothing uploaded. I wrote the specification and the acceptance criteria, ran build agents against them, then verified the result by hand. Most of the product decisions were refusals: no cloud transcription, no stored voiceprints, no recording that starts itself from a calendar.
+
+**Swedish**
+> En Mac-app som spelar in ett möte och transkriberar det lokalt på datorn, utan att något laddas upp. Jag skrev specifikationen och acceptanskriterierna, lät AI-agenter bygga utifrån dem och verifierade sedan resultatet för hand. De flesta produktbesluten handlade om vad jag valde att inte bygga: ingen transkribering i molnet, inga sparade röstprofiler och ingen inspelning som startar automatiskt från kalendern.
+
+**English source — PDF only, condensed**
+> An internet radio player for iOS, scoped and built in a single working day. One agent built against the scope, a second audited its output, and I tested on a physical phone rather than the simulator. The first run at working this way; Scribe is what the method turned into over thirteen days.
+
+**Swedish**
+> En internetradiospelare för iOS, avgränsad och byggd under en enda arbetsdag. En agent byggde utifrån avgränsningen, en andra granskade resultatet och jag testade på en fysisk iPhone i stället för i simulatorn. Det var första gången jag arbetade så här. Med Scribe utvecklade jag samma metod under tretton dagar.
+
+### Radio
+
+**English source**
+> Radio
+
+**Swedish**
+> Radio
+
+**English source**
+> Personal project · directing an AI-assisted iOS build · 2026
+
+**Swedish**
+> Personligt projekt · ledning av ett AI-assisterat iOS-bygge · 2026
+
+**English source**
+> An internet radio player for iOS, scoped and built in a single working day. One agent built against the scope, a second audited the first one's output, and I tested on a physical phone rather than the simulator.
+
+**Swedish**
+> En internetradiospelare för iOS, avgränsad och byggd under en enda arbetsdag. En agent byggde utifrån avgränsningen, en andra granskade resultatet och jag testade på en fysisk iPhone i stället för i simulatorn.
+
+**English source**
+> The scope was written down before anything was built, so that finished had a definition that was not the agent's to decide.
+
+**Swedish**
+> Avgränsningen dokumenterades innan bygget började, så att det fanns en tydlig definition av färdigt som agenten inte själv fick bestämma.
+
+**English source — numbered caveat 3**
+> The first run at working this way, on a one-day window. Scribe is what the method turned into over thirteen days.
+
+**Swedish**
+> Det här var första gången jag arbetade så här, inom ramen för en dag. Med Scribe utvecklade jag samma metod under tretton dagar.
+
+**English source**
+> What it produced
+
+**Swedish**
+> Vad det visade
+
+**English source**
+> The audit rejected work that presented as complete, and the phone found a network failure the simulator could not produce.
+
+**Swedish**
+> Granskningen underkände arbete som framstod som färdigt. Den fysiska telefonen hittade dessutom ett nätverksfel som simulatorn inte kunde återskapa.
+
+**English source**
+> Open the full case study
+
+**Swedish**
+> Öppna hela fallstudien
+
+**English source**
+> ↗
+
+**Swedish**
+> ↗
+
+**English source**
+> Source on GitHub
+
+**Swedish (kept in English: a repository label a technical reader already reads in English)**
+> Source on GitHub
+
+**English source**
 > Scoping
 
 **Swedish**
 > Avgränsning
 
 **English source**
-> AI-assisted delivery
+> Agent auditing
 
 **Swedish**
-> AI-assisterad leverans
-
-**English source**
-> Critical evaluation
-
-**Swedish**
-> Kritisk utvärdering
+> Agentgranskning
 
 **English source**
 > Device testing
@@ -390,10 +404,10 @@ Each entry gives the English source first and the Swedish translation beneath it
 **Swedish**
 > Testning på fysisk enhet
 
-## Practice
+## Approach
 
 **English source**
-> Practice
+> Approach
 
 **Swedish**
 > Arbetssätt
@@ -408,43 +422,43 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Research that survives contact with users
 
 **Swedish**
-> Research som håller i mötet med användare
+> Research som håller när användarna möter lösningen
 
 **English source**
-> Interviews, synthesis, personas, journey mapping, wireframing and think-aloud testing. So far that is one complete cycle, run as a student project at Medieinstitutet with teachers to steer me. I am looking for the role where it becomes daily practice.
+> Interviews, synthesis, personas, journey mapping, wireframing and think-aloud testing. One complete cycle so far, run at Medieinstitutet under supervision. What I bring to the second is knowing exactly where the first one was weak.
 
 **Swedish**
-> Intervjuer, syntes, personas, kartläggning av användarresor, wireframes och tänka-högt-testning. Hittills är det en komplett cykel, genomförd som ett studentprojekt på Medieinstitutet med lärare som handledde mig. Jag söker rollen där det blir en del av det dagliga arbetet.
+> Intervjuer, syntes, personas, kartläggning av användarresor, wireframes och tänka-högt-testning. Hittills har jag genomfört en hel cykel på Medieinstitutet, under handledning. Det jag tar med mig till nästa är att jag vet exakt var den första var svag.
 
 **English source**
 > Comfort with complexity and stakeholders
 
 **Swedish**
-> Bekväm med komplexitet och intressenter
+> Van vid komplexitet och många intressenter
 
 **English source**
-> Twelve years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.
+> Thirteen years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.
 
 **Swedish**
-> Tolv år med ansvar för ett reglerat tjänsteföretag lärde mig att hålla ett system i huvudet, omsätta krav till något genomförbart och fatta beslut med ofullständig information.
+> Tretton år med ansvar för ett reglerat tjänsteföretag lärde mig att hålla ihop komplexa system, omsätta krav i något genomförbart och fatta beslut med ofullständig information.
 
 **English source — numbered caveat 4**
 > Swedish public healthcare procurement. Regulated, audited, and slow to forgive an error.
 
 **Swedish**
-> Svensk offentlig upphandling inom hälso- och sjukvård. Reglerad, granskad och med små marginaler för misstag.
+> Svensk offentlig upphandling inom hälso- och sjukvård. Reglerad, granskad och med mycket små marginaler för misstag.
 
 **English source**
 > Sceptical use of AI tooling
 
 **Swedish**
-> Skeptisk användning av AI-verktyg
+> AI-arbete med kritisk granskning
 
 **English source**
 > I use generative and agent-based workflows daily, and I assume their output is wrong until tested. Auditing is the part that matters.
 
 **Swedish**
-> Jag använder generativa och agentbaserade arbetsflöden dagligen och utgår från att resultatet är fel tills det har testats. Granskningen är den del som spelar roll.
+> Jag använder generativa och agentbaserade arbetsflöden varje dag. Jag utgår från att resultatet är fel tills det har testats. Det är granskningen som spelar roll.
 
 **English source**
 > User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows
@@ -453,10 +467,10 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Användarintervjuer · personas · kartläggning av användarresor · wireframes · användbarhetstestning · AI-assisterade arbetsflöden
 
 **English source — numbered caveat 5**
-> Figma at a basic level. Enough to wireframe, not enough to claim it as a strength.
+> Figma at a basic level: enough to wireframe and hand over, not a production design skill.
 
 **Swedish**
-> Figma på grundläggande nivå. Tillräckligt för att göra wireframes, inte tillräckligt för att kalla det en styrka.
+> Figma på grundläggande nivå: tillräckligt för wireframes och överlämning, men inte en kompetens för produktionsdesign.
 
 ## Experience
 
@@ -465,6 +479,12 @@ Each entry gives the English source first and the Swedish translation beneath it
 
 **Swedish**
 > Erfarenhet
+
+**English source**
+> Running my own companies since 2011
+
+**Swedish**
+> Grundat och drivit företag sedan 2011
 
 **English source**
 > Stockholm
@@ -488,13 +508,13 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Founded and led a specialist healthcare staffing company serving Swedish public healthcare. Designed the operating system connecting procurement requirements, physician availability, contracts, schedules, invoicing and quality control.
 
 **Swedish**
-> Grundade och ledde ett specialiserat bemanningsföretag inom vården som arbetade mot svensk offentlig hälso- och sjukvård. Utformade verksamhetens system för att koppla samman upphandlingskrav, läkares tillgänglighet, avtal, scheman, fakturering och kvalitetskontroll.
+> Grundade och ledde ett bemanningsföretag specialiserat på svensk offentlig hälso- och sjukvård. Byggde upp verksamhetens arbetssätt, från upphandlingskrav och läkartillgänglighet till avtal, scheman, fakturering och kvalitetskontroll.
 
 **English source — numbered caveat 6**
 > Closed the company as a deliberate decision when the regulatory landscape shifted.
 
 **Swedish**
-> Avvecklade företaget genom ett medvetet beslut när regelverket förändrades.
+> Avvecklade bolaget genom ett medvetet beslut när regelverket förändrades.
 
 **English source**
 > 25+
@@ -518,19 +538,19 @@ Each entry gives the English source first and the Swedish translation beneath it
 > physicians on parallel assignments
 
 **Swedish**
-> läkare i parallella uppdrag
+> läkare i samtidiga uppdrag
 
 **English source**
 > All regions
 
 **Swedish**
-> Alla regioner
+> Samtliga regioner
 
 **English source**
 > framework coverage in Sweden
 
 **Swedish**
-> täckning genom ramavtal i Sverige
+> täckning genom ramavtal i hela Sverige
 
 **English source**
 > SEK 1.5B+
@@ -560,7 +580,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Procurement estimates, not guaranteed spend and not company revenue. Actual placements depended on regional demand and physician availability.
 
 **Swedish**
-> Upphandlingarnas uppskattningar, inte garanterade utgifter och inte företagets omsättning. Faktiska uppdrag berodde på regionernas efterfrågan och läkarnas tillgänglighet.
+> Detta är upphandlingarnas uppskattade värden, inte garanterad avropad volym eller bolagets omsättning. Faktiska bemanningsuppdrag berodde på regionernas efterfrågan och läkarnas tillgänglighet.
 
 **English source**
 > Stockholm
@@ -584,7 +604,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > A personal assistance company built around matching people with assistants they can rely on. Responsible for understanding individual needs, service quality and daily operations. It is where I learned what autonomy and trust actually require from a service.
 
 **Swedish**
-> Ett företag inom personlig assistans, uppbyggt kring att matcha människor med assistenter de kan lita på. Ansvarig för att förstå individuella behov, tjänstens kvalitet och den dagliga verksamheten. Det är där jag lärde mig vad självbestämmande och tillit faktiskt kräver av en tjänst.
+> Ett företag inom personlig assistans, uppbyggt kring att matcha människor med assistenter de kan lita på. Jag ansvarar för att förstå individuella behov, tjänstens kvalitet och den dagliga verksamheten. Det är där jag lärde mig vad självbestämmande och tillit faktiskt kräver av en tjänst.
 
 ## Background
 
@@ -604,19 +624,19 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Athens, 1998 to 2011. Layout and print production first, then project coordination, branding, packaging and campaign work for fashion, food and professional services clients.
 
 **Swedish**
-> Aten, 1998 till 2011. Först layout och trycksaksproduktion, därefter projektkoordinering, varumärkesarbete, förpackningar och kampanjer för kunder inom mode, livsmedel och professionella tjänster.
+> Aten, 1998 till 2011. Först layout och trycksaksproduktion. Därefter projektkoordinering, varumärkesarbete, förpackningar och kampanjer för kunder inom mode, livsmedel och professionella tjänster.
 
 **English source — numbered caveat 8**
 > I do not sell this as a current skill. Seventeen years since I worked as a graphic designer, and not what I am asking to be hired for.
 
 **Swedish**
-> Jag framställer inte detta som en aktuell kompetens. Det är sjutton år sedan jag arbetade som grafisk designer, och det är inte det jag söker anställning för.
+> Jag framställer inte detta som en aktuell kompetens. Det är sjutton år sedan jag senast arbetade som grafisk designer, och det är inte den rollen jag söker.
 
 **English source**
 > It is why I read layouts quickly, and why briefing clients and defending a decision feel ordinary rather than daunting.
 
 **Swedish**
-> Det är därför jag snabbt läser av layouter, och därför det känns vardagligt snarare än svårt att briefa kunder och försvara ett beslut.
+> Det är därför jag snabbt ser hur en layout fungerar. Och därför känns det vardagligt, snarare än svårt, att briefa kunder och argumentera för ett beslut.
 
 **English source**
 > Graphic Designer, later Project Manager · Apolyto S.A.
@@ -764,7 +784,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > I like the product work that lives in the details: clear flows, consistent patterns, and solutions teams can actually build.
 
 **Swedish — selected option**
-> Det produktarbete jag gillar finns i detaljerna: tydliga flöden, konsekventa mönster och lösningar som team faktiskt kan bygga.
+> Det produktarbete jag gillar mest sitter i detaljerna: tydliga flöden, konsekventa mönster och lösningar som team faktiskt kan bygga.
 
 **English source**
 > Get in touch
@@ -819,7 +839,8 @@ Each entry gives the English source first and the Swedish translation beneath it
 ## Translation notes and uncertainties
 
 - **UX research & product:** The English label was changed from "UX practitioner" on 4 Aug 2026, partly because both translations struggled with it. The earlier **UX-utövare** was replaced with **UX-research & produkt**, which names the field without claiming a title or a seniority level.
-- **Work:** I translated the section label as **Projekt** because both entries are projects and *Arbete* sounds unnatural as a Swedish CV heading. This changes the label, not the status of Agent X: it remains explicitly **Studentprojekt**.
+- **Projects:** The English label was **Work** until 5 Aug 2026. Swedish had already gone to **Projekt**, because both entries are projects and *Arbete* sounds unnatural as a Swedish CV heading, so the English caught up with the Swedish rather than the other way round. The translation is unchanged. This is a label, not a change of status: Agent X remains explicitly **Studentprojekt**.
+- **Approach:** Previously **Practice**, translated **Arbetssätt**. The Swedish is unchanged, since *Arbetssätt* covers both the old and the new English label and is the natural Swedish CV heading for a section about how someone works. *Angreppssätt* was avoided as too clinical, and *Metod* would claim a more formal method than the section describes.
 - **Agent X:** I retained **med lärarhandledning**, **min första fullständiga researchcykel**, **en komplett cykel** and the testing limitations. I avoided *kundprojekt*, *uppdrag* and wording that would imply independent professional delivery.
 - **Radio:** I retained **Personligt projekt** and **utan att skriva koden**. **Styrning** reflects directing the build without implying that the applicant engineered it.
 - **Figma:** **på grundläggande nivå** is intentionally plain, and the following sentence explicitly says it is not a claimed strength.

@@ -29,14 +29,16 @@ STATEMENT = {
           '<span class="w"><em>guess</em>.</span>',
     'sv': '<span class="w">Jag</span> <span class="w"><em>gissar</em></span> '
           '<span class="w">inte.</span>',
-    'el': '<span class="w">Δεν</span> <span class="w"><em>μαντεύω</em>.</span>',
+    'el': '<span class="w">Δεν</span> <span class="w">βασίζομαι</span> '
+          '<span class="w">σε</span> <span class="w"><em>υποθέσεις</em>.</span>',
 }
 
 # Closing statement, with the accent word emphasised.
 CLOSING = {
-    'sv': 'Det produktarbete jag gillar finns i <em>detaljerna</em>: tydliga '
-          'flöden, konsekventa mönster och lösningar som team faktiskt kan bygga.',
-    'el': 'Μου αρέσει η δουλειά στο product που κρίνεται στις '
+    'sv': 'Det produktarbete jag gillar mest sitter i <em>detaljerna</em>: '
+          'tydliga flöden, konsekventa mönster och lösningar som team '
+          'faktiskt kan bygga.',
+    'el': 'Μου αρέσει η δουλειά στο Product που κρίνεται στις '
           '<em>λεπτομέρειες</em>: ξεκάθαρα flows, συνεπή patterns και λύσεις '
           'που οι ομάδες μπορούν πράγματι να υλοποιήσουν.',
 }
@@ -79,6 +81,16 @@ STYLE_EL = """
   .colophon,.study summary,.full-link a,.cta,.pairs-label,.detail-body h4,
   .langs,.note::before,.work::before{
     font-family:'Noto Sans Mono',ui-monospace,monospace;
+  }
+
+  /* This block is appended after the page's own dark rules, so it would
+     otherwise reinstate the light weights on a dark page. Same optical
+     compensation, expressed at EB Garamond's heavier settings. The margin
+     notes stay at 575 for the same reason they stay at 400 in English. */
+  @media screen and (prefers-color-scheme:dark){
+    .display,h2.section,.work h3,.pullquote .display,.statement em,
+    .pullquote em{font-weight:540;}
+    .metric b{font-weight:585;}
   }
 </style>
 """

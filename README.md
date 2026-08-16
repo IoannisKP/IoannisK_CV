@@ -43,3 +43,6 @@ only.
 
 Motion is native scroll-driven CSS with no JavaScript. The language switcher is
 three ordinary links, so it works with scripting disabled.
+
+The page follows the device's light or dark setting. There is no toggle, and the
+PDFs are unaffected: the dark rules are `screen` only.

@@ -25,6 +25,10 @@
     --accent-2:#9C5324;
     --measure:38rem;
 
+    /* Both stocks exist, so the UA paints scrollbars and the canvas to match
+       instead of flashing white behind a dark page. */
+    color-scheme:light dark;
+
     /* editorial grid */
     --spine:7rem;
     --margin-col:13rem;
@@ -418,6 +422,65 @@
     padding:0.3rem 0.55rem;
   }
 
+  /* The research project runs full width because it is the one being read.
+     The two build projects sit as a pair beneath it: they answer the same
+     question at different scale, and reading them next to each other says
+     that faster than stacking them says it. */
+  .work-pair{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    /* Six rows the two cards share: title, subtitle, copy, outcome, link,
+       tags. The copy row is the only flexible one, so it absorbs the
+       difference in length and everything below it starts on the same line
+       in both cards. Row gap must be zero: with subgrid these tracks are
+       the ones inside the cards, so a row gap here would open a hole
+       between every element. Horizontal gutter only. */
+    grid-template-rows:auto auto 1fr auto auto auto;
+    gap:0 1.5rem;
+    width:calc(100% + var(--margin-col) + var(--gutter));
+    max-width:none;
+  }
+
+  .work-pair .work{
+    display:grid;
+    grid-template-rows:subgrid;
+    grid-row:span 6;
+    width:100%;
+    margin-bottom:0;
+    padding:var(--card-pad) var(--card-pad) 1.5rem;
+  }
+
+  .work-pair .work h3{font-size:1.55rem;}
+  .work-pair .work .kind{max-width:none;}
+
+  /* Half a card is too narrow to hold a note rail beside the text, so the
+     children take the whole card and notes fold inline. Same move the
+     1080px breakpoint makes on the page grid, made early. */
+  .work-pair .work > *{width:100%;}
+
+  .work-pair .work .note{
+    float:none;
+    display:block;
+    width:auto;
+    max-width:none;
+    margin:0.9rem 0 0;
+    border-left:2px solid var(--rule);
+    padding-left:0.85rem;
+  }
+
+  /* The shared rows now do what margin-top:auto used to: the tag rows line
+     up because they sit in the same track, not because they were pushed to
+     the bottom of two independently sized cards. */
+  .work-pair .work .card-body > p:last-child{margin-bottom:0;}
+
+  /* The paired cards carry two versions of their copy. A4 is half the width
+     of the screen column and cannot take the long one, so print swaps in a
+     condensed paragraph that folds the sidenote into the prose. Screen never
+     renders it, print never renders the other. Both are in i18n.json.
+     display:none also means the hidden version does not increment the
+     sidenote counter, so each medium numbers its own notes correctly. */
+  .print-copy{display:none;}
+
   /* ---------- expanding case study ---------- */
 
   .study{margin-top:1.15rem;}
@@ -488,7 +551,15 @@
 
   ::view-transition-group(*){animation-duration:.34s;}
 
-  .full-link{margin:0.9rem 0 0;}
+  /* The paired cards carry two links, the write-up and the repository. Flex
+     with wrap keeps them on one line where there is room and drops the second
+     beneath the first where there is not, which is what half a card does. */
+  .full-link{
+    margin:0.9rem 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.3rem 1.15rem;
+  }
 
   .full-link a{
     display:inline-flex;
@@ -553,7 +624,10 @@
     line-height:1.1;
   }
 
-  .metric span{
+  /* Direct child only. A bare `.metric span` also caught the footnote marker
+     inside the numeral and made it display:block, which dropped the superscript
+     onto a line of its own. */
+  .metric > span{
     font-size:0.78rem;
     color:var(--muted);
     line-height:1.35;
@@ -595,6 +669,12 @@
     color:var(--faint);
     margin:0 0 0.6rem;
   }
+
+  /* Was an inline style on two elements. Moved into the cascade so the print
+     block can reset it, since an inline margin needs !important to beat.
+     It has to sit after .pairs-label: same specificity, and that rule's
+     margin shorthand would otherwise zero the top margin back out. */
+  .spaced{margin-top:1.6rem;}
 
   .background p{font-size:0.95rem;}
 
@@ -853,6 +933,21 @@
       max-width:var(--measure);
     }
     .work{width:100%;}
+
+    /* Two cards at half of a collapsed measure is unreadable. The pair
+       becomes a stack, which is what it already is on the narrow end.
+       Shared rows have to go with it: stacked, they would pad the shorter
+       card out to the taller one's copy length for no reason, since nothing
+       sits beside it to line up with. Print re-establishes both, because
+       A4 matches this breakpoint too. */
+    .work-pair{
+      grid-template-columns:1fr;
+      grid-template-rows:none;
+      width:100%;
+      max-width:var(--measure);
+    }
+    .work-pair .work{display:block;grid-row:auto;}
+    .work-pair .work h3{font-size:1.7rem;}
   }
 
   @media (max-width:720px){
@@ -864,7 +959,60 @@
     .work{padding:1.35rem;}
     .work::before{top:1.35rem;right:1.35rem;}
     .work h3{font-size:1.6rem;}
+    /* Higher specificity than .work h3, so the paired cards would otherwise
+       keep the 1.7rem set at the 1080 breakpoint and print larger headings
+       than the featured card above them. */
+    .work-pair .work h3{font-size:1.6rem;}
     .statement{font-size:clamp(2rem,8vw,2.6rem);}
+  }
+
+  /* ---------- dark ----------
+     The same document on darker stock. Only the palette changes, plus the two
+     things that do not survive inversion: the paper tooth and the weight of
+     Fraunces. It sits last so it outranks the rules it overrides without
+     needing a specificity fight, and it is `screen` only, because the print
+     block below is the PDF source and must stay on white whatever the reader's
+     system asks for.
+
+     Contrast on the dark paper: ink 15.3, muted 7.5, faint 5.3, blue 9.1,
+     copper 8.1. The two accents keep their separate jobs. */
+
+  @media screen and (prefers-color-scheme:dark){
+    :root{
+      --paper:#1A1714;
+      --surface:#24201C;
+      --ink:#F2EDE6;
+      --muted:#B0A79B;
+      --faint:#948B80;
+      --rule:#332D27;
+      --accent:#9BBCE0;
+      --accent-2:#DFA268;
+    }
+
+    /* Dark dots on a near-black page are nothing at all, so the tooth flips to
+       light pigment and drops in strength. The shorthand resets background-size,
+       which is why it is restated. */
+    body::before{
+      opacity:.4;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,250,242,.035) 0 1px, transparent 1px),
+        radial-gradient(circle at 70% 65%, rgba(255,250,242,.028) 0 1px, transparent 1px);
+      background-size:7px 7px, 11px 11px;
+    }
+
+    /* Light on dark reads optically bolder than the reverse, so the display
+       weights come back down. Only Fraunces at display sizes: the margin notes
+       are 0.86rem italic at opsz 14 and thinning those would cost legibility,
+       which is the opposite of the problem being solved. */
+    .display,h2.section,.work h3{font-weight:375;}
+    .metric b{font-weight:385;}
+
+    /* A shadow tinted with ink cannot read as darkness on dark paper. */
+    .work{box-shadow:0 1px 2px rgba(0,0,0,.45),0 8px 24px -12px rgba(0,0,0,.6);}
+
+    @media (hover:hover) and (prefers-reduced-motion:no-preference){
+      .work:hover{box-shadow:0 2px 4px rgba(0,0,0,.5),0 20px 44px -20px rgba(0,0,0,.75);}
+    }
   }
 
   /* ---------- print ----------
@@ -888,12 +1036,12 @@
 
     /* one column everywhere */
     .row,.masthead,.close{display:block;padding-left:0;}
-    .row{padding:9pt 0 0;border-bottom:0;break-inside:auto;}
+    .row{padding:7pt 0 0;border-bottom:0;break-inside:auto;}
     .col,.lede,.close-line{max-width:none;}
     .work > *{width:100%;}
 
     /* section label becomes a ruled header */
-    .row > .spine{margin-bottom:5pt;}
+    .row > .spine{margin-bottom:5pt;break-after:avoid;}
     .row > .spine .eyebrow{
       position:static;
       display:flex;
@@ -914,7 +1062,10 @@
       animation:none;
     }
 
-    h2.section{font-size:12.5pt;margin-bottom:5pt;}
+    /* break-after keeps a section heading with the section. Without it,
+       "Running my own companies since 2011" sat alone at the foot of a page
+       and its two companies opened the next one. */
+    h2.section{font-size:12.5pt;margin-bottom:5pt;break-after:avoid;}
     h2.section::after{display:none;}
 
     /* margin apparatus folds inline, small */
@@ -944,41 +1095,115 @@
     .work{
       width:100%;
       box-shadow:none;
-      padding:8pt 9pt;
-      margin-bottom:7pt;
+      padding:7pt 9pt;
+      margin-bottom:6pt;
       break-inside:avoid;
     }
+    /* The pair prints as a pair. Two short cards side by side cost one card's
+       height instead of two, which is what keeps the document to three pages.
+       It only fits because these two swap in .print-copy above; at full
+       screen length they overflow the column. Three things had to be fixed
+       before this worked, all of them recorded in CLAUDE.md. */
+    /* max-width:none is load-bearing. A4 is about 794px, so the
+       max-width:1080px block applies on paper too and was capping the pair
+       at --measure while the card above it ran the full 182mm. That block
+       resets .col for the same reason; the pair needs it as well. */
+    .work-pair{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:auto auto 1fr auto auto auto;
+      gap:0 10pt;
+      width:100%;
+      max-width:none;
+      break-inside:avoid;
+    }
+
+    .work-pair .work{
+      display:grid;
+      grid-template-rows:subgrid;
+      grid-row:span 6;
+      margin-bottom:0;
+      padding:7pt 9pt;
+      font-size:8.5pt;
+      line-height:1.36;
+    }
+
     .work h3{font-size:14pt;}
+    .work-pair .work h3{font-size:12pt;}
     .work .kind{font-size:8.6pt;margin-bottom:5pt;}
+    .work-pair .work .kind{font-size:7.6pt;margin-bottom:4pt;}
+    .work-pair .work .outcome{margin:5pt 0;padding-left:6pt;}
+    .work-pair .work .tags{margin-top:auto;padding-top:5pt;}
+    .work-pair .work .tag{font-size:6pt;padding:1pt 3pt;}
+    .work-pair .full-link{margin-top:5pt;font-size:7.2pt;}
+
+    /* The counter inherits top/right of 2rem from the screen rule, which is
+       three times the printed card padding and lands it level with the
+       subtitle rather than the title. Invisible at full width, a collision
+       at half. */
+    .work::before{top:7pt;right:9pt;}
     .outcome{margin:6pt 0;padding-left:7pt;}
     .tags{margin-top:6pt;padding-top:6pt;}
     .tag{font-size:6.6pt;padding:1.5pt 4pt;}
 
     .item{break-inside:avoid;}
-    .stack{gap:8pt;}
+    .stack{gap:7pt;}
     /* Five explicit columns, or ISO orphans onto a row of its own. */
     .metrics{grid-template-columns:repeat(5,minmax(0,1fr));gap:5pt 7pt;margin-top:6pt;padding-top:6pt;}
     .metric b{font-size:11.5pt;}
-    .metric span{font-size:7.2pt;}
+    .metric > span{font-size:7.2pt;}
     .pair{padding-bottom:3pt;}
     .pairs{gap:3pt;break-inside:avoid;}
+
+    /* Education splits badly: Qualifications lands at the foot of page two and
+       Languages starts page three alone. Keeping the section whole moves the
+       break to a section boundary, which reads as a decision rather than a
+       spill, and gives the last page a composed block instead of four rows. */
+    .row.education{break-inside:avoid;}
+    /* Same reasoning one section earlier: Background was splitting between
+       its prose and its four Athens roles, so a page turn landed in the
+       middle of a section. Held whole, page two ends at the close of
+       Experience and page three is Background, Education and the closing
+       block together. */
+    .row.background{break-inside:avoid;}
     /* Keep a label with the list it introduces. */
     .pairs-label{break-after:avoid;margin-bottom:3pt;}
+    .spaced{margin-top:7pt;}
 
     /* case studies stay closed; the printed URL carries the reader there */
     .study{display:none;}
-    .full-link{margin-top:6pt;}
+    /* Screen lays the two links out as a flex row. Print stacks them, or the
+       block rule below cannot break the addresses onto their own lines. */
+    .full-link{margin-top:6pt;display:block;}
     .full-link .arr{display:none;}
-    .full-link a::after{content:" " attr(href);letter-spacing:0;text-transform:none;}
+    .full-link a + a{margin-top:3pt;}
 
-    /* closing */
-    .close{padding-top:10pt;margin-top:9pt;}
-    .pullquote{margin-bottom:7pt;}
-    .pullquote .display{font-size:14pt;line-height:1.3;max-width:none;}
+    /* The link is inline-flex on screen, which makes the printed URL an
+       unbreakable flex item: in a half-width column it held its width and
+       forced the label beside it to wrap one word per line. As a block with
+       the URL on its own line, the address can break wherever it needs to. */
+    .full-link a{display:block;}
+    .full-link a::after{
+      content:attr(href);
+      display:block;
+      letter-spacing:0;
+      text-transform:none;
+      overflow-wrap:anywhere;
+    }
+
+    /* Screen copy and print copy swap places. */
+    .screen-copy{display:none;}
+    .print-copy{display:block;}
+
+    /* closing. Held whole, or the pullquote ends one page and the contact
+       details open the next with nothing else on it. */
+    .close{padding-top:8pt;margin-top:7pt;break-inside:avoid;}
+    .pullquote{margin-bottom:6pt;}
+    .pullquote .display{font-size:13pt;line-height:1.28;max-width:none;}
     .cta{border:0;padding:0;}
     .cta .arr{display:none;}
-    .cta-line{margin-bottom:7pt;}
-    .colophon{margin-top:10pt;font-size:7pt;}
+    .cta-line{margin-bottom:5pt;}
+    .colophon{margin-top:8pt;font-size:7pt;}
 
     /* nothing animated survives onto paper */
     .progress{display:none;}
@@ -1014,7 +1239,7 @@
   <header class="masthead">
     <p class="name">Ioannis Koupidis · <span class="role">UX-research &amp; produkt</span><!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="../" hreflang="en">EN</a><span class="sep" aria-hidden="true">/</span><a href="./" hreflang="sv" aria-current="page">SV</a><span class="sep" aria-hidden="true">/</span><a href="../el/" hreflang="el">EL</a></span><!--/LANGS--><span class="aside">Stockholm</span></p>
     <h1 class="display statement"><span class="w">Jag</span> <span class="w"><em>gissar</em></span> <span class="w">inte.</span></h1>
-    <p class="lede">Jag intervjuar människor, sammanställer det de sagt, låter dem prova något och ändrar det när testerna visar att jag hade fel.</p>
+    <p class="lede">Intervjua, sammanställa, låta människor prova, ändra det som testerna visar att jag fått fel. Det är metoden jag är utbildad i och den jag vill bli bedömd efter.</p>
     <div class="meta">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
       <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
@@ -1030,84 +1255,92 @@
       <article class="work" style="view-transition-name:study-agentx;">
         <h3>Agent X</h3>
         <p class="kind">Studentprojekt · Medieinstitutet Stockholm · 2026</p>
-        <p>Hur skulle kontextuell vägledning kunna hjälpa nya spelare i Escape from Tarkov, en hardcore survival shooter, utan att sänka den svårighetsgrad som publiken spelar det för? Jag genomförde åtta intervjuer med spelare och sammanställde materialet i två personas och en journey map. Därefter utformade jag fyra wireframe-vyer och testade dem i tre tänka-högt-sessioner.<span class="ref"></span><span class="note">Genomfördes med lärarhandledning inom UX-utbildningen. Min första fullständiga researchcykel.</span></p>
+        <p>Hur skulle vägledning inne i Escape from Tarkovs spelvärld kunna hjälpa nya spelare, utan att göra spelet enklare och ta bort den svårighet som målgruppen uppskattar? Jag genomförde åtta spelarintervjuer och sammanställde materialet i två personas och en journey map. Därefter tog jag fram fyra wireframe-vyer och testade dem i tre tänka-högt-sessioner.<span class="ref"></span><span class="note">Min första hela researchcykel, genomförd under handledning. I rapporten beskriver jag urvalsproblemet öppet i stället för att gömma undan det.</span></p>
         <div class="outcome">
-          <span class="eyebrow">Resultat</span>
-          Deltagarna hittade och förstod vägledningen utan hjälp.<span class="ref"></span><span class="note">Testningen visade också begränsningar i språk och urval som motiverar ytterligare en omgång.</span>
+          <span class="eyebrow">Vad det visade</span>
+          Deltagarna hittade och förstod vägledningen utan att få någon hjälp.
         </div>
 
         <details class="study">
           <summary><span class="chev">›</span><span class="label-closed">Läs fallstudien</span><span class="label-open">Stäng</span></summary>
           <div class="detail-body">
             <h4>Frågan</h4>
-            <p>Nya spelare i Escape from Tarkov slutar spela tidigt. Om svårighetsgraden sänktes skulle skälet till att den befintliga publiken spelar försvinna. Briefen var att ta reda på om vägledning inne i spelvärlden kunde hjälpa en ny spelare att ta sig vidare, utan att förändra vad spelet är.</p>
+            <p>Nya spelare lämnar Escape from Tarkov tidigt. Att sänka svårighetsgraden skulle ta bort en viktig anledning till att den befintliga målgruppen spelar. Uppgiften var att ta reda på om vägledning inne i spelvärlden kunde hjälpa en ny spelare vidare, utan att förändra vad spelet är.</p>
 
             <h4>Vad jag gjorde</h4>
             <ol>
               <li>Åtta textbaserade intervjuer på Discord, från nybörjare till veteraner, däribland en spelare som hade slutat.</li>
-              <li>Syntes till två personas, Seeker och Returner, samt en emotionell journey map.</li>
+              <li>Sammanställning i två personas, Seeker och Returner, samt en emotionell journey map.</li>
               <li>Fyra wireframe-vyer av en diegetisk följeslagare som aktiveras först efter upprepade misslyckanden.</li>
               <li>Tre användbarhetstester med tänka-högt-metoden utifrån wireframes.</li>
             </ol>
 
-            <h4>Vad det visade</h4>
-            <p>Deltagarna hittade och förstod vägledningen utan att den pekades ut för dem, vilket var det som testades. Wireframes behövde inte förklara sig själva.</p>
+            <h4>Vad testerna visade</h4>
+            <p>Deltagarna hittade och förstod vägledningen utan att någon pekade ut den. Det var precis det som testades. Wireframesen behövde inte förklaras.</p>
 
             <h4>Vad jag skulle göra annorlunda</h4>
-            <p>De tre testarna var 40 till 46 år och ingen av dem hade spelat Tarkov, så de motsvarade inte Seeker-profilen som designen riktar sig till. Därför gick en skärm, som fungerar genom att medvetet vara tyst, inte att utvärdera ordentligt. Nästa omgång behöver faktiska spelare ur målgruppen, och rapporten säger det uttryckligen i stället för att gömma undan det.</p>
+            <p>De tre testarna var 40 till 46 år och ingen av dem hade spelat Tarkov. De motsvarade därför inte Seeker-profilen som lösningen riktar sig till. Det gjorde att en vy, som fungerar genom att medvetet inte ge någon information, inte kunde utvärderas ordentligt. Nästa omgång behöver faktiska spelare ur målgruppen. Rapporten säger det uttryckligen i stället för att gömma undan det.</p>
           </div>
         </details>
 
         <p class="full-link"><a href="https://ioanniskp.github.io/-agent-x-case-study/" target="_blank" rel="noopener">Öppna hela fallstudien<span class="arr">↗</span></a></p>
 
         <div class="tags">
-          <span class="tag">Användarundersökning</span>
+          <span class="tag">Användarresearch</span>
           <span class="tag">Syntes</span>
           <span class="tag">Wireframes</span>
           <span class="tag">Användbarhetstestning</span>
         </div>
       </article>
 
-      <article class="work" style="view-transition-name:study-radio;">
-        <h3>Radio</h3>
-        <p class="kind">Personligt projekt · styrning av ett AI-assisterat iOS-bygge · 2026</p>
-        <p>Jag byggde en internetradiospelare för iOS på en arbetsdag utan att skriva koden. Jag satte omfattningen, körde en byggagent och därefter en separat agent för att granska resultatet. Sedan testade jag det på en fysisk enhet.<span class="ref"></span><span class="note">Arbetet bestod i att specificera, ifrågasätta och testa det. Det är produktledning, inte ingenjörsarbete.</span></p>
-        <div class="outcome">
-          <span class="eyebrow">Resultat</span>
-          Granskningen hittade fyra fel som alla såg färdiga ut, och testningen på enheten hittade ett nätverksfel som hade passerat kodgranskningen.
-        </div>
+      <div class="work-pair">
 
-        <details class="study">
-          <summary><span class="chev">›</span><span class="label-closed">Läs fallstudien</span><span class="label-open">Stäng</span></summary>
-          <div class="detail-body">
-            <h4>Frågan</h4>
-            <p>Om en agent kan skriva koden, vad återstår då för personen som styr den? Jag ville ta reda på det genom att bygga något verkligt inom en fast tidsram och uppmärksamma var mitt eget omdöme faktiskt hade betydelse.</p>
-
-            <h4>Så gick det till</h4>
-            <ol>
-              <li>Omfattningen fastställdes och skrevs ner först, så att det fanns en definition av färdigt innan något byggdes.</li>
-              <li>En agent byggde utifrån den omfattningen.</li>
-              <li>En andra, separat agent granskade den första agentens resultat, med utgångspunkten att det var fel tills motsatsen hade visats.</li>
-              <li>Testning på en fysisk enhet i stället för i simulatorn.</li>
-            </ol>
-
-            <h4>Vad det visade</h4>
-            <p>Granskningen hittade fyra fel i arbete som framstod som färdigt. Testningen på enheten hittade sedan ett nätverksfel som hade passerat kodgranskningen, eftersom simulatorns nätverksförhållanden inte är desamma som en telefons.</p>
-
-            <h4>Det jag tar med mig</h4>
-            <p>Genereringen var den billiga delen. Värdet låg i att specificera det exakt, vägra godta resultat som bara såg färdiga ut och testa under förhållanden som liknar verklig användning. Inget av det krävde att jag skrev kod, och allt krävde att jag visste vad jag skulle misstro.</p>
+        <article class="work" style="view-transition-name:study-scribe;">
+          <h3>Scribe</h3>
+          <p class="kind">Personligt projekt · ledning av ett AI-assisterat macOS-bygge · 2026</p>
+          <div class="card-body">
+            <p class="screen-copy">En Mac-app som spelar in ett möte och transkriberar det lokalt på datorn, utan att något laddas upp. Jag skrev specifikationen och acceptanskriterierna, lät AI-agenter bygga utifrån dem och kontrollerade sedan resultatet för hand: jag spelade in trettio sekunder, öppnade mappen, spelade upp filen och kontrollerade filstorleken i byte.</p>
+            <p class="screen-copy">De flesta produktbesluten handlade om vad jag valde att inte bygga. Ingen transkribering i molnet, inga sparade röstprofiler och ingen inspelning som startar automatiskt från kalendern. En session är en vanlig mapp med filer, så inspelningarna går att öppna även om appen försvinner.<span class="ref"></span><span class="note">Sexton sekunders väntan innan den första texten visas är en konsekvens av lokal transkribering. Att säga det i gränssnittet var enklare än att låtsas som att väntan inte fanns.</span></p>
+            <p class="print-copy">En Mac-app som spelar in ett möte och transkriberar det lokalt på datorn, utan att något laddas upp. Jag skrev specifikationen och acceptanskriterierna, lät AI-agenter bygga utifrån dem och verifierade sedan resultatet för hand. De flesta produktbesluten handlade om vad jag valde att inte bygga: ingen transkribering i molnet, inga sparade röstprofiler och ingen inspelning som startar automatiskt från kalendern.</p>
           </div>
-        </details>
+          <div class="outcome">
+            <span class="eyebrow">Vad det visade</span>
+            Fyra fel tog sig igenom 283 godkända tester. Bland annat visades transkript på skärmen utan att någonsin skrivas till disk. För att hitta vart och ett av felen behövde en människa lyssna på resultatet.
+          </div>
 
-        <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Öppna hela fallstudien<span class="arr">↗</span></a></p>
+          <p class="full-link"><a href="https://ioanniskp.github.io/Scribe-Project/" target="_blank" rel="noopener">Öppna hela fallstudien<span class="arr">↗</span></a><a href="https://github.com/IoannisKP/scribe" target="_blank" rel="noopener">Source on GitHub<span class="arr">↗</span></a></p>
 
-        <div class="tags">
-          <span class="tag">Avgränsning</span>
-          <span class="tag">AI-assisterad leverans</span>
-          <span class="tag">Kritisk utvärdering</span>
-          <span class="tag">Testning på fysisk enhet</span>
-        </div>
-      </article>
+          <div class="tags">
+            <span class="tag">Specifikation</span>
+            <span class="tag">Produktbeslut</span>
+            <span class="tag">Inbyggt integritetsskydd</span>
+            <span class="tag">Manuell verifiering</span>
+          </div>
+        </article>
+
+        <article class="work" style="view-transition-name:study-radio;">
+          <h3>Radio</h3>
+          <p class="kind">Personligt projekt · ledning av ett AI-assisterat iOS-bygge · 2026</p>
+          <div class="card-body">
+            <p class="screen-copy">En internetradiospelare för iOS, avgränsad och byggd under en enda arbetsdag. En agent byggde utifrån avgränsningen, en andra granskade resultatet och jag testade på en fysisk iPhone i stället för i simulatorn.</p>
+            <p class="screen-copy">Avgränsningen dokumenterades innan bygget började, så att det fanns en tydlig definition av färdigt som agenten inte själv fick bestämma.<span class="ref"></span><span class="note">Det här var första gången jag arbetade så här, inom ramen för en dag. Med Scribe utvecklade jag samma metod under tretton dagar.</span></p>
+            <p class="print-copy">En internetradiospelare för iOS, avgränsad och byggd under en enda arbetsdag. En agent byggde utifrån avgränsningen, en andra granskade resultatet och jag testade på en fysisk iPhone i stället för i simulatorn. Det var första gången jag arbetade så här. Med Scribe utvecklade jag samma metod under tretton dagar.</p>
+          </div>
+          <div class="outcome">
+            <span class="eyebrow">Vad det visade</span>
+            Granskningen underkände arbete som framstod som färdigt. Den fysiska telefonen hittade dessutom ett nätverksfel som simulatorn inte kunde återskapa.
+          </div>
+
+          <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Öppna hela fallstudien<span class="arr">↗</span></a><a href="https://github.com/IoannisKP/Radio-iOS-app" target="_blank" rel="noopener">Source on GitHub<span class="arr">↗</span></a></p>
+
+          <div class="tags">
+            <span class="tag">Avgränsning</span>
+            <span class="tag">Agentgranskning</span>
+            <span class="tag">Testning på fysisk enhet</span>
+          </div>
+        </article>
+
+      </div>
 
     </div>
     <div></div>
@@ -1119,19 +1352,19 @@
       <h2 class="section">Så arbetar jag</h2>
       <div class="stack">
         <div class="item">
-          <h3>Research som håller i mötet med användare</h3>
-          <p>Intervjuer, syntes, personas, kartläggning av användarresor, wireframes och tänka-högt-testning. Hittills är det en komplett cykel, genomförd som ett studentprojekt på Medieinstitutet med lärare som handledde mig. Jag söker rollen där det blir en del av det dagliga arbetet.</p>
+          <h3>Research som håller när användarna möter lösningen</h3>
+          <p>Intervjuer, syntes, personas, kartläggning av användarresor, wireframes och tänka-högt-testning. Hittills har jag genomfört en hel cykel på Medieinstitutet, under handledning. Det jag tar med mig till nästa är att jag vet exakt var den första var svag.</p>
         </div>
         <div class="item">
-          <h3>Bekväm med komplexitet och intressenter</h3>
-          <p>Tolv år med ansvar för ett reglerat tjänsteföretag lärde mig att hålla ett system i huvudet, omsätta krav till något genomförbart och fatta beslut med ofullständig information.<span class="ref"></span><span class="note">Svensk offentlig upphandling inom hälso- och sjukvård. Reglerad, granskad och med små marginaler för misstag.</span></p>
+          <h3>Van vid komplexitet och många intressenter</h3>
+          <p>Tretton år med ansvar för ett reglerat tjänsteföretag lärde mig att hålla ihop komplexa system, omsätta krav i något genomförbart och fatta beslut med ofullständig information.<span class="ref"></span><span class="note">Svensk offentlig upphandling inom hälso- och sjukvård. Reglerad, granskad och med mycket små marginaler för misstag.</span></p>
         </div>
         <div class="item">
-          <h3>Skeptisk användning av AI-verktyg</h3>
-          <p>Jag använder generativa och agentbaserade arbetsflöden dagligen och utgår från att resultatet är fel tills det har testats. Granskningen är den del som spelar roll.</p>
+          <h3>AI-arbete med kritisk granskning</h3>
+          <p>Jag använder generativa och agentbaserade arbetsflöden varje dag. Jag utgår från att resultatet är fel tills det har testats. Det är granskningen som spelar roll.</p>
         </div>
       </div>
-      <p class="inline-list" style="margin-top:1.6rem;">Användarintervjuer · personas · kartläggning av användarresor · wireframes · användbarhetstestning · AI-assisterade arbetsflöden<span class="ref"></span><span class="note">Figma på grundläggande nivå. Tillräckligt för att göra wireframes, inte tillräckligt för att kalla det en styrka.</span></p>
+      <p class="inline-list spaced">Användarintervjuer · personas · kartläggning av användarresor · wireframes · användbarhetstestning · AI-assisterade arbetsflöden<span class="ref"></span><span class="note">Figma på grundläggande nivå: tillräckligt för wireframes och överlämning, men inte en kompetens för produktionsdesign.</span></p>
     </div>
     <div></div>
   </section>
@@ -1139,26 +1372,27 @@
   <section class="row">
     <div class="spine"><span class="eyebrow">Erfarenhet</span></div>
     <div class="col">
+      <h2 class="section">Grundat och drivit företag sedan 2011</h2>
       <div class="stack">
 
         <div class="item">
           <span class="aside">Stockholm<br>2012 – 2025</span>
           <h3>Grundare &amp; VD · Konduko AB</h3>
-          <p>Grundade och ledde ett specialiserat bemanningsföretag inom vården som arbetade mot svensk offentlig hälso- och sjukvård. Utformade verksamhetens system för att koppla samman upphandlingskrav, läkares tillgänglighet, avtal, scheman, fakturering och kvalitetskontroll.<span class="ref"></span><span class="note">Avvecklade företaget genom ett medvetet beslut när regelverket förändrades.</span></p>
+          <p>Grundade och ledde ett bemanningsföretag specialiserat på svensk offentlig hälso- och sjukvård. Byggde upp verksamhetens arbetssätt, från upphandlingskrav och läkartillgänglighet till avtal, scheman, fakturering och kvalitetskontroll.<span class="ref"></span><span class="note">Avvecklade bolaget genom ett medvetet beslut när regelverket förändrades.</span></p>
           <div class="metrics">
             <div class="metric"><b>25+</b><span>offentliga upphandlingsavtal</span></div>
-            <div class="metric"><b>140+</b><span>läkare i parallella uppdrag</span></div>
-            <div class="metric"><b>Alla regioner</b><span>täckning genom ramavtal i Sverige</span></div>
-            <div class="metric"><b>1,5 md SEK</b><span>sammanlagt uppskattat värde på tilldelade ramavtal<span class="ref"></span></span></div>
+            <div class="metric"><b>140+</b><span>läkare i samtidiga uppdrag</span></div>
+            <div class="metric"><b>Samtliga regioner</b><span>täckning genom ramavtal i hela Sverige</span></div>
+            <div class="metric"><b>1,5 md SEK<span class="ref"></span></b><span>sammanlagt uppskattat värde på tilldelade ramavtal</span></div>
             <div class="metric"><b>ISO 9001<br>&amp; 14001</b><span>certifierad verksamhet</span></div>
           </div>
-          <span class="note">Upphandlingarnas uppskattningar, inte garanterade utgifter och inte företagets omsättning. Faktiska uppdrag berodde på regionernas efterfrågan och läkarnas tillgänglighet.</span>
+          <span class="note">Detta är upphandlingarnas uppskattade värden, inte garanterad avropad volym eller bolagets omsättning. Faktiska bemanningsuppdrag berodde på regionernas efterfrågan och läkarnas tillgänglighet.</span>
         </div>
 
         <div class="item">
           <span class="aside">Stockholm<br>2011 – idag</span>
           <h3>Grundare · NiyaCare Stockholm AB</h3>
-          <p>Ett företag inom personlig assistans, uppbyggt kring att matcha människor med assistenter de kan lita på. Ansvarig för att förstå individuella behov, tjänstens kvalitet och den dagliga verksamheten. Det är där jag lärde mig vad självbestämmande och tillit faktiskt kräver av en tjänst.</p>
+          <p>Ett företag inom personlig assistans, uppbyggt kring att matcha människor med assistenter de kan lita på. Jag ansvarar för att förstå individuella behov, tjänstens kvalitet och den dagliga verksamheten. Det är där jag lärde mig vad självbestämmande och tillit faktiskt kräver av en tjänst.</p>
         </div>
 
       </div>
@@ -1170,8 +1404,8 @@
     <div class="spine"><span class="eyebrow">Bakgrund</span></div>
     <div class="col">
       <h2 class="section">Dessförinnan: tretton år inom visuell kommunikation</h2>
-      <p>Aten, 1998 till 2011. Först layout och trycksaksproduktion, därefter projektkoordinering, varumärkesarbete, förpackningar och kampanjer för kunder inom mode, livsmedel och professionella tjänster.<span class="ref"></span><span class="note">Jag framställer inte detta som en aktuell kompetens. Det är sjutton år sedan jag arbetade som grafisk designer, och det är inte det jag söker anställning för.</span></p>
-      <p>Det är därför jag snabbt läser av layouter, och därför det känns vardagligt snarare än svårt att briefa kunder och försvara ett beslut.</p>
+      <p>Aten, 1998 till 2011. Först layout och trycksaksproduktion. Därefter projektkoordinering, varumärkesarbete, förpackningar och kampanjer för kunder inom mode, livsmedel och professionella tjänster.<span class="ref"></span><span class="note">Jag framställer inte detta som en aktuell kompetens. Det är sjutton år sedan jag senast arbetade som grafisk designer, och det är inte den rollen jag söker.</span></p>
+      <p>Det är därför jag snabbt ser hur en layout fungerar. Och därför känns det vardagligt, snarare än svårt, att briefa kunder och argumentera för ett beslut.</p>
 
       <div class="pairs" style="margin-top:1.5rem;">
         <div class="pair"><span>Grafisk designer, senare projektledare · Apolyto S.A.</span><span>1998 – 2009</span></div>
@@ -1183,7 +1417,7 @@
     <div></div>
   </section>
 
-  <section class="row">
+  <section class="row education">
     <div class="spine"><span class="eyebrow">Utbildning</span></div>
     <div class="col">
       <p class="pairs-label">Utbildningar</p>
@@ -1191,7 +1425,7 @@
         <div class="pair"><span>UX-design · Medieinstitutet Stockholm</span><span>2026</span></div>
         <div class="pair"><span>Grafisk design · IIEK Technografiko, Aten</span><span>1996</span></div>
       </div>
-      <p class="pairs-label" style="margin-top:1.6rem;">Språk</p>
+      <p class="pairs-label spaced">Språk</p>
       <div class="pairs">
         <div class="pair"><span>Grekiska</span><span>Modersmål</span></div>
         <div class="pair"><span>Engelska</span><span>Flytande</span></div>
@@ -1204,7 +1438,7 @@
 
   <footer class="close">
     <blockquote class="pullquote">
-      <p class="display">Det produktarbete jag gillar finns i <em>detaljerna</em>: tydliga flöden, konsekventa mönster och lösningar som team faktiskt kan bygga.</p>
+      <p class="display">Det produktarbete jag gillar mest sitter i <em>detaljerna</em>: tydliga flöden, konsekventa mönster och lösningar som team faktiskt kan bygga.</p>
     </blockquote>
 
     <p class="cta-line"><a class="cta" href="mailto:gkoupidis@gmail.com">Hör av dig<span class="arr">→</span></a></p>

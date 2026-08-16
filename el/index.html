@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ioannis Koupidis · UX research &amp; product</title>
+<title>Ioannis Koupidis · UX Research &amp; Product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Noto+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -24,6 +24,10 @@
     --accent:#23405F;
     --accent-2:#9C5324;
     --measure:38rem;
+
+    /* Both stocks exist, so the UA paints scrollbars and the canvas to match
+       instead of flashing white behind a dark page. */
+    color-scheme:light dark;
 
     /* editorial grid */
     --spine:7rem;
@@ -418,6 +422,65 @@
     padding:0.3rem 0.55rem;
   }
 
+  /* The research project runs full width because it is the one being read.
+     The two build projects sit as a pair beneath it: they answer the same
+     question at different scale, and reading them next to each other says
+     that faster than stacking them says it. */
+  .work-pair{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    /* Six rows the two cards share: title, subtitle, copy, outcome, link,
+       tags. The copy row is the only flexible one, so it absorbs the
+       difference in length and everything below it starts on the same line
+       in both cards. Row gap must be zero: with subgrid these tracks are
+       the ones inside the cards, so a row gap here would open a hole
+       between every element. Horizontal gutter only. */
+    grid-template-rows:auto auto 1fr auto auto auto;
+    gap:0 1.5rem;
+    width:calc(100% + var(--margin-col) + var(--gutter));
+    max-width:none;
+  }
+
+  .work-pair .work{
+    display:grid;
+    grid-template-rows:subgrid;
+    grid-row:span 6;
+    width:100%;
+    margin-bottom:0;
+    padding:var(--card-pad) var(--card-pad) 1.5rem;
+  }
+
+  .work-pair .work h3{font-size:1.55rem;}
+  .work-pair .work .kind{max-width:none;}
+
+  /* Half a card is too narrow to hold a note rail beside the text, so the
+     children take the whole card and notes fold inline. Same move the
+     1080px breakpoint makes on the page grid, made early. */
+  .work-pair .work > *{width:100%;}
+
+  .work-pair .work .note{
+    float:none;
+    display:block;
+    width:auto;
+    max-width:none;
+    margin:0.9rem 0 0;
+    border-left:2px solid var(--rule);
+    padding-left:0.85rem;
+  }
+
+  /* The shared rows now do what margin-top:auto used to: the tag rows line
+     up because they sit in the same track, not because they were pushed to
+     the bottom of two independently sized cards. */
+  .work-pair .work .card-body > p:last-child{margin-bottom:0;}
+
+  /* The paired cards carry two versions of their copy. A4 is half the width
+     of the screen column and cannot take the long one, so print swaps in a
+     condensed paragraph that folds the sidenote into the prose. Screen never
+     renders it, print never renders the other. Both are in i18n.json.
+     display:none also means the hidden version does not increment the
+     sidenote counter, so each medium numbers its own notes correctly. */
+  .print-copy{display:none;}
+
   /* ---------- expanding case study ---------- */
 
   .study{margin-top:1.15rem;}
@@ -488,7 +551,15 @@
 
   ::view-transition-group(*){animation-duration:.34s;}
 
-  .full-link{margin:0.9rem 0 0;}
+  /* The paired cards carry two links, the write-up and the repository. Flex
+     with wrap keeps them on one line where there is room and drops the second
+     beneath the first where there is not, which is what half a card does. */
+  .full-link{
+    margin:0.9rem 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.3rem 1.15rem;
+  }
 
   .full-link a{
     display:inline-flex;
@@ -553,7 +624,10 @@
     line-height:1.1;
   }
 
-  .metric span{
+  /* Direct child only. A bare `.metric span` also caught the footnote marker
+     inside the numeral and made it display:block, which dropped the superscript
+     onto a line of its own. */
+  .metric > span{
     font-size:0.78rem;
     color:var(--muted);
     line-height:1.35;
@@ -595,6 +669,12 @@
     color:var(--faint);
     margin:0 0 0.6rem;
   }
+
+  /* Was an inline style on two elements. Moved into the cascade so the print
+     block can reset it, since an inline margin needs !important to beat.
+     It has to sit after .pairs-label: same specificity, and that rule's
+     margin shorthand would otherwise zero the top margin back out. */
+  .spaced{margin-top:1.6rem;}
 
   .background p{font-size:0.95rem;}
 
@@ -853,6 +933,21 @@
       max-width:var(--measure);
     }
     .work{width:100%;}
+
+    /* Two cards at half of a collapsed measure is unreadable. The pair
+       becomes a stack, which is what it already is on the narrow end.
+       Shared rows have to go with it: stacked, they would pad the shorter
+       card out to the taller one's copy length for no reason, since nothing
+       sits beside it to line up with. Print re-establishes both, because
+       A4 matches this breakpoint too. */
+    .work-pair{
+      grid-template-columns:1fr;
+      grid-template-rows:none;
+      width:100%;
+      max-width:var(--measure);
+    }
+    .work-pair .work{display:block;grid-row:auto;}
+    .work-pair .work h3{font-size:1.7rem;}
   }
 
   @media (max-width:720px){
@@ -864,7 +959,60 @@
     .work{padding:1.35rem;}
     .work::before{top:1.35rem;right:1.35rem;}
     .work h3{font-size:1.6rem;}
+    /* Higher specificity than .work h3, so the paired cards would otherwise
+       keep the 1.7rem set at the 1080 breakpoint and print larger headings
+       than the featured card above them. */
+    .work-pair .work h3{font-size:1.6rem;}
     .statement{font-size:clamp(2rem,8vw,2.6rem);}
+  }
+
+  /* ---------- dark ----------
+     The same document on darker stock. Only the palette changes, plus the two
+     things that do not survive inversion: the paper tooth and the weight of
+     Fraunces. It sits last so it outranks the rules it overrides without
+     needing a specificity fight, and it is `screen` only, because the print
+     block below is the PDF source and must stay on white whatever the reader's
+     system asks for.
+
+     Contrast on the dark paper: ink 15.3, muted 7.5, faint 5.3, blue 9.1,
+     copper 8.1. The two accents keep their separate jobs. */
+
+  @media screen and (prefers-color-scheme:dark){
+    :root{
+      --paper:#1A1714;
+      --surface:#24201C;
+      --ink:#F2EDE6;
+      --muted:#B0A79B;
+      --faint:#948B80;
+      --rule:#332D27;
+      --accent:#9BBCE0;
+      --accent-2:#DFA268;
+    }
+
+    /* Dark dots on a near-black page are nothing at all, so the tooth flips to
+       light pigment and drops in strength. The shorthand resets background-size,
+       which is why it is restated. */
+    body::before{
+      opacity:.4;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,250,242,.035) 0 1px, transparent 1px),
+        radial-gradient(circle at 70% 65%, rgba(255,250,242,.028) 0 1px, transparent 1px);
+      background-size:7px 7px, 11px 11px;
+    }
+
+    /* Light on dark reads optically bolder than the reverse, so the display
+       weights come back down. Only Fraunces at display sizes: the margin notes
+       are 0.86rem italic at opsz 14 and thinning those would cost legibility,
+       which is the opposite of the problem being solved. */
+    .display,h2.section,.work h3{font-weight:375;}
+    .metric b{font-weight:385;}
+
+    /* A shadow tinted with ink cannot read as darkness on dark paper. */
+    .work{box-shadow:0 1px 2px rgba(0,0,0,.45),0 8px 24px -12px rgba(0,0,0,.6);}
+
+    @media (hover:hover) and (prefers-reduced-motion:no-preference){
+      .work:hover{box-shadow:0 2px 4px rgba(0,0,0,.5),0 20px 44px -20px rgba(0,0,0,.75);}
+    }
   }
 
   /* ---------- print ----------
@@ -888,12 +1036,12 @@
 
     /* one column everywhere */
     .row,.masthead,.close{display:block;padding-left:0;}
-    .row{padding:9pt 0 0;border-bottom:0;break-inside:auto;}
+    .row{padding:7pt 0 0;border-bottom:0;break-inside:auto;}
     .col,.lede,.close-line{max-width:none;}
     .work > *{width:100%;}
 
     /* section label becomes a ruled header */
-    .row > .spine{margin-bottom:5pt;}
+    .row > .spine{margin-bottom:5pt;break-after:avoid;}
     .row > .spine .eyebrow{
       position:static;
       display:flex;
@@ -914,7 +1062,10 @@
       animation:none;
     }
 
-    h2.section{font-size:12.5pt;margin-bottom:5pt;}
+    /* break-after keeps a section heading with the section. Without it,
+       "Running my own companies since 2011" sat alone at the foot of a page
+       and its two companies opened the next one. */
+    h2.section{font-size:12.5pt;margin-bottom:5pt;break-after:avoid;}
     h2.section::after{display:none;}
 
     /* margin apparatus folds inline, small */
@@ -944,41 +1095,115 @@
     .work{
       width:100%;
       box-shadow:none;
-      padding:8pt 9pt;
-      margin-bottom:7pt;
+      padding:7pt 9pt;
+      margin-bottom:6pt;
       break-inside:avoid;
     }
+    /* The pair prints as a pair. Two short cards side by side cost one card's
+       height instead of two, which is what keeps the document to three pages.
+       It only fits because these two swap in .print-copy above; at full
+       screen length they overflow the column. Three things had to be fixed
+       before this worked, all of them recorded in CLAUDE.md. */
+    /* max-width:none is load-bearing. A4 is about 794px, so the
+       max-width:1080px block applies on paper too and was capping the pair
+       at --measure while the card above it ran the full 182mm. That block
+       resets .col for the same reason; the pair needs it as well. */
+    .work-pair{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:auto auto 1fr auto auto auto;
+      gap:0 10pt;
+      width:100%;
+      max-width:none;
+      break-inside:avoid;
+    }
+
+    .work-pair .work{
+      display:grid;
+      grid-template-rows:subgrid;
+      grid-row:span 6;
+      margin-bottom:0;
+      padding:7pt 9pt;
+      font-size:8.5pt;
+      line-height:1.36;
+    }
+
     .work h3{font-size:14pt;}
+    .work-pair .work h3{font-size:12pt;}
     .work .kind{font-size:8.6pt;margin-bottom:5pt;}
+    .work-pair .work .kind{font-size:7.6pt;margin-bottom:4pt;}
+    .work-pair .work .outcome{margin:5pt 0;padding-left:6pt;}
+    .work-pair .work .tags{margin-top:auto;padding-top:5pt;}
+    .work-pair .work .tag{font-size:6pt;padding:1pt 3pt;}
+    .work-pair .full-link{margin-top:5pt;font-size:7.2pt;}
+
+    /* The counter inherits top/right of 2rem from the screen rule, which is
+       three times the printed card padding and lands it level with the
+       subtitle rather than the title. Invisible at full width, a collision
+       at half. */
+    .work::before{top:7pt;right:9pt;}
     .outcome{margin:6pt 0;padding-left:7pt;}
     .tags{margin-top:6pt;padding-top:6pt;}
     .tag{font-size:6.6pt;padding:1.5pt 4pt;}
 
     .item{break-inside:avoid;}
-    .stack{gap:8pt;}
+    .stack{gap:7pt;}
     /* Five explicit columns, or ISO orphans onto a row of its own. */
     .metrics{grid-template-columns:repeat(5,minmax(0,1fr));gap:5pt 7pt;margin-top:6pt;padding-top:6pt;}
     .metric b{font-size:11.5pt;}
-    .metric span{font-size:7.2pt;}
+    .metric > span{font-size:7.2pt;}
     .pair{padding-bottom:3pt;}
     .pairs{gap:3pt;break-inside:avoid;}
+
+    /* Education splits badly: Qualifications lands at the foot of page two and
+       Languages starts page three alone. Keeping the section whole moves the
+       break to a section boundary, which reads as a decision rather than a
+       spill, and gives the last page a composed block instead of four rows. */
+    .row.education{break-inside:avoid;}
+    /* Same reasoning one section earlier: Background was splitting between
+       its prose and its four Athens roles, so a page turn landed in the
+       middle of a section. Held whole, page two ends at the close of
+       Experience and page three is Background, Education and the closing
+       block together. */
+    .row.background{break-inside:avoid;}
     /* Keep a label with the list it introduces. */
     .pairs-label{break-after:avoid;margin-bottom:3pt;}
+    .spaced{margin-top:7pt;}
 
     /* case studies stay closed; the printed URL carries the reader there */
     .study{display:none;}
-    .full-link{margin-top:6pt;}
+    /* Screen lays the two links out as a flex row. Print stacks them, or the
+       block rule below cannot break the addresses onto their own lines. */
+    .full-link{margin-top:6pt;display:block;}
     .full-link .arr{display:none;}
-    .full-link a::after{content:" " attr(href);letter-spacing:0;text-transform:none;}
+    .full-link a + a{margin-top:3pt;}
 
-    /* closing */
-    .close{padding-top:10pt;margin-top:9pt;}
-    .pullquote{margin-bottom:7pt;}
-    .pullquote .display{font-size:14pt;line-height:1.3;max-width:none;}
+    /* The link is inline-flex on screen, which makes the printed URL an
+       unbreakable flex item: in a half-width column it held its width and
+       forced the label beside it to wrap one word per line. As a block with
+       the URL on its own line, the address can break wherever it needs to. */
+    .full-link a{display:block;}
+    .full-link a::after{
+      content:attr(href);
+      display:block;
+      letter-spacing:0;
+      text-transform:none;
+      overflow-wrap:anywhere;
+    }
+
+    /* Screen copy and print copy swap places. */
+    .screen-copy{display:none;}
+    .print-copy{display:block;}
+
+    /* closing. Held whole, or the pullquote ends one page and the contact
+       details open the next with nothing else on it. */
+    .close{padding-top:8pt;margin-top:7pt;break-inside:avoid;}
+    .pullquote{margin-bottom:6pt;}
+    .pullquote .display{font-size:13pt;line-height:1.28;max-width:none;}
     .cta{border:0;padding:0;}
     .cta .arr{display:none;}
-    .cta-line{margin-bottom:7pt;}
-    .colophon{margin-top:10pt;font-size:7pt;}
+    .cta-line{margin-bottom:5pt;}
+    .colophon{margin-top:8pt;font-size:7pt;}
 
     /* nothing animated survives onto paper */
     .progress{display:none;}
@@ -1019,6 +1244,16 @@
   .langs,.note::before,.work::before{
     font-family:'Noto Sans Mono',ui-monospace,monospace;
   }
+
+  /* This block is appended after the page's own dark rules, so it would
+     otherwise reinstate the light weights on a dark page. Same optical
+     compensation, expressed at EB Garamond's heavier settings. The margin
+     notes stay at 575 for the same reason they stay at 400 in English. */
+  @media screen and (prefers-color-scheme:dark){
+    .display,h2.section,.work h3,.pullquote .display,.statement em,
+    .pullquote em{font-weight:540;}
+    .metric b{font-weight:585;}
+  }
 </style>
 
 <link rel="alternate" hreflang="en" href="../">
@@ -1030,9 +1265,9 @@
 <div class="wrap">
 
   <header class="masthead">
-    <p class="name">Ioannis Koupidis · <span class="role">UX research &amp; product</span><!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="../" hreflang="en">EN</a><span class="sep" aria-hidden="true">/</span><a href="../sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="./" hreflang="el" aria-current="page">EL</a></span><!--/LANGS--><span class="aside">Στοκχόλμη</span></p>
-    <h1 class="display statement"><span class="w">Δεν</span> <span class="w"><em>μαντεύω</em>.</span></h1>
-    <p class="lede">Κάνω συνεντεύξεις, συνθέτω όσα μου είπαν, τους δίνω κάτι να δοκιμάσουν και το αλλάζω όταν το testing δείχνει ότι έκανα λάθος.</p>
+    <p class="name">Ioannis Koupidis · <span class="role">UX Research &amp; Product</span><!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="../" hreflang="en">EN</a><span class="sep" aria-hidden="true">/</span><a href="../sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="./" hreflang="el" aria-current="page">EL</a></span><!--/LANGS--><span class="aside">Στοκχόλμη</span></p>
+    <h1 class="display statement"><span class="w">Δεν</span> <span class="w">βασίζομαι</span> <span class="w">σε</span> <span class="w"><em>υποθέσεις</em>.</span></h1>
+    <p class="lede">Συνεντεύξεις, σύνθεση, δοκιμή με πραγματικούς ανθρώπους, αλλαγή σε ό,τι δείχνει το testing ότι έκανα λάθος. Αυτή είναι η μέθοδος στην οποία εκπαιδεύτηκα και με βάση αυτήν θέλω να κριθώ.</p>
     <div class="meta">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
       <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
@@ -1042,41 +1277,41 @@
   </header>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Προϋπηρεσία</span></div>
+    <div class="spine"><span class="eyebrow">Projects</span></div>
     <div class="col work-list">
 
       <article class="work" style="view-transition-name:study-agentx;">
         <h3>Agent X</h3>
         <p class="kind">Φοιτητικό project · Medieinstitutet Stockholm · 2026</p>
-        <p>Πώς θα μπορούσε η καθοδήγηση μέσα στο context του Escape from Tarkov, ενός hardcore survival shooter, να βοηθήσει νέους παίκτες χωρίς να μειώσει τη δυσκολία για την οποία το επιλέγει το κοινό του; Έκανα οκτώ συνεντεύξεις με παίκτες και συνέθεσα τα ευρήματα σε δύο personas και ένα journey map. Στη συνέχεια σχεδίασα τέσσερα wireframe views και τα δοκίμασα σε τρία think-aloud sessions.<span class="ref"></span><span class="note">Έγινε με καθοδήγηση καθηγητών, στο πλαίσιο του προγράμματος UX. Ο πρώτος ολοκληρωμένος κύκλος έρευνας που έχω κάνει.</span></p>
+        <p>Πώς μπορεί η καθοδήγηση μέσα στον κόσμο του Escape from Tarkov, ενός hardcore survival shooter, να βοηθήσει τους νέους παίκτες χωρίς να αφαιρέσει τη δυσκολία για την οποία το επιλέγει το κοινό του; Πραγματοποίησα οκτώ συνεντεύξεις με παίκτες και συνέθεσα τα ευρήματα σε δύο personas και ένα journey map. Στη συνέχεια σχεδίασα τέσσερα wireframe views και τα δοκίμασα σε τρία think-aloud sessions.<span class="ref"></span><span class="note">Ο πρώτος πλήρης κύκλος έρευνας που ολοκλήρωσα, με επίβλεψη. Στο write-up αναφέρω καθαρά το πρόβλημα του δείγματος, αντί να το κρύβω.</span></p>
         <div class="outcome">
-          <span class="eyebrow">Τι προέκυψε</span>
-          Οι συμμετέχοντες βρήκαν και κατάλαβαν την καθοδήγηση χωρίς προτροπή.<span class="ref"></span><span class="note">Το testing ανέδειξε επίσης περιορισμούς στη γλώσσα και στο δείγμα που χρειάζονται έναν ακόμη γύρο.</span>
+          <span class="eyebrow">Τι έδειξε</span>
+          Οι συμμετέχοντες βρήκαν και κατάλαβαν την καθοδήγηση χωρίς καμία υπόδειξη.
         </div>
 
         <details class="study">
-          <summary><span class="chev">›</span><span class="label-closed">Δείτε το case study</span><span class="label-open">Κλείσιμο</span></summary>
+          <summary><span class="chev">›</span><span class="label-closed">Δες το case study</span><span class="label-open">Κλείσιμο</span></summary>
           <div class="detail-body">
             <h4>Το ερώτημα</h4>
-            <p>Οι νέοι παίκτες εγκαταλείπουν νωρίς το Escape from Tarkov. Αν μειωνόταν η δυσκολία, θα χανόταν ο λόγος για τον οποίο το παίζει το υπάρχον κοινό του. Το brief ήταν να διερευνηθεί αν η καθοδήγηση μέσα στον κόσμο του παιχνιδιού θα μπορούσε να βοηθήσει έναν νέο παίκτη να προχωρήσει, χωρίς να αλλάξει αυτό που είναι το παιχνίδι.</p>
+            <p>Οι νέοι παίκτες εγκαταλείπουν νωρίς το Escape from Tarkov. Αν μειωνόταν η δυσκολία, θα χανόταν ο λόγος για τον οποίο παίζει το υπάρχον κοινό. Το brief ήταν να διερευνηθεί αν η καθοδήγηση μέσα στον κόσμο του παιχνιδιού μπορεί να βοηθήσει έναν νέο παίκτη να προχωρήσει, χωρίς να αλλάξει τον χαρακτήρα του παιχνιδιού.</p>
 
             <h4>Τι έκανα</h4>
             <ol>
-              <li>Οκτώ γραπτές συνεντεύξεις στο Discord, από αρχάριους έως έμπειρους παίκτες, ανάμεσά τους και ένας παίκτης που το είχε εγκαταλείψει.</li>
-              <li>Σύνθεση σε δύο personas, τον Seeker και τον Returner, και σε ένα emotional journey map.</li>
-              <li>Τέσσερα wireframe views ενός diegetic companion που ενεργοποιείται μόνο έπειτα από επανειλημμένη αποτυχία.</li>
-              <li>Τρία think-aloud usability sessions πάνω στα wireframes.</li>
+              <li>Οκτώ γραπτές συνεντεύξεις μέσω Discord, από αρχάριους μέχρι βετεράνους, ανάμεσά τους και ένας παίκτης που είχε σταματήσει να παίζει.</li>
+              <li>Σύνθεση των ευρημάτων σε δύο personas, τον Seeker και τον Returner, και σε ένα emotional journey map.</li>
+              <li>Τέσσερα wireframe views ενός diegetic companion που ενεργοποιείται μόνο μετά από επανειλημμένη αποτυχία.</li>
+              <li>Τρία usability tests με τη μέθοδο think-aloud πάνω στα wireframes.</li>
             </ol>
 
-            <h4>Τι έδειξαν τα αποτελέσματα</h4>
-            <p>Οι συμμετέχοντες εντόπισαν και κατάλαβαν την καθοδήγηση χωρίς να τους υποδειχθεί, που ήταν ακριβώς αυτό που εξεταζόταν. Τα wireframes δεν χρειάστηκαν επεξήγηση.</p>
+            <h4>Τι έδειξε το testing</h4>
+            <p>Οι συμμετέχοντες εντόπισαν και κατάλαβαν την καθοδήγηση χωρίς να τους την υποδείξει κανείς. Αυτό ακριβώς ήταν το ζητούμενο του test. Τα wireframes δεν χρειάστηκαν επεξήγηση.</p>
 
             <h4>Τι θα έκανα διαφορετικά</h4>
-            <p>Οι τρεις testers ήταν 40 έως 46 ετών και κανένας δεν είχε παίξει Tarkov, οπότε δεν ταίριαζαν στο προφίλ Seeker στο οποίο απευθύνεται το design. Έτσι, ένα screen που λειτουργεί μένοντας σκόπιμα σιωπηλό δεν μπορούσε να αξιολογηθεί σωστά. Ο επόμενος γύρος χρειάζεται πραγματικούς παίκτες από το target group, και η αναφορά το δηλώνει καθαρά αντί να το αποκρύπτει.</p>
+            <p>Οι τρεις testers ήταν 40 έως 46 ετών και κανένας τους δεν είχε παίξει Tarkov. Επομένως, δεν ταίριαζαν στο προφίλ Seeker για το οποίο σχεδιάστηκε η λύση. Αυτό δεν επέτρεψε να αξιολογηθεί σωστά ένα screen που λειτουργεί ακριβώς επειδή επιλέγει να μη δώσει πληροφορία. Ο επόμενος γύρος χρειάζεται πραγματικούς παίκτες από το target group. Η αναφορά το δηλώνει καθαρά, αντί να το κρύβει.</p>
           </div>
         </details>
 
-        <p class="full-link"><a href="https://ioanniskp.github.io/-agent-x-case-study/" target="_blank" rel="noopener">Ανοίξτε ολόκληρο το case study<span class="arr">↗</span></a></p>
+        <p class="full-link"><a href="https://ioanniskp.github.io/-agent-x-case-study/" target="_blank" rel="noopener">Δες ολόκληρο το case study<span class="arr">↗</span></a></p>
 
         <div class="tags">
           <span class="tag">User research</span>
@@ -1086,97 +1321,106 @@
         </div>
       </article>
 
-      <article class="work" style="view-transition-name:study-radio;">
-        <h3>Radio</h3>
-        <p class="kind">Προσωπικό project · καθοδήγηση ενός AI-assisted iOS build · 2026</p>
-        <p>Έφτιαξα ένα internet radio player για iOS μέσα σε μία εργάσιμη ημέρα, χωρίς να γράψω τον κώδικα. Όρισα το scope, χρησιμοποίησα έναν agent για το build και μετά έναν δεύτερο, ξεχωριστό agent για να ελέγξει το αποτέλεσμα. Στο τέλος το δοκίμασα σε φυσική συσκευή.<span class="ref"></span><span class="note">Η δουλειά ήταν να ορίσω τις προδιαγραφές, να αμφισβητήσω το αποτέλεσμα και να το δοκιμάσω. Αυτό είναι product management, όχι engineering.</span></p>
-        <div class="outcome">
-          <span class="eyebrow">Τι προέκυψε</span>
-          Ο έλεγχος εντόπισε τέσσερα σφάλματα που έμοιαζαν όλα ολοκληρωμένα, και το device testing εντόπισε μια αστοχία δικτύου που είχε περάσει το code review.
-        </div>
+      <div class="work-pair">
 
-        <details class="study">
-          <summary><span class="chev">›</span><span class="label-closed">Δείτε το case study</span><span class="label-open">Κλείσιμο</span></summary>
-          <div class="detail-body">
-            <h4>Το ερώτημα</h4>
-            <p>Αν ένας agent μπορεί να γράψει τον κώδικα, τι μένει για τον άνθρωπο που τον κατευθύνει; Ήθελα να το διαπιστώσω παραδίδοντας κάτι πραγματικό μέσα σε συγκεκριμένο χρονικό περιθώριο και παρατηρώντας πού είχε πράγματι σημασία η δική μου κρίση.</p>
-
-            <h4>Πώς έγινε</h4>
-            <ol>
-              <li>Το scope ορίστηκε και καταγράφηκε πρώτα, ώστε το «ολοκληρωμένο» να έχει ορισμό πριν κατασκευαστεί οτιδήποτε.</li>
-              <li>Ένας agent έκανε το build βάσει αυτού του scope.</li>
-              <li>Ένας δεύτερος, ξεχωριστός agent έλεγξε το αποτέλεσμα του πρώτου, με την παραδοχή ότι ήταν λάθος μέχρι να αποδειχθεί το αντίθετο.</li>
-              <li>Testing σε φυσική συσκευή αντί για simulator.</li>
-            </ol>
-
-            <h4>Τι έδειξαν τα αποτελέσματα</h4>
-            <p>Ο έλεγχος βρήκε τέσσερα σφάλματα σε δουλειά που παρουσιαζόταν ως ολοκληρωμένη. Στη συνέχεια, το device testing εντόπισε μια αστοχία δικτύου που είχε περάσει το code review, επειδή οι συνθήκες δικτύου του simulator δεν είναι ίδιες με ενός τηλεφώνου.</p>
-
-            <h4>Τι κρατάω από αυτό</h4>
-            <p>Το generation ήταν το φθηνό μέρος. Η αξία βρισκόταν στο να ορίσω με ακρίβεια τι έπρεπε να γίνει, να μην αποδεχτώ ένα αποτέλεσμα που απλώς έμοιαζε ολοκληρωμένο και να κάνω testing σε συνθήκες που μοιάζουν με πραγματική χρήση. Τίποτα από αυτά δεν απαιτούσε να γράψω κώδικα, και όλα απαιτούσαν να ξέρω τι να αντιμετωπίσω με δυσπιστία.</p>
+        <article class="work" style="view-transition-name:study-scribe;">
+          <h3>Scribe</h3>
+          <p class="kind">Προσωπικό project · καθοδήγηση AI-assisted build για macOS · 2026</p>
+          <div class="card-body">
+            <p class="screen-copy">Μια εφαρμογή για Mac που ηχογραφεί μια συνάντηση και τη μεταγράφει τοπικά, χωρίς να ανεβάζει τίποτα στο cloud. Έγραψα τις προδιαγραφές και τα acceptance criteria, έβαλα build agents να δουλέψουν πάνω σε αυτά και μετά έλεγξα το αποτέλεσμα στην πράξη: ηχογράφησα τριάντα δευτερόλεπτα, άνοιξα τον φάκελο, έπαιξα το αρχείο και έλεγξα το μέγεθός του σε bytes.</p>
+            <p class="screen-copy">Τα περισσότερα product decisions αφορούσαν όσα επέλεξα να μη χτίσω. Όχι cloud transcription, όχι αποθηκευμένα voiceprints, όχι ηχογράφηση που ξεκινά αυτόματα από το calendar. Κάθε session είναι ένας απλός φάκελος με αρχεία, ώστε οι ηχογραφήσεις να ανοίγουν ακόμη κι αν η εφαρμογή πάψει να υπάρχει.<span class="ref"></span><span class="note">Η αναμονή δεκαέξι δευτερολέπτων μέχρι να εμφανιστεί το πρώτο κείμενο είναι περιορισμός της τοπικής μεταγραφής. Το να το εξηγήσω στην οθόνη ήταν απλούστερο από το να προσποιηθώ ότι δεν υπάρχει.</span></p>
+            <p class="print-copy">Μια εφαρμογή για Mac που ηχογραφεί μια συνάντηση και τη μεταγράφει τοπικά, χωρίς να ανεβάζει τίποτα στο cloud. Έγραψα τις προδιαγραφές και τα acceptance criteria, έβαλα build agents να δουλέψουν πάνω σε αυτά και μετά επαλήθευσα το αποτέλεσμα στην πράξη. Τα περισσότερα product decisions αφορούσαν όσα επέλεξα να μη χτίσω: όχι cloud transcription, όχι αποθηκευμένα voiceprints και όχι ηχογράφηση που ξεκινά αυτόματα από το calendar.</p>
           </div>
-        </details>
+          <div class="outcome">
+            <span class="eyebrow">Τι έδειξε</span>
+            Τέσσερα σφάλματα ξέφυγαν από 283 επιτυχημένα tests. Ανάμεσά τους, transcripts που εμφανίζονταν στην οθόνη αλλά δεν γράφονταν ποτέ στον δίσκο. Για να εντοπιστεί καθένα από αυτά, χρειάστηκε ένας άνθρωπος να ακούσει το output.
+          </div>
 
-        <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Ανοίξτε ολόκληρο το case study<span class="arr">↗</span></a></p>
+          <p class="full-link"><a href="https://ioanniskp.github.io/Scribe-Project/" target="_blank" rel="noopener">Δες ολόκληρο το case study<span class="arr">↗</span></a><a href="https://github.com/IoannisKP/scribe" target="_blank" rel="noopener">Source on GitHub<span class="arr">↗</span></a></p>
 
-        <div class="tags">
-          <span class="tag">Scoping</span>
-          <span class="tag">AI-assisted delivery</span>
-          <span class="tag">Κριτική αξιολόγηση</span>
-          <span class="tag">Device testing</span>
-        </div>
-      </article>
+          <div class="tags">
+            <span class="tag">Προδιαγραφές</span>
+            <span class="tag">Product decisions</span>
+            <span class="tag">Privacy by default</span>
+            <span class="tag">Χειροκίνητος έλεγχος</span>
+          </div>
+        </article>
+
+        <article class="work" style="view-transition-name:study-radio;">
+          <h3>Radio</h3>
+          <p class="kind">Προσωπικό project · καθοδήγηση AI-assisted build για iOS · 2026</p>
+          <div class="card-body">
+            <p class="screen-copy">Ένας internet radio player για iOS, με scope που ορίστηκε και υλοποιήθηκε μέσα σε μία εργάσιμη ημέρα. Ένας agent έκανε το build βάσει του scope, ένας δεύτερος έκανε audit στο αποτέλεσμα και εγώ δοκίμασα την εφαρμογή σε πραγματικό iPhone, όχι στον simulator.</p>
+            <p class="screen-copy">Το scope είχε καταγραφεί πριν ξεκινήσει το build, ώστε το «έτοιμο» να έχει σαφή ορισμό και να μην το αποφασίζει ο agent.<span class="ref"></span><span class="note">Η πρώτη δοκιμή αυτού του τρόπου δουλειάς, μέσα σε μία ημέρα. Στο Scribe η ίδια μέθοδος εξελίχθηκε σε διάστημα δεκατριών ημερών.</span></p>
+            <p class="print-copy">Ένας internet radio player για iOS, με scope που ορίστηκε και υλοποιήθηκε μέσα σε μία εργάσιμη ημέρα. Ένας agent έκανε το build βάσει του scope, ένας δεύτερος έκανε audit στο αποτέλεσμα και εγώ δοκίμασα την εφαρμογή σε πραγματικό iPhone, όχι στον simulator. Ήταν η πρώτη δοκιμή αυτού του τρόπου δουλειάς. Στο Scribe η ίδια μέθοδος εξελίχθηκε σε διάστημα δεκατριών ημερών.</p>
+          </div>
+          <div class="outcome">
+            <span class="eyebrow">Τι έδειξε</span>
+            Το audit απέρριψε δουλειά που παρουσιαζόταν ως ολοκληρωμένη. Το πραγματικό τηλέφωνο εντόπισε και ένα σφάλμα δικτύου που ο simulator δεν μπορούσε να αναπαραγάγει.
+          </div>
+
+          <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Δες ολόκληρο το case study<span class="arr">↗</span></a><a href="https://github.com/IoannisKP/Radio-iOS-app" target="_blank" rel="noopener">Source on GitHub<span class="arr">↗</span></a></p>
+
+          <div class="tags">
+            <span class="tag">Scoping</span>
+            <span class="tag">Agent auditing</span>
+            <span class="tag">Device testing</span>
+          </div>
+        </article>
+
+      </div>
 
     </div>
     <div></div>
   </section>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Πρακτική</span></div>
+    <div class="spine"><span class="eyebrow">Προσέγγιση</span></div>
     <div class="col">
       <h2 class="section">Πώς δουλεύω</h2>
       <div class="stack">
         <div class="item">
-          <h3>Έρευνα που αντέχει στην επαφή με τους χρήστες</h3>
-          <p>Συνεντεύξεις, synthesis, personas, journey mapping, wireframing και think-aloud testing. Μέχρι στιγμής, αυτός είναι ένας ολοκληρωμένος κύκλος, που έγινε ως φοιτητικό project στο Medieinstitutet με καθοδήγηση από καθηγητές. Αναζητώ τον ρόλο όπου αυτό θα γίνει καθημερινή πρακτική.</p>
+          <h3>Research που αντέχει στην πράξη</h3>
+          <p>Συνεντεύξεις, synthesis, personas, journey mapping, wireframing και think-aloud testing. Μέχρι στιγμής έχω ολοκληρώσει έναν πλήρη κύκλο στο Medieinstitutet, με επίβλεψη. Αυτό που φέρνω στον δεύτερο είναι η καθαρή εικόνα του πού υστερούσε ο πρώτος.</p>
         </div>
         <div class="item">
-          <h3>Άνεση με την πολυπλοκότητα και τους stakeholders</h3>
-          <p>Δώδεκα χρόνια στη διοίκηση μιας ρυθμιζόμενης εταιρείας υπηρεσιών με έμαθαν να κρατώ ένα σύστημα στο μυαλό μου, να μετατρέπω απαιτήσεις σε κάτι εφαρμόσιμο και να αποφασίζω με ελλιπή δεδομένα.<span class="ref"></span><span class="note">Δημόσιες προμήθειες στον χώρο της υγείας στη Σουηδία. Ρυθμιζόμενες, ελεγχόμενες και με λάθη που δύσκολα συγχωρούνται.</span></p>
+          <h3>Άνεση στην πολυπλοκότητα και στο stakeholder management</h3>
+          <p>Δεκατρία χρόνια στη διοίκηση μιας εταιρείας υπηρεσιών σε ρυθμιζόμενο κλάδο με έμαθαν να κρατάω ολόκληρο το σύστημα στο μυαλό μου, να μετατρέπω τις απαιτήσεις σε κάτι εφαρμόσιμο και να αποφασίζω με ελλιπείς πληροφορίες.<span class="ref"></span><span class="note">Δημόσιες προμήθειες στον χώρο της υγείας στη Σουηδία. Ρυθμιζόμενο και ελεγχόμενο περιβάλλον, με ελάχιστο περιθώριο λάθους.</span></p>
         </div>
         <div class="item">
-          <h3>Χρήση εργαλείων AI με κριτική στάση</h3>
-          <p>Χρησιμοποιώ καθημερινά generative και agent-based workflows και θεωρώ το αποτέλεσμά τους λάθος μέχρι να δοκιμαστεί. Ο έλεγχος είναι το μέρος που έχει σημασία.</p>
+          <h3>AI workflows με κριτική ματιά</h3>
+          <p>Χρησιμοποιώ καθημερινά generative και agent-based workflows. Θεωρώ το output αναξιόπιστο μέχρι να δοκιμαστεί. Το audit είναι το κομμάτι που έχει πραγματικά σημασία.</p>
         </div>
       </div>
-      <p class="inline-list" style="margin-top:1.6rem;">User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows<span class="ref"></span><span class="note">Figma σε βασικό επίπεδο. Αρκετό για wireframes, όχι αρκετό για να το παρουσιάσω ως δυνατό μου σημείο.</span></p>
+      <p class="inline-list spaced">User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows<span class="ref"></span><span class="note">Figma σε βασικό επίπεδο: αρκετό για wireframes και handoff, όχι για production design.</span></p>
     </div>
     <div></div>
   </section>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Εμπειρία</span></div>
+    <div class="spine"><span class="eyebrow">Επαγγελματική εμπειρία</span></div>
     <div class="col">
+      <h2 class="section">Επιχειρηματική εμπειρία από το 2011</h2>
       <div class="stack">
 
         <div class="item">
           <span class="aside">Στοκχόλμη<br>2012 – 2025</span>
           <h3>Ιδρυτής &amp; CEO · Konduko AB</h3>
-          <p>Ίδρυσα και διοίκησα μια εταιρεία εξειδικευμένης στελέχωσης στον χώρο της υγείας, με πελάτες στη δημόσια υγεία της Σουηδίας. Σχεδίασα το σύστημα λειτουργίας που συνέδεε τις απαιτήσεις των δημόσιων προμηθειών, τη διαθεσιμότητα των γιατρών, τις συμβάσεις, τα προγράμματα, την τιμολόγηση και τον ποιοτικό έλεγχο.<span class="ref"></span><span class="note">Έκλεισα την εταιρεία με συνειδητή απόφαση, όταν άλλαξε το ρυθμιστικό πλαίσιο.</span></p>
+          <p>Ίδρυσα και διοίκησα μια εταιρεία εξειδικευμένη στη στελέχωση του χώρου της υγείας, με πελάτες στη δημόσια υγεία της Σουηδίας. Σχεδίασα το σύστημα λειτουργίας που συνέδεε τις απαιτήσεις των δημόσιων διαγωνισμών, τη διαθεσιμότητα των γιατρών, τις συμβάσεις, τα προγράμματα, την τιμολόγηση και τον ποιοτικό έλεγχο.<span class="ref"></span><span class="note">Έκλεισα την εταιρεία με συνειδητή απόφαση, όταν άλλαξε το ρυθμιστικό πλαίσιο.</span></p>
           <div class="metrics">
-            <div class="metric"><b>25+</b><span>συμβάσεις δημόσιων προμηθειών</span></div>
-            <div class="metric"><b>140+</b><span>γιατροί σε παράλληλες αναθέσεις</span></div>
-            <div class="metric"><b>Όλες οι περιφέρειες</b><span>κάλυψη μέσω συμβάσεων-πλαισίων στη Σουηδία</span></div>
-            <div class="metric"><b>1,5 δισ. SEK</b><span>συνολική εκτιμώμενη αξία των συμβάσεων-πλαισίων που ανατέθηκαν<span class="ref"></span></span></div>
+            <div class="metric"><b>25+</b><span>συμβάσεις μέσω δημόσιων διαγωνισμών</span></div>
+            <div class="metric"><b>140+</b><span>γιατροί σε ταυτόχρονες αναθέσεις</span></div>
+            <div class="metric"><b>Όλες οι περιφέρειες</b><span>κάλυψη μέσω συμβάσεων-πλαισίων σε ολόκληρη τη Σουηδία</span></div>
+            <div class="metric"><b>1,5 δισ. SEK<span class="ref"></span></b><span>συνολική εκτιμώμενη αξία των συμβάσεων-πλαισίων που ανατέθηκαν</span></div>
             <div class="metric"><b>ISO 9001<br>&amp; 14001</b><span>πιστοποιημένη λειτουργία</span></div>
           </div>
-          <span class="note">Εκτιμήσεις δημόσιων προμηθειών, όχι εγγυημένη δαπάνη ούτε έσοδα της εταιρείας. Οι πραγματικές τοποθετήσεις εξαρτιόνταν από τη ζήτηση κάθε περιφέρειας και τη διαθεσιμότητα των γιατρών.</span>
+          <span class="note">Πρόκειται για εκτιμώμενες αξίες δημόσιων διαγωνισμών, όχι για εγγυημένη δαπάνη ή έσοδα της εταιρείας. Οι πραγματικές τοποθετήσεις εξαρτιόνταν από τη ζήτηση κάθε περιφέρειας και τη διαθεσιμότητα των γιατρών.</span>
         </div>
 
         <div class="item">
           <span class="aside">Στοκχόλμη<br>2011 – σήμερα</span>
           <h3>Ιδρυτής · NiyaCare Stockholm AB</h3>
-          <p>Μια εταιρεία προσωπικής βοήθειας, οργανωμένη γύρω από την αντιστοίχιση ανθρώπων με βοηθούς στους οποίους μπορούν να βασίζονται. Υπεύθυνος για την κατανόηση των ατομικών αναγκών, την ποιότητα των υπηρεσιών και την καθημερινή λειτουργία. Εκεί έμαθα τι απαιτούν στην πράξη η αυτονομία και η εμπιστοσύνη από μια υπηρεσία.</p>
+          <p>Μια εταιρεία προσωπικής υποστήριξης, οργανωμένη γύρω από τη σωστή αντιστοίχιση ανθρώπων με βοηθούς στους οποίους μπορούν να βασιστούν. Είμαι υπεύθυνος για την κατανόηση των ατομικών αναγκών, την ποιότητα των υπηρεσιών και την καθημερινή λειτουργία. Εκεί έμαθα τι απαιτούν στην πράξη η αυτονομία και η εμπιστοσύνη από μια υπηρεσία.</p>
         </div>
 
       </div>
@@ -1187,34 +1431,34 @@
   <section class="row background">
     <div class="spine"><span class="eyebrow">Προηγούμενη εμπειρία</span></div>
     <div class="col">
-      <h2 class="section">Πριν από αυτό, δεκατρία χρόνια στην οπτική επικοινωνία</h2>
-      <p>Αθήνα, 1998 έως 2011. Αρχικά layout και παραγωγή εντύπων, έπειτα συντονισμός projects, branding, packaging και δουλειά σε καμπάνιες για πελάτες στους κλάδους της μόδας, των τροφίμων και των επαγγελματικών υπηρεσιών.<span class="ref"></span><span class="note">Δεν το παρουσιάζω ως σημερινό skill. Έχουν περάσει δεκαεπτά χρόνια από τότε που εργάστηκα ως graphic designer και δεν είναι αυτό για το οποίο ζητώ να προσληφθώ.</span></p>
-      <p>Γι' αυτό καταλαβαίνω γρήγορα τα layouts και γι' αυτό το briefing πελατών και η υποστήριξη μιας απόφασης μου φαίνονται συνηθισμένα, όχι δύσκολα.</p>
+      <h2 class="section">Νωρίτερα: δεκατρία χρόνια στην οπτική επικοινωνία</h2>
+      <p>Αθήνα, 1998 έως 2011. Αρχικά layout και παραγωγή εντύπων. Στη συνέχεια, συντονισμός projects, branding, packaging και καμπάνιες για πελάτες από τη μόδα, τα τρόφιμα και τις επαγγελματικές υπηρεσίες.<span class="ref"></span><span class="note">Δεν το παρουσιάζω ως σημερινή δεξιότητα. Έχουν περάσει δεκαεπτά χρόνια από τότε που εργάστηκα ως graphic designer και δεν είναι ο ρόλος για τον οποίο θέλω να προσληφθώ.</span></p>
+      <p>Γι' αυτό καταλαβαίνω γρήγορα πώς λειτουργεί ένα layout. Και γι' αυτό το briefing πελατών και η υποστήριξη μιας απόφασης μου φαίνονται οικεία, όχι δύσκολα.</p>
 
       <div class="pairs" style="margin-top:1.5rem;">
         <div class="pair"><span>Γραφίστας, αργότερα Project Manager · Apolyto S.A.</span><span>1998 – 2009</span></div>
         <div class="pair"><span>Σύμβουλος δημιουργικού · Angelos Frentzos S.A.</span><span>2004 – 2011</span></div>
         <div class="pair"><span>Σύμβουλος δημιουργικού · Barbara's Food Company</span><span>2009 – 2010</span></div>
-        <div class="pair"><span>Σύμβουλος design · PricewaterhouseCoopers</span><span>2004 – 2009</span></div>
+        <div class="pair"><span>Σύμβουλος Design · PricewaterhouseCoopers</span><span>2004 – 2009</span></div>
       </div>
     </div>
     <div></div>
   </section>
 
-  <section class="row">
+  <section class="row education">
     <div class="spine"><span class="eyebrow">Εκπαίδευση</span></div>
     <div class="col">
-      <p class="pairs-label">Τίτλοι σπουδών</p>
+      <p class="pairs-label">Σπουδές</p>
       <div class="pairs">
         <div class="pair"><span>UX Design · Medieinstitutet Stockholm</span><span>2026</span></div>
         <div class="pair"><span>Graphic Design · IIEK Technografiko, Αθήνα</span><span>1996</span></div>
       </div>
-      <p class="pairs-label" style="margin-top:1.6rem;">Γλώσσες</p>
+      <p class="pairs-label spaced">Γλώσσες</p>
       <div class="pairs">
         <div class="pair"><span>Ελληνικά</span><span>Μητρική γλώσσα</span></div>
-        <div class="pair"><span>Αγγλικά</span><span>Άπταιστα</span></div>
-        <div class="pair"><span>Σουηδικά</span><span>Άπταιστα</span></div>
-        <div class="pair"><span>Γερμανικά</span><span>Βασικά</span></div>
+        <div class="pair"><span>Αγγλικά</span><span>Άριστη γνώση</span></div>
+        <div class="pair"><span>Σουηδικά</span><span>Άριστη γνώση</span></div>
+        <div class="pair"><span>Γερμανικά</span><span>Βασική γνώση</span></div>
       </div>
     </div>
     <div></div>
@@ -1222,10 +1466,10 @@
 
   <footer class="close">
     <blockquote class="pullquote">
-      <p class="display">Μου αρέσει η δουλειά στο product που κρίνεται στις <em>λεπτομέρειες</em>: ξεκάθαρα flows, συνεπή patterns και λύσεις που οι ομάδες μπορούν πράγματι να υλοποιήσουν.</p>
+      <p class="display">Μου αρέσει η δουλειά στο Product που κρίνεται στις <em>λεπτομέρειες</em>: ξεκάθαρα flows, συνεπή patterns και λύσεις που οι ομάδες μπορούν πράγματι να υλοποιήσουν.</p>
     </blockquote>
 
-    <p class="cta-line"><a class="cta" href="mailto:gkoupidis@gmail.com">Επικοινωνία<span class="arr">→</span></a></p>
+    <p class="cta-line"><a class="cta" href="mailto:gkoupidis@gmail.com">Ας μιλήσουμε<span class="arr">→</span></a></p>
 
     <div class="meta" style="margin-top:0;">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>

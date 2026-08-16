@@ -25,6 +25,10 @@
     --accent-2:#9C5324;
     --measure:38rem;
 
+    /* Both stocks exist, so the UA paints scrollbars and the canvas to match
+       instead of flashing white behind a dark page. */
+    color-scheme:light dark;
+
     /* editorial grid */
     --spine:7rem;
     --margin-col:13rem;
@@ -418,6 +422,65 @@
     padding:0.3rem 0.55rem;
   }
 
+  /* The research project runs full width because it is the one being read.
+     The two build projects sit as a pair beneath it: they answer the same
+     question at different scale, and reading them next to each other says
+     that faster than stacking them says it. */
+  .work-pair{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    /* Six rows the two cards share: title, subtitle, copy, outcome, link,
+       tags. The copy row is the only flexible one, so it absorbs the
+       difference in length and everything below it starts on the same line
+       in both cards. Row gap must be zero: with subgrid these tracks are
+       the ones inside the cards, so a row gap here would open a hole
+       between every element. Horizontal gutter only. */
+    grid-template-rows:auto auto 1fr auto auto auto;
+    gap:0 1.5rem;
+    width:calc(100% + var(--margin-col) + var(--gutter));
+    max-width:none;
+  }
+
+  .work-pair .work{
+    display:grid;
+    grid-template-rows:subgrid;
+    grid-row:span 6;
+    width:100%;
+    margin-bottom:0;
+    padding:var(--card-pad) var(--card-pad) 1.5rem;
+  }
+
+  .work-pair .work h3{font-size:1.55rem;}
+  .work-pair .work .kind{max-width:none;}
+
+  /* Half a card is too narrow to hold a note rail beside the text, so the
+     children take the whole card and notes fold inline. Same move the
+     1080px breakpoint makes on the page grid, made early. */
+  .work-pair .work > *{width:100%;}
+
+  .work-pair .work .note{
+    float:none;
+    display:block;
+    width:auto;
+    max-width:none;
+    margin:0.9rem 0 0;
+    border-left:2px solid var(--rule);
+    padding-left:0.85rem;
+  }
+
+  /* The shared rows now do what margin-top:auto used to: the tag rows line
+     up because they sit in the same track, not because they were pushed to
+     the bottom of two independently sized cards. */
+  .work-pair .work .card-body > p:last-child{margin-bottom:0;}
+
+  /* The paired cards carry two versions of their copy. A4 is half the width
+     of the screen column and cannot take the long one, so print swaps in a
+     condensed paragraph that folds the sidenote into the prose. Screen never
+     renders it, print never renders the other. Both are in i18n.json.
+     display:none also means the hidden version does not increment the
+     sidenote counter, so each medium numbers its own notes correctly. */
+  .print-copy{display:none;}
+
   /* ---------- expanding case study ---------- */
 
   .study{margin-top:1.15rem;}
@@ -488,7 +551,15 @@
 
   ::view-transition-group(*){animation-duration:.34s;}
 
-  .full-link{margin:0.9rem 0 0;}
+  /* The paired cards carry two links, the write-up and the repository. Flex
+     with wrap keeps them on one line where there is room and drops the second
+     beneath the first where there is not, which is what half a card does. */
+  .full-link{
+    margin:0.9rem 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.3rem 1.15rem;
+  }
 
   .full-link a{
     display:inline-flex;
@@ -553,7 +624,10 @@
     line-height:1.1;
   }
 
-  .metric span{
+  /* Direct child only. A bare `.metric span` also caught the footnote marker
+     inside the numeral and made it display:block, which dropped the superscript
+     onto a line of its own. */
+  .metric > span{
     font-size:0.78rem;
     color:var(--muted);
     line-height:1.35;
@@ -595,6 +669,12 @@
     color:var(--faint);
     margin:0 0 0.6rem;
   }
+
+  /* Was an inline style on two elements. Moved into the cascade so the print
+     block can reset it, since an inline margin needs !important to beat.
+     It has to sit after .pairs-label: same specificity, and that rule's
+     margin shorthand would otherwise zero the top margin back out. */
+  .spaced{margin-top:1.6rem;}
 
   .background p{font-size:0.95rem;}
 
@@ -853,6 +933,21 @@
       max-width:var(--measure);
     }
     .work{width:100%;}
+
+    /* Two cards at half of a collapsed measure is unreadable. The pair
+       becomes a stack, which is what it already is on the narrow end.
+       Shared rows have to go with it: stacked, they would pad the shorter
+       card out to the taller one's copy length for no reason, since nothing
+       sits beside it to line up with. Print re-establishes both, because
+       A4 matches this breakpoint too. */
+    .work-pair{
+      grid-template-columns:1fr;
+      grid-template-rows:none;
+      width:100%;
+      max-width:var(--measure);
+    }
+    .work-pair .work{display:block;grid-row:auto;}
+    .work-pair .work h3{font-size:1.7rem;}
   }
 
   @media (max-width:720px){
@@ -864,7 +959,60 @@
     .work{padding:1.35rem;}
     .work::before{top:1.35rem;right:1.35rem;}
     .work h3{font-size:1.6rem;}
+    /* Higher specificity than .work h3, so the paired cards would otherwise
+       keep the 1.7rem set at the 1080 breakpoint and print larger headings
+       than the featured card above them. */
+    .work-pair .work h3{font-size:1.6rem;}
     .statement{font-size:clamp(2rem,8vw,2.6rem);}
+  }
+
+  /* ---------- dark ----------
+     The same document on darker stock. Only the palette changes, plus the two
+     things that do not survive inversion: the paper tooth and the weight of
+     Fraunces. It sits last so it outranks the rules it overrides without
+     needing a specificity fight, and it is `screen` only, because the print
+     block below is the PDF source and must stay on white whatever the reader's
+     system asks for.
+
+     Contrast on the dark paper: ink 15.3, muted 7.5, faint 5.3, blue 9.1,
+     copper 8.1. The two accents keep their separate jobs. */
+
+  @media screen and (prefers-color-scheme:dark){
+    :root{
+      --paper:#1A1714;
+      --surface:#24201C;
+      --ink:#F2EDE6;
+      --muted:#B0A79B;
+      --faint:#948B80;
+      --rule:#332D27;
+      --accent:#9BBCE0;
+      --accent-2:#DFA268;
+    }
+
+    /* Dark dots on a near-black page are nothing at all, so the tooth flips to
+       light pigment and drops in strength. The shorthand resets background-size,
+       which is why it is restated. */
+    body::before{
+      opacity:.4;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,250,242,.035) 0 1px, transparent 1px),
+        radial-gradient(circle at 70% 65%, rgba(255,250,242,.028) 0 1px, transparent 1px);
+      background-size:7px 7px, 11px 11px;
+    }
+
+    /* Light on dark reads optically bolder than the reverse, so the display
+       weights come back down. Only Fraunces at display sizes: the margin notes
+       are 0.86rem italic at opsz 14 and thinning those would cost legibility,
+       which is the opposite of the problem being solved. */
+    .display,h2.section,.work h3{font-weight:375;}
+    .metric b{font-weight:385;}
+
+    /* A shadow tinted with ink cannot read as darkness on dark paper. */
+    .work{box-shadow:0 1px 2px rgba(0,0,0,.45),0 8px 24px -12px rgba(0,0,0,.6);}
+
+    @media (hover:hover) and (prefers-reduced-motion:no-preference){
+      .work:hover{box-shadow:0 2px 4px rgba(0,0,0,.5),0 20px 44px -20px rgba(0,0,0,.75);}
+    }
   }
 
   /* ---------- print ----------
@@ -888,12 +1036,12 @@
 
     /* one column everywhere */
     .row,.masthead,.close{display:block;padding-left:0;}
-    .row{padding:9pt 0 0;border-bottom:0;break-inside:auto;}
+    .row{padding:7pt 0 0;border-bottom:0;break-inside:auto;}
     .col,.lede,.close-line{max-width:none;}
     .work > *{width:100%;}
 
     /* section label becomes a ruled header */
-    .row > .spine{margin-bottom:5pt;}
+    .row > .spine{margin-bottom:5pt;break-after:avoid;}
     .row > .spine .eyebrow{
       position:static;
       display:flex;
@@ -914,7 +1062,10 @@
       animation:none;
     }
 
-    h2.section{font-size:12.5pt;margin-bottom:5pt;}
+    /* break-after keeps a section heading with the section. Without it,
+       "Running my own companies since 2011" sat alone at the foot of a page
+       and its two companies opened the next one. */
+    h2.section{font-size:12.5pt;margin-bottom:5pt;break-after:avoid;}
     h2.section::after{display:none;}
 
     /* margin apparatus folds inline, small */
@@ -944,41 +1095,115 @@
     .work{
       width:100%;
       box-shadow:none;
-      padding:8pt 9pt;
-      margin-bottom:7pt;
+      padding:7pt 9pt;
+      margin-bottom:6pt;
       break-inside:avoid;
     }
+    /* The pair prints as a pair. Two short cards side by side cost one card's
+       height instead of two, which is what keeps the document to three pages.
+       It only fits because these two swap in .print-copy above; at full
+       screen length they overflow the column. Three things had to be fixed
+       before this worked, all of them recorded in CLAUDE.md. */
+    /* max-width:none is load-bearing. A4 is about 794px, so the
+       max-width:1080px block applies on paper too and was capping the pair
+       at --measure while the card above it ran the full 182mm. That block
+       resets .col for the same reason; the pair needs it as well. */
+    .work-pair{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:auto auto 1fr auto auto auto;
+      gap:0 10pt;
+      width:100%;
+      max-width:none;
+      break-inside:avoid;
+    }
+
+    .work-pair .work{
+      display:grid;
+      grid-template-rows:subgrid;
+      grid-row:span 6;
+      margin-bottom:0;
+      padding:7pt 9pt;
+      font-size:8.5pt;
+      line-height:1.36;
+    }
+
     .work h3{font-size:14pt;}
+    .work-pair .work h3{font-size:12pt;}
     .work .kind{font-size:8.6pt;margin-bottom:5pt;}
+    .work-pair .work .kind{font-size:7.6pt;margin-bottom:4pt;}
+    .work-pair .work .outcome{margin:5pt 0;padding-left:6pt;}
+    .work-pair .work .tags{margin-top:auto;padding-top:5pt;}
+    .work-pair .work .tag{font-size:6pt;padding:1pt 3pt;}
+    .work-pair .full-link{margin-top:5pt;font-size:7.2pt;}
+
+    /* The counter inherits top/right of 2rem from the screen rule, which is
+       three times the printed card padding and lands it level with the
+       subtitle rather than the title. Invisible at full width, a collision
+       at half. */
+    .work::before{top:7pt;right:9pt;}
     .outcome{margin:6pt 0;padding-left:7pt;}
     .tags{margin-top:6pt;padding-top:6pt;}
     .tag{font-size:6.6pt;padding:1.5pt 4pt;}
 
     .item{break-inside:avoid;}
-    .stack{gap:8pt;}
+    .stack{gap:7pt;}
     /* Five explicit columns, or ISO orphans onto a row of its own. */
     .metrics{grid-template-columns:repeat(5,minmax(0,1fr));gap:5pt 7pt;margin-top:6pt;padding-top:6pt;}
     .metric b{font-size:11.5pt;}
-    .metric span{font-size:7.2pt;}
+    .metric > span{font-size:7.2pt;}
     .pair{padding-bottom:3pt;}
     .pairs{gap:3pt;break-inside:avoid;}
+
+    /* Education splits badly: Qualifications lands at the foot of page two and
+       Languages starts page three alone. Keeping the section whole moves the
+       break to a section boundary, which reads as a decision rather than a
+       spill, and gives the last page a composed block instead of four rows. */
+    .row.education{break-inside:avoid;}
+    /* Same reasoning one section earlier: Background was splitting between
+       its prose and its four Athens roles, so a page turn landed in the
+       middle of a section. Held whole, page two ends at the close of
+       Experience and page three is Background, Education and the closing
+       block together. */
+    .row.background{break-inside:avoid;}
     /* Keep a label with the list it introduces. */
     .pairs-label{break-after:avoid;margin-bottom:3pt;}
+    .spaced{margin-top:7pt;}
 
     /* case studies stay closed; the printed URL carries the reader there */
     .study{display:none;}
-    .full-link{margin-top:6pt;}
+    /* Screen lays the two links out as a flex row. Print stacks them, or the
+       block rule below cannot break the addresses onto their own lines. */
+    .full-link{margin-top:6pt;display:block;}
     .full-link .arr{display:none;}
-    .full-link a::after{content:" " attr(href);letter-spacing:0;text-transform:none;}
+    .full-link a + a{margin-top:3pt;}
 
-    /* closing */
-    .close{padding-top:10pt;margin-top:9pt;}
-    .pullquote{margin-bottom:7pt;}
-    .pullquote .display{font-size:14pt;line-height:1.3;max-width:none;}
+    /* The link is inline-flex on screen, which makes the printed URL an
+       unbreakable flex item: in a half-width column it held its width and
+       forced the label beside it to wrap one word per line. As a block with
+       the URL on its own line, the address can break wherever it needs to. */
+    .full-link a{display:block;}
+    .full-link a::after{
+      content:attr(href);
+      display:block;
+      letter-spacing:0;
+      text-transform:none;
+      overflow-wrap:anywhere;
+    }
+
+    /* Screen copy and print copy swap places. */
+    .screen-copy{display:none;}
+    .print-copy{display:block;}
+
+    /* closing. Held whole, or the pullquote ends one page and the contact
+       details open the next with nothing else on it. */
+    .close{padding-top:8pt;margin-top:7pt;break-inside:avoid;}
+    .pullquote{margin-bottom:6pt;}
+    .pullquote .display{font-size:13pt;line-height:1.28;max-width:none;}
     .cta{border:0;padding:0;}
     .cta .arr{display:none;}
-    .cta-line{margin-bottom:7pt;}
-    .colophon{margin-top:10pt;font-size:7pt;}
+    .cta-line{margin-bottom:5pt;}
+    .colophon{margin-top:8pt;font-size:7pt;}
 
     /* nothing animated survives onto paper */
     .progress{display:none;}
@@ -1010,7 +1235,7 @@
   <header class="masthead">
     <p class="name">Ioannis Koupidis · <span class="role">UX research &amp; product</span><!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="./" hreflang="en" aria-current="page">EN</a><span class="sep" aria-hidden="true">/</span><a href="sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="el/" hreflang="el">EL</a></span><!--/LANGS--><span class="aside">Stockholm</span></p>
     <h1 class="display statement"><span class="w">I</span> <span class="w">don't</span> <span class="w"><em>guess</em>.</span></h1>
-    <p class="lede">I interview people, synthesise what they said, put something in front of them, and change it when the testing says I got it wrong.</p>
+    <p class="lede">Interview, synthesise, put it in front of people, change what the testing says I got wrong. That is the method I trained in and the one I want to be held to.</p>
     <div class="meta">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
       <a href="tel:+46739558253">+46 (0) 73-955 82 53</a>
@@ -1020,16 +1245,16 @@
   </header>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Work</span></div>
+    <div class="spine"><span class="eyebrow">Projects</span></div>
     <div class="col work-list">
 
       <article class="work" style="view-transition-name:study-agentx;">
         <h3>Agent X</h3>
         <p class="kind">Student project · Medieinstitutet Stockholm · 2026</p>
-        <p>How could contextual guidance help new players of Escape from Tarkov, a hardcore survival shooter, without flattening the difficulty its audience plays it for? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.<span class="ref"></span><span class="note">Run with teacher guidance as part of the UX programme. My first complete research cycle.</span></p>
+        <p>How could contextual guidance help new players of Escape from Tarkov, a hardcore survival shooter, without flattening the difficulty its audience plays it for? I ran eight player interviews and synthesised them into two personas and a journey map, then designed four wireframe views and tested them in three think-aloud sessions.<span class="ref"></span><span class="note">My first complete research cycle, run under supervision. The write-up names its own sample problem rather than burying it.</span></p>
         <div class="outcome">
           <span class="eyebrow">What it produced</span>
-          Participants found and understood the guidance without prompting.<span class="ref"></span><span class="note">Testing also exposed language and sample limitations worth a further round.</span>
+          Participants found and understood the guidance without prompting.
         </div>
 
         <details class="study">
@@ -1064,70 +1289,78 @@
         </div>
       </article>
 
-      <article class="work" style="view-transition-name:study-radio;">
-        <h3>Radio</h3>
-        <p class="kind">Personal project · directing an AI-assisted iOS build · 2026</p>
-        <p>I built an internet radio player for iOS in a single working day without writing the code. I set the scope, ran a build agent, then ran a separate agent to audit its output, and tested the result on a physical device.<span class="ref"></span><span class="note">The work was specifying it, questioning it and testing it. That is product management, not engineering.</span></p>
-        <div class="outcome">
-          <span class="eyebrow">What it produced</span>
-          The audit caught four faults that all looked finished, and device testing caught a network failure that code review had passed.
-        </div>
+      <div class="work-pair">
 
-        <details class="study">
-          <summary><span class="chev">›</span><span class="label-closed">Read the case study</span><span class="label-open">Close</span></summary>
-          <div class="detail-body">
-            <h4>The question</h4>
-            <p>If an agent can write the code, what is left for the person directing it? I wanted to find out by shipping something real in a fixed window and paying attention to where my own judgement actually mattered.</p>
-
-            <h4>How it ran</h4>
-            <ol>
-              <li>Scope set first and written down, so that finished had a definition before anything was built.</li>
-              <li>One agent building against that scope.</li>
-              <li>A second, separate agent auditing the first one's output, on the assumption that it was wrong until shown otherwise.</li>
-              <li>Testing on a physical device rather than the simulator.</li>
-            </ol>
-
-            <h4>What came back</h4>
-            <p>The audit found four faults in work that presented as complete. Device testing then caught a network failure that had passed code review, because the simulator's network conditions are not a phone's.</p>
-
-            <h4>What I take from it</h4>
-            <p>The generation step was the cheap part. The value was in specifying the thing precisely, refusing to accept output that only looked finished, and testing in conditions that resemble use. None of that required writing code, and all of it required knowing what to distrust.</p>
+        <article class="work" style="view-transition-name:study-scribe;">
+          <h3>Scribe</h3>
+          <p class="kind">Personal project · directing an AI-assisted macOS build · 2026</p>
+          <div class="card-body">
+            <p class="screen-copy">A Mac app that records a meeting and transcribes it on the machine, with nothing uploaded. I wrote the specification and the acceptance criteria, ran build agents against them, then checked the result by hand: record thirty seconds, open the folder, play the file, read the byte count.</p>
+            <p class="screen-copy">Most of the product decisions were refusals. No cloud transcription, no stored voiceprints, no recording that starts itself from a calendar. A session is an ordinary folder of files, so the recordings still open if the app goes away.<span class="ref"></span><span class="note">Sixteen seconds before the first text appears is a constraint of transcribing locally. Saying so on screen was cheaper than pretending otherwise.</span></p>
+            <p class="print-copy">A Mac app that records a meeting and transcribes it on the machine, with nothing uploaded. I wrote the specification and the acceptance criteria, ran build agents against them, then verified the result by hand. Most of the product decisions were refusals: no cloud transcription, no stored voiceprints, no recording that starts itself from a calendar.</p>
           </div>
-        </details>
+          <div class="outcome">
+            <span class="eyebrow">What it produced</span>
+            Four defects survived 283 passing tests, including transcripts that appeared on screen and were never written to disk. Each one needed a person to listen to the output.
+          </div>
 
-        <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Open the full case study<span class="arr">↗</span></a></p>
+          <p class="full-link"><a href="https://ioanniskp.github.io/Scribe-Project/" target="_blank" rel="noopener">Open the full case study<span class="arr">↗</span></a><a href="https://github.com/IoannisKP/scribe" target="_blank" rel="noopener">Source on GitHub<span class="arr">↗</span></a></p>
 
-        <div class="tags">
-          <span class="tag">Scoping</span>
-          <span class="tag">AI-assisted delivery</span>
-          <span class="tag">Critical evaluation</span>
-          <span class="tag">Device testing</span>
-        </div>
-      </article>
+          <div class="tags">
+            <span class="tag">Specification</span>
+            <span class="tag">Product decisions</span>
+            <span class="tag">Privacy by default</span>
+            <span class="tag">Manual verification</span>
+          </div>
+        </article>
+
+        <article class="work" style="view-transition-name:study-radio;">
+          <h3>Radio</h3>
+          <p class="kind">Personal project · directing an AI-assisted iOS build · 2026</p>
+          <div class="card-body">
+            <p class="screen-copy">An internet radio player for iOS, scoped and built in a single working day. One agent built against the scope, a second audited the first one's output, and I tested on a physical phone rather than the simulator.</p>
+            <p class="screen-copy">The scope was written down before anything was built, so that finished had a definition that was not the agent's to decide.<span class="ref"></span><span class="note">The first run at working this way, on a one-day window. Scribe is what the method turned into over thirteen days.</span></p>
+            <p class="print-copy">An internet radio player for iOS, scoped and built in a single working day. One agent built against the scope, a second audited its output, and I tested on a physical phone rather than the simulator. The first run at working this way; Scribe is what the method turned into over thirteen days.</p>
+          </div>
+          <div class="outcome">
+            <span class="eyebrow">What it produced</span>
+            The audit rejected work that presented as complete, and the phone found a network failure the simulator could not produce.
+          </div>
+
+          <p class="full-link"><a href="https://ioanniskp.github.io/radio/" target="_blank" rel="noopener">Open the full case study<span class="arr">↗</span></a><a href="https://github.com/IoannisKP/Radio-iOS-app" target="_blank" rel="noopener">Source on GitHub<span class="arr">↗</span></a></p>
+
+          <div class="tags">
+            <span class="tag">Scoping</span>
+            <span class="tag">Agent auditing</span>
+            <span class="tag">Device testing</span>
+          </div>
+        </article>
+
+      </div>
 
     </div>
     <div></div>
   </section>
 
   <section class="row">
-    <div class="spine"><span class="eyebrow">Practice</span></div>
+    <div class="spine"><span class="eyebrow">Approach</span></div>
     <div class="col">
       <h2 class="section">How I work</h2>
       <div class="stack">
         <div class="item">
           <h3>Research that survives contact with users</h3>
-          <p>Interviews, synthesis, personas, journey mapping, wireframing and think-aloud testing. So far that is one complete cycle, run as a student project at Medieinstitutet with teachers to steer me. I am looking for the role where it becomes daily practice.</p>
+          <p>Interviews, synthesis, personas, journey mapping, wireframing and think-aloud testing. One complete cycle so far, run at Medieinstitutet under supervision. What I bring to the second is knowing exactly where the first one was weak.</p>
         </div>
         <div class="item">
           <h3>Comfort with complexity and stakeholders</h3>
-          <p>Twelve years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.<span class="ref"></span><span class="note">Swedish public healthcare procurement. Regulated, audited, and slow to forgive an error.</span></p>
+          <p>Thirteen years running a regulated service business taught me to hold a system in my head, translate requirements into something workable, and decide with incomplete information.<span class="ref"></span><span class="note">Swedish public healthcare procurement. Regulated, audited, and slow to forgive an error.</span></p>
         </div>
         <div class="item">
           <h3>Sceptical use of AI tooling</h3>
           <p>I use generative and agent-based workflows daily, and I assume their output is wrong until tested. Auditing is the part that matters.</p>
         </div>
       </div>
-      <p class="inline-list" style="margin-top:1.6rem;">User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows<span class="ref"></span><span class="note">Figma at a basic level. Enough to wireframe, not enough to claim it as a strength.</span></p>
+      <p class="inline-list spaced">User interviews · personas · journey mapping · wireframing · usability testing · AI-assisted workflows<span class="ref"></span><span class="note">Figma at a basic level: enough to wireframe and hand over, not a production design skill.</span></p>
     </div>
     <div></div>
   </section>
@@ -1135,6 +1368,7 @@
   <section class="row">
     <div class="spine"><span class="eyebrow">Experience</span></div>
     <div class="col">
+      <h2 class="section">Running my own companies since 2011</h2>
       <div class="stack">
 
         <div class="item">
@@ -1145,7 +1379,7 @@
             <div class="metric"><b>25+</b><span>public procurement contracts</span></div>
             <div class="metric"><b>140+</b><span>physicians on parallel assignments</span></div>
             <div class="metric"><b>All regions</b><span>framework coverage in Sweden</span></div>
-            <div class="metric"><b>SEK 1.5B+</b><span>aggregate estimated value of awarded frameworks<span class="ref"></span></span></div>
+            <div class="metric"><b>SEK 1.5B+<span class="ref"></span></b><span>aggregate estimated value of awarded frameworks</span></div>
             <div class="metric"><b>ISO 9001<br>&amp; 14001</b><span>certified operations</span></div>
           </div>
           <span class="note">Procurement estimates, not guaranteed spend and not company revenue. Actual placements depended on regional demand and physician availability.</span>
@@ -1179,7 +1413,7 @@
     <div></div>
   </section>
 
-  <section class="row">
+  <section class="row education">
     <div class="spine"><span class="eyebrow">Education</span></div>
     <div class="col">
       <p class="pairs-label">Qualifications</p>
@@ -1187,7 +1421,7 @@
         <div class="pair"><span>UX Design · Medieinstitutet Stockholm</span><span>2026</span></div>
         <div class="pair"><span>Graphic Design · IIEK Technografiko, Athens</span><span>1996</span></div>
       </div>
-      <p class="pairs-label" style="margin-top:1.6rem;">Languages</p>
+      <p class="pairs-label spaced">Languages</p>
       <div class="pairs">
         <div class="pair"><span>Greek</span><span>Native</span></div>
         <div class="pair"><span>English</span><span>Fluent</span></div>
