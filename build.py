@@ -25,22 +25,26 @@ LANGS = ('sv', 'el')
 # Masthead. Each word is its own span for the load animation; one carries the
 # accent. Which word takes the emphasis is an editorial choice, not derivable.
 STATEMENT = {
-    'en': '<span class="w">I</span> <span class="w">don\'t</span> '
-          '<span class="w"><em>guess</em>.</span>',
-    'sv': '<span class="w">Jag</span> <span class="w"><em>gissar</em></span> '
-          '<span class="w">inte.</span>',
-    'el': '<span class="w">Δεν</span> <span class="w">βασίζομαι</span> '
-          '<span class="w">σε</span> <span class="w"><em>υποθέσεις</em>.</span>',
+    'en': '<span class="w">Creating</span> <span class="w">experiences</span> '
+          '<span class="w">that</span> <span class="w"><em>connect</em></span> '
+          '<span class="w">with</span> <span class="w">people.</span>',
+    'sv': '<span class="w">Skapar</span> <span class="w">upplevelser</span> '
+          '<span class="w">som</span> <span class="w"><em>berör</em></span> '
+          '<span class="w">människor.</span>',
+    'el': '<span class="w">Δημιουργώ</span> <span class="w">εμπειρίες</span> '
+          '<span class="w">που</span> <span class="w"><em>συνδέονται</em></span> '
+          '<span class="w">με</span> <span class="w">τους</span> '
+          '<span class="w">ανθρώπους.</span>',
 }
 
 # Closing statement, with the accent word emphasised.
 CLOSING = {
-    'sv': 'Det produktarbete jag gillar mest sitter i <em>detaljerna</em>: '
-          'tydliga flöden, konsekventa mönster och lösningar som team '
-          'faktiskt kan bygga.',
-    'el': 'Μου αρέσει η δουλειά στο Product που κρίνεται στις '
-          '<em>λεπτομέρειες</em>: ξεκάθαρα flows, συνεπή patterns και λύσεις '
-          'που οι ομάδες μπορούν πράγματι να υλοποιήσουν.',
+    'sv': 'Jag kombinerar empati, research och produkttänk för att förstå '
+          'människor, navigera komplexitet och skapa digitala upplevelser '
+          'som <em>betyder något</em>.',
+    'el': 'Συνδυάζω ενσυναίσθηση, έρευνα και product thinking για να '
+          'κατανοήσω τους ανθρώπους, να διαχειριστώ την πολυπλοκότητα και να '
+          'δημιουργήσω ψηφιακές εμπειρίες που <em>έχουν σημασία</em>.',
 }
 
 # Greek renders in different typefaces, so the credit line must say so.

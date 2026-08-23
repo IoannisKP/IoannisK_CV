@@ -25,16 +25,16 @@ Each entry gives the English source first and the Greek translation beneath it. 
 > Στοκχόλμη
 
 **English source**
-> I don't guess.
+> Creating experiences that connect with people.
 
 **Greek — selected option**
-> Δεν βασίζομαι σε υποθέσεις.
+> Δημιουργώ εμπειρίες που συνδέονται με τους ανθρώπους.
 
 **English source**
-> Interview, synthesise, put it in front of people, change what the testing says I got wrong. That is the method I trained in and the one I want to be held to.
+> I combine research, strategy, and design to uncover what people need and create experiences that truly matter.
 
 **Greek**
-> Συνεντεύξεις, σύνθεση, δοκιμή με πραγματικούς ανθρώπους, αλλαγή σε ό,τι δείχνει το testing ότι έκανα λάθος. Αυτή είναι η μέθοδος στην οποία εκπαιδεύτηκα και με βάση αυτήν θέλω να κριθώ.
+> Συνδυάζω έρευνα, στρατηγική και σχεδιασμό για να καταλάβω τι χρειάζονται οι άνθρωποι και να δημιουργήσω εμπειρίες που έχουν πραγματική αξία.
 
 **English source**
 > gkoupidis@gmail.com
@@ -781,10 +781,10 @@ Each entry gives the English source first and the Greek translation beneath it. 
 ## Closing
 
 **English source**
-> I like the product work that lives in the details: clear flows, consistent patterns, and solutions teams can actually build.
+> Combining empathy, research, and product thinking to understand people, navigate complexity, and create digital experiences that matter.
 
 **Greek — selected option**
-> Μου αρέσει η δουλειά στο Product που κρίνεται στις λεπτομέρειες: ξεκάθαρα flows, συνεπή patterns και λύσεις που οι ομάδες μπορούν πράγματι να υλοποιήσουν.
+> Συνδυάζω ενσυναίσθηση, έρευνα και product thinking για να κατανοήσω τους ανθρώπους, να διαχειριστώ την πολυπλοκότητα και να δημιουργήσω ψηφιακές εμπειρίες που έχουν σημασία.
 
 **English source**
 > Get in touch

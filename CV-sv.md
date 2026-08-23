@@ -25,16 +25,16 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Stockholm
 
 **English source**
-> I don't guess.
+> Creating experiences that connect with people.
 
 **Swedish — selected option**
-> Jag gissar inte.
+> Skapar upplevelser som berör människor.
 
 **English source**
-> Interview, synthesise, put it in front of people, change what the testing says I got wrong. That is the method I trained in and the one I want to be held to.
+> I combine research, strategy, and design to uncover what people need and create experiences that truly matter.
 
 **Swedish**
-> Intervjua, sammanställa, låta människor prova, ändra det som testerna visar att jag fått fel. Det är metoden jag är utbildad i och den jag vill bli bedömd efter.
+> Jag kombinerar research, strategi och design för att förstå vad människor behöver och skapa upplevelser som gör verklig skillnad.
 
 **English source**
 > gkoupidis@gmail.com
@@ -781,10 +781,10 @@ Each entry gives the English source first and the Swedish translation beneath it
 ## Closing
 
 **English source**
-> I like the product work that lives in the details: clear flows, consistent patterns, and solutions teams can actually build.
+> Combining empathy, research, and product thinking to understand people, navigate complexity, and create digital experiences that matter.
 
 **Swedish — selected option**
-> Det produktarbete jag gillar mest sitter i detaljerna: tydliga flöden, konsekventa mönster och lösningar som team faktiskt kan bygga.
+> Jag kombinerar empati, research och produkttänk för att förstå människor, navigera komplexitet och skapa digitala upplevelser som betyder något.
 
 **English source**
 > Get in touch
