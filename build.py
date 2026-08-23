@@ -26,14 +26,14 @@ LANGS = ('sv', 'el')
 # accent. Which word takes the emphasis is an editorial choice, not derivable.
 STATEMENT = {
     'en': '<span class="w">Creating</span> <span class="w">experiences</span> '
-          '<span class="w">that</span> <span class="w"><em>connect</em></span> '
+          '<span class="w">that</span> <span class="w pull"><em>connect</em></span> '
           '<span class="w">with</span> <span class="w">people.</span>',
     'sv': '<span class="w">Jag</span> <span class="w">skapar</span> '
           '<span class="w">upplevelser</span> <span class="w">som</span> '
-          '<span class="w"><em>når fram</em></span> '
+          '<span class="w pull"><em>når fram</em></span> '
           '<span class="w">till</span> <span class="w">människor.</span>',
     'el': '<span class="w">Δημιουργώ</span> <span class="w">εμπειρίες</span> '
-          '<span class="w">που</span> <span class="w"><em>μιλούν</em></span> '
+          '<span class="w">που</span> <span class="w pull"><em>μιλούν</em></span> '
           '<span class="w">στους</span> <span class="w">ανθρώπους.</span>',
 }
 

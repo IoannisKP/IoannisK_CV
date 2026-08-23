@@ -784,16 +784,33 @@
 
   .statement .w{display:inline-block;}
 
-  /* Masthead reveal runs on load, not on scroll. It is already in view. */
+  /* Masthead reveal runs on load, not on scroll. It is already in view.
+
+     Every word but one drifts in from the right. The accent word is drawn
+     the other way, across from the far left, and overshoots its slot before
+     relaxing into it, so the word that means connect is the one that closes
+     the gap. The delays run to eight because the word count is per language:
+     English and Greek carry six spans, Swedish seven. */
   @media (prefers-reduced-motion:no-preference){
     .statement .w{
       opacity:0;
-      animation:word .8s cubic-bezier(.2,.7,.3,1) forwards;
+      animation:word-in .8s cubic-bezier(.2,.7,.3,1) forwards;
     }
 
-    .statement .w:nth-child(1){animation-delay:.06s;}
-    .statement .w:nth-child(2){animation-delay:.17s;}
-    .statement .w:nth-child(3){animation-delay:.28s;}
+    .statement .w:nth-child(1){animation-delay:.04s;}
+    .statement .w:nth-child(2){animation-delay:.11s;}
+    .statement .w:nth-child(3){animation-delay:.18s;}
+    .statement .w:nth-child(4){animation-delay:.25s;}
+    .statement .w:nth-child(5){animation-delay:.32s;}
+    .statement .w:nth-child(6){animation-delay:.39s;}
+    .statement .w:nth-child(7){animation-delay:.46s;}
+    .statement .w:nth-child(8){animation-delay:.53s;}
+
+    /* Declared after the delays deliberately: it ties on specificity, so
+       source order is what lets its shorthand reset the delay above. */
+    .statement .w.pull{
+      animation:word-magnet .95s cubic-bezier(.34,1.4,.64,1) .2s forwards;
+    }
 
     /* Fraunces settles onto its optical size as the line lands. */
     .statement{animation:settle 1.5s cubic-bezier(.2,.7,.3,1) forwards;}
@@ -871,6 +888,27 @@
   }
 
   @keyframes grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+
+  /* The masthead reveal. Travel is 2rem, exactly .wrap's side padding, so a
+     word landing at the end of a line can never push the page into
+     horizontal scroll on a narrow screen. */
+  @keyframes word-in{
+    from{opacity:0;transform:translateX(2rem);}
+    to{opacity:1;transform:none;}
+  }
+
+  /* Overshoot past the slot, then relax back: the magnet closing. Overflow
+     to the inline start is not scrollable, so the long travel costs nothing.
+
+     The overshoot is 5px rather than the 9px this was prototyped at. The
+     prototype had no `settle`; on the real page Fraunces is still moving
+     through its optical sizes while this lands, and the two together closed
+     the word space against the next word. */
+  @keyframes word-magnet{
+    0%{opacity:0;transform:translateX(-240px);}
+    70%{opacity:1;transform:translateX(5px);}
+    100%{opacity:1;transform:none;}
+  }
 
   @keyframes word{
     from{opacity:0;transform:translateY(.45em) rotate(1deg);}
@@ -1234,7 +1272,7 @@
 
   <header class="masthead">
     <p class="name">Ioannis Koupidis · <span class="role">UX research &amp; product</span><!--LANGS--><span class="langs" role="group" aria-label="Language"><a href="./" hreflang="en" aria-current="page">EN</a><span class="sep" aria-hidden="true">/</span><a href="sv/" hreflang="sv">SV</a><span class="sep" aria-hidden="true">/</span><a href="el/" hreflang="el">EL</a></span><!--/LANGS--><span class="aside">Stockholm</span></p>
-    <h1 class="display statement"><span class="w">Creating</span> <span class="w">experiences</span> <span class="w">that</span> <span class="w"><em>connect</em></span> <span class="w">with</span> <span class="w">people.</span></h1>
+    <h1 class="display statement"><span class="w">Creating</span> <span class="w">experiences</span> <span class="w">that</span> <span class="w pull"><em>connect</em></span> <span class="w">with</span> <span class="w">people.</span></h1>
     <p class="lede">I combine research, strategy, and design to uncover what people need and create experiences that truly matter.</p>
     <div class="meta">
       <a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a>
