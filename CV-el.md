@@ -28,13 +28,13 @@ Each entry gives the English source first and the Greek translation beneath it. 
 > Creating experiences that connect with people.
 
 **Greek — selected option**
-> Δημιουργώ εμπειρίες που συνδέονται με τους ανθρώπους.
+> Δημιουργώ εμπειρίες που μιλούν στους ανθρώπους.
 
 **English source**
 > I combine research, strategy, and design to uncover what people need and create experiences that truly matter.
 
 **Greek**
-> Συνδυάζω έρευνα, στρατηγική και σχεδιασμό για να καταλάβω τι χρειάζονται οι άνθρωποι και να δημιουργήσω εμπειρίες που έχουν πραγματική αξία.
+> Συνδυάζω την έρευνα, τη στρατηγική και τον σχεδιασμό, ώστε να κατανοώ τις πραγματικές ανάγκες των ανθρώπων και να δημιουργώ εμπειρίες που έχουν ουσία.
 
 **English source**
 > gkoupidis@gmail.com
@@ -784,7 +784,7 @@ Each entry gives the English source first and the Greek translation beneath it. 
 > Combining empathy, research, and product thinking to understand people, navigate complexity, and create digital experiences that matter.
 
 **Greek — selected option**
-> Συνδυάζω ενσυναίσθηση, έρευνα και product thinking για να κατανοήσω τους ανθρώπους, να διαχειριστώ την πολυπλοκότητα και να δημιουργήσω ψηφιακές εμπειρίες που έχουν σημασία.
+> Με αφετηρία την ουσιαστική κατανόηση των ανθρώπων και την έρευνα, προσεγγίζω κάθε πρόκληση με στρατηγική σκέψη και σχεδιάζω ψηφιακές εμπειρίες με πραγματική αξία.
 
 **English source**
 > Get in touch

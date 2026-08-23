@@ -28,23 +28,23 @@ STATEMENT = {
     'en': '<span class="w">Creating</span> <span class="w">experiences</span> '
           '<span class="w">that</span> <span class="w"><em>connect</em></span> '
           '<span class="w">with</span> <span class="w">people.</span>',
-    'sv': '<span class="w">Skapar</span> <span class="w">upplevelser</span> '
-          '<span class="w">som</span> <span class="w"><em>berör</em></span> '
-          '<span class="w">människor.</span>',
+    'sv': '<span class="w">Jag</span> <span class="w">skapar</span> '
+          '<span class="w">upplevelser</span> <span class="w">som</span> '
+          '<span class="w"><em>når fram</em></span> '
+          '<span class="w">till</span> <span class="w">människor.</span>',
     'el': '<span class="w">Δημιουργώ</span> <span class="w">εμπειρίες</span> '
-          '<span class="w">που</span> <span class="w"><em>συνδέονται</em></span> '
-          '<span class="w">με</span> <span class="w">τους</span> '
-          '<span class="w">ανθρώπους.</span>',
+          '<span class="w">που</span> <span class="w"><em>μιλούν</em></span> '
+          '<span class="w">στους</span> <span class="w">ανθρώπους.</span>',
 }
 
 # Closing statement, with the accent word emphasised.
 CLOSING = {
-    'sv': 'Jag kombinerar empati, research och produkttänk för att förstå '
-          'människor, navigera komplexitet och skapa digitala upplevelser '
-          'som <em>betyder något</em>.',
-    'el': 'Συνδυάζω ενσυναίσθηση, έρευνα και product thinking για να '
-          'κατανοήσω τους ανθρώπους, να διαχειριστώ την πολυπλοκότητα και να '
-          'δημιουργήσω ψηφιακές εμπειρίες που <em>έχουν σημασία</em>.',
+    'sv': 'Med empati, research och produkttänkande förstår jag människor, '
+          'skapar tydlighet i komplexa sammanhang och formar digitala '
+          'upplevelser som verkligen <em>betyder något</em>.',
+    'el': 'Με αφετηρία την ουσιαστική κατανόηση των ανθρώπων και την '
+          'έρευνα, προσεγγίζω κάθε πρόκληση με στρατηγική σκέψη και σχεδιάζω '
+          'ψηφιακές εμπειρίες με <em>πραγματική αξία</em>.',
 }
 
 # Greek renders in different typefaces, so the credit line must say so.

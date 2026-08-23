@@ -28,13 +28,13 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Creating experiences that connect with people.
 
 **Swedish — selected option**
-> Skapar upplevelser som berör människor.
+> Jag skapar upplevelser som når fram till människor.
 
 **English source**
 > I combine research, strategy, and design to uncover what people need and create experiences that truly matter.
 
 **Swedish**
-> Jag kombinerar research, strategi och design för att förstå vad människor behöver och skapa upplevelser som gör verklig skillnad.
+> Jag kombinerar research, strategi och design för att förstå vad människor verkligen behöver och skapa upplevelser som gör verklig skillnad.
 
 **English source**
 > gkoupidis@gmail.com
@@ -784,7 +784,7 @@ Each entry gives the English source first and the Swedish translation beneath it
 > Combining empathy, research, and product thinking to understand people, navigate complexity, and create digital experiences that matter.
 
 **Swedish — selected option**
-> Jag kombinerar empati, research och produkttänk för att förstå människor, navigera komplexitet och skapa digitala upplevelser som betyder något.
+> Med empati, research och produkttänkande förstår jag människor, skapar tydlighet i komplexa sammanhang och formar digitala upplevelser som verkligen betyder något.
 
 **English source**
 > Get in touch
