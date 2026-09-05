@@ -53,3 +53,5 @@ html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:a
 @media(max-width:760px){.hero-art[data-glass]>img{left:-12%;top:27%;width:125%;height:44%}.contact-art[data-glass]>img{width:150%;max-width:none;margin-left:-25%}.glass-cursor{display:none}}
 
 html[data-motion=off] .glass-cursor{display:none}
+
+.identity>span svg{display:block;width:1em;height:1em}
