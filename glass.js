@@ -137,8 +137,8 @@ function sculptureGeometry(segments,sides) {
 
 export function mountGlass() {
   const hosts=[...document.querySelectorAll('[data-glass]')],root=document.documentElement;
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),fine=matchMedia('(pointer: fine)'),systemDark=matchMedia('(prefers-color-scheme: dark)');
-  const off=()=>reduced.matches||root.dataset.motion==='off';
+  const fine=matchMedia('(pointer: fine)'),systemDark=matchMedia('(prefers-color-scheme: dark)');
+  const off=()=>root.dataset.motion==='off';
   let dead=false,raf=0,last=0,time=0,active=null,dirty=true,visible=true,renderer=null;
   let width=1,height=1,lastPointer=null,hovered=false,pointerAge=10,trail=[];
   const mouse=new THREE.Vector2(),smoothMouse=new THREE.Vector2(),bend={x:0,y:0,force:0};
@@ -311,11 +311,11 @@ export function mountGlass() {
   const resizeObserver=new ResizeObserver(resize);hosts.forEach(h=>resizeObserver.observe(h));
   addEventListener('pointermove',pointer,{passive:true});document.addEventListener('pointerleave',leave);
   addEventListener('scroll',scroll,{passive:true});addEventListener('resize',resize);addEventListener('portfolio-motion',motion);
-  reduced.addEventListener('change',motion);systemDark.addEventListener('change',palette);document.addEventListener('visibilitychange',visibility);request();
+  systemDark.addEventListener('change',palette);document.addEventListener('visibilitychange',visibility);request();
   return ()=>{
     dead=true;cancelAnimationFrame(raf);themeObserver.disconnect();resizeObserver.disconnect();
     removeEventListener('pointermove',pointer);document.removeEventListener('pointerleave',leave);removeEventListener('scroll',scroll);removeEventListener('resize',resize);removeEventListener('portfolio-motion',motion);
-    reduced.removeEventListener('change',motion);systemDark.removeEventListener('change',palette);document.removeEventListener('visibilitychange',visibility);
+    systemDark.removeEventListener('change',palette);document.removeEventListener('visibilitychange',visibility);
     renderer?.domElement.removeEventListener('webglcontextlost',lost);renderer?.domElement.remove();cursor.remove();hosts.forEach(h=>h.classList.remove('glass-live'));
     disposables.forEach(fn=>fn());
   };

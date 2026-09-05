@@ -3,7 +3,6 @@
   'use strict';
   window.initPortfolioExperience = ({ onSection }) => {
     const root = document.documentElement;
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const fine = matchMedia('(pointer: fine)');
     const hero = document.querySelector('.hero');
     const contact = document.querySelector('.contact');
@@ -15,10 +14,10 @@
     const reading = document.querySelector('[data-reading]');
     const sections = [...document.querySelectorAll('[data-section], [data-chapter]')];
     let disposeGlass = () => {};
-    import('./glass.js').then(module => { if (!disposed) disposeGlass = module.mountGlass(); }).catch(error => console.warn('Using the still artwork.', error));
+    import('./glass.js?v=motion-override-1').then(module => { if (!disposed) disposeGlass = module.mountGlass(); }).catch(error => console.warn('Using the still artwork.', error));
     let disposed = false, frame = 0, dirty = true, active = '', inScene = false;
     let width = 0, height = 0, lastTime = 0, clock = 0, progress = 0;
-    const off = () => reduced.matches || root.dataset.motion === 'off';
+    const off = () => root.dataset.motion === 'off';
     const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
     const smooth = n => n * n * (3 - 2 * n);
     const points = Array.from({ length: 1450 }, (_, i) => {
@@ -128,14 +127,14 @@
     const motion = () => { resize(); if (off()) { document.querySelectorAll('.work-art').forEach(el => { el.style.setProperty('--tilt-x', '0deg'); el.style.setProperty('--tilt-y', '0deg'); }); } };
     addEventListener('scroll', invalidate, { passive: true });
     addEventListener('resize', resize); addEventListener('pointermove', pointer, { passive: true });
-    addEventListener('portfolio-motion', motion); reduced.addEventListener('change', motion);
+    addEventListener('portfolio-motion', motion);
     document.addEventListener('visibilitychange', invalidate);
     const resizer = new ResizeObserver(invalidate); resizer.observe(document.querySelector('#main'));
     resize();
     return () => {
       disposed = true; disposeGlass(); cancelAnimationFrame(frame); observer.disconnect(); resizer.disconnect(); tilt.forEach(fn => fn());
       removeEventListener('scroll', invalidate); removeEventListener('resize', resize); removeEventListener('pointermove', pointer);
-      removeEventListener('portfolio-motion', motion); reduced.removeEventListener('change', motion);
+      removeEventListener('portfolio-motion', motion);
       document.removeEventListener('visibilitychange', invalidate); document.body.classList.remove('in-signal');
     };
   };
