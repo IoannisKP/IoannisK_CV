@@ -569,7 +569,7 @@ window.PORTFOLIO = {
         "role": "Grundare & VD",
         "dates": "2012 till 2025",
         "title": "Att få hela tjänsten att hänga ihop.",
-        "body": "Byggde och ledde ett specialistföretag för vårdbemanning inom svensk offentlig vård. Jag utformade verksamhetssystemet som band samman upphandling, läkartillgänglighet, avtal, scheman, fakturering och kvalitetskontroll.",
+        "body": "Byggde och ledde ett bemanningsföretag för specialistläkare inom svensk offentlig vård. Jag utformade verksamhetssystemet som band samman upphandling, läkartillgänglighet, avtal, scheman, fakturering och kvalitetskontroll.",
         "points": [
           "Omsatte upphandlingskrav i fungerande leveransprocesser.",
           "Samordnade konkurrerande behov hos kunder, läkare och den dagliga verksamheten.",
