@@ -9,7 +9,7 @@
   const motion=window.portfolioMotion;
   let lang='en',t,s,currentRoute='intro',cleanup=null,lastURL='',visibleSection='intro';
   const href=route=>`?lang=${lang}#${route}`;
-  const cv=()=>`cv/Ioannis-Koupidis-CV-${lang}.pdf`;
+  const cv=()=>`cv/Ioannis-Koupidis-CV-${lang}.pdf${lang==='el'?'?v=greek-copy-1':''}`;
   const meta=(n,label)=>`<span class="section-label"><span class="label-cross" aria-hidden="true">+</span>${n} / ${esc(label)}</span>`;
   const list=points=>`<ul class="evidence-list">${points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`;
   const heading=words=>`${esc(words[0])}<br><em>${esc(words[1])}</em>`;
