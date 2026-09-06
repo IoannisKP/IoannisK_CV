@@ -46,7 +46,7 @@
     const next=t.projects[(t.projects.indexOf(p)+1)%t.projects.length];
     return `<article class="case-page"><header class="case-opening" id="case-intro" data-section="case-intro"><a class="text-link" href="${href('work')}">← ${esc(t.back)}</a><span class="section-label">${esc(p.kind)}</span><h1>${esc(p.name)}<sup>0${t.projects.indexOf(p)+1}</sup></h1><p>${esc(p.description)}</p><div class="case-facts"><div><span>${esc(t.role)}</span><strong>${esc(p.role)}</strong></div><div><span>${esc(t.duration)}</span><strong>${esc(p.duration)}</strong></div><div><span>${esc(t.status)}</span><strong>${esc(p.status)}</strong></div></div></header><div class="case-hero-art">${cover(p)}</div><nav class="case-nav" aria-label="${esc(t.chapter)}">${p.chapters.map((c,i)=>`<a href="${href(`work/${id}/${i}`)}"><span>0${i+1}</span>${esc(c.label)}</a>`).join('')}</nav><div class="case-sections">${p.chapters.map((c,i)=>`<section class="case-section" id="chapter-${i}" data-chapter="${i}"><div class="case-aside">${meta('0'+(i+1),c.label)}<div class="case-signal"><strong>${esc(c.signal[0])}</strong><span>${esc(c.signal[1])}</span></div></div><div class="case-content"><h2>${esc(c.title)}</h2><p class="case-lead">${esc(c.body)}</p>${list(c.points)}${c.image?`<figure class="case-media ${id==='radio'?'phone-media':''}"><a href="assets/images/${c.image}" target="_blank" rel="noopener" aria-label="${esc(t.openImage)}"><img src="assets/images/${c.image}" alt="${esc(c.caption)}" width="${c.imageWidth||(id==='radio'?1206:2440)}" height="${c.imageHeight||(id==='radio'?2622:1514)}" loading="lazy"></a><figcaption>${esc(c.caption)}</figcaption></figure>`:`<div class="research-evidence"><div class="research-sequence" aria-hidden="true">${i===0?'<span>01</span><i>→</i><span>08</span>':i===2?'<span>3 / 3</span><i>≠</i><span>✓</span>':'<span>?</span><i>→</i><span>↗</span>'}</div><p>${esc(c.caption)}</p></div>`}</div></section>`).join('')}</div><div class="case-end"><a href="${esc(p.repo)}" target="_blank" rel="noopener" class="text-link">${esc(t.source)} ↗</a><span>${esc(p.status)}</span></div><a class="next-case" href="${href(`work/${next.id}`)}"><span class="section-label">${esc(s.keepExploring)}</span><span>${esc(next.name)}<i aria-hidden="true">↗</i></span></a></article>`;
   }
-  function syncLanguageLinks(route){$('.languages').innerHTML=Object.keys(content).map(c=>`<a href="?lang=${c}#${route}" lang="${c}" hreflang="${c}" ${lang===c?'aria-current="true"':''}>${c.toUpperCase()}</a>`).join('')}
+  function syncLanguageLinks(route){$('.languages').innerHTML=Object.keys(content).map(c=>`<a href="?lang=${c}#${route}" lang="${c}" hreflang="${c}" ${lang===c?'aria-current="true"':''}>${({en:'English',sv:'Swedish',el:'Greek'})[c]}</a>`).join('')}
   function chrome(){
     document.documentElement.lang=lang;document.title=`Ioannis Koupidis · ${currentRoute.startsWith('work/')?(t.projects.find(p=>p.id===currentRoute.split('/')[1])?.name||t.edition):t.edition}`;$('meta[name="description"]').content=t.cvSummary;
     $('.identity').href=href('intro');$('.identity').setAttribute('aria-label',`Ioannis Koupidis, ${t.nav[0]}`);$('.skip').textContent=t.skip;
@@ -68,11 +68,16 @@
       const apply=()=>{render(route,nextLang);goTo(route,'auto',!languageChange);if(offset){const id=isCase(route)?(route.split('/')[2]!==undefined?`chapter-${route.split('/')[2]}`:'case-intro'):route;const el=document.getElementById(id);if(el)window.scrollBy(0,offset*el.offsetHeight)}};
       if(document.startViewTransition&&!motion.isOff())document.startViewTransition(apply).finished.catch(()=>{});else apply();
     }
-    save('riso-language',nextLang);lastURL=location.href;
+    lastURL=location.href;
   }
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.target||a.hasAttribute('download'))return;const u=new URL(a.href,location.href);if(u.origin===location.origin&&u.pathname===location.pathname&&u.hash&&u.hash!=='#main'){e.preventDefault();navigate(u.href)}});
   const restore=()=>{if(location.href!==lastURL)navigate(location.href,true)};addEventListener('popstate',restore);addEventListener('hashchange',restore);
   const stored=read('riso-theme');$('#theme').value=['system','light','dark'].includes(stored)?stored:'system';$('#theme').addEventListener('change',e=>{document.documentElement.dataset.theme=e.target.value;save('riso-theme',e.target.value)});
   $('#motion-control').addEventListener('click',()=>motion.toggle());addEventListener('portfolio-motion',updateMotion);
-  const initialLang=new URLSearchParams(location.search).get('lang')||read('riso-language')||'en';render(location.hash.slice(1)||'intro',initialLang);if(location.hash)requestAnimationFrame(()=>goTo(currentRoute));setInterval(clock,30000);
+  // Ordinary visits always start in English. Explicit links from CVs and shared projects retain their destination.
+  const initialLang=new URLSearchParams(location.search).get('lang')||'en';
+  render(location.hash.slice(1)||'intro',initialLang);
+  requestAnimationFrame(()=>{if(location.hash)goTo(currentRoute);else window.scrollTo({top:0,left:0,behavior:'instant'})});
+  addEventListener('pageshow',()=>{if(!location.hash)window.scrollTo({top:0,left:0,behavior:'instant'})});
+  setInterval(clock,30000);
 })();
