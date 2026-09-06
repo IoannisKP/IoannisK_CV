@@ -14,7 +14,7 @@
     const reading = document.querySelector('[data-reading]');
     const sections = [...document.querySelectorAll('[data-section], [data-chapter]')];
     let disposeGlass = () => {};
-    import('./glass.js?v=motion-override-1').then(module => { if (!disposed) disposeGlass = module.mountGlass(); }).catch(error => console.warn('Using the still artwork.', error));
+    import('./glass.js?v=glass-startup-1').then(module => { if (!disposed) disposeGlass = module.mountGlass(); }).catch(error => { if (!disposed) document.querySelectorAll('[data-glass]').forEach(host => host.classList.add('glass-fallback')); console.warn('Using the still artwork.', error); });
     let disposed = false, frame = 0, dirty = true, active = '', inScene = false;
     let width = 0, height = 0, lastTime = 0, clock = 0, progress = 0;
     const off = () => root.dataset.motion === 'off';
@@ -119,8 +119,9 @@
       link.addEventListener('pointermove', move); link.addEventListener('pointerleave', leave);
       tilt.push(() => { link.removeEventListener('pointermove', move); link.removeEventListener('pointerleave', leave); });
     });
+    const legacyParallax = hero && !hero.querySelector('[data-glass]');
     const pointer = e => {
-      if (!fine.matches || off() || !hero || scrollY > hero.offsetHeight) return;
+      if (!legacyParallax || !fine.matches || off() || scrollY > hero.offsetHeight) return;
       hero.style.setProperty('--pointer-x', (e.clientX / innerWidth - .5) * 2);
       hero.style.setProperty('--pointer-y', (e.clientY / innerHeight - .5) * 2);
     };

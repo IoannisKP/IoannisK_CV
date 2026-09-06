@@ -48,7 +48,10 @@ html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:a
 .hero-art[data-glass]>img{position:absolute;left:21%;top:17%;width:77%;height:65%;object-fit:contain}
 .contact-art[data-glass]>img{width:100%;height:100%;object-fit:contain;transform:rotate(135deg);opacity:.7}
 .glass-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
-.glass-live>img{visibility:hidden}
+[data-glass]>img{visibility:hidden;animation:none!important}
+.glass-fallback:not(.glass-live)>img{visibility:visible}
+.glass-canvas{opacity:0;transition:opacity .2s ease}
+.glass-live>.glass-canvas{opacity:1}
 .glass-cursor{position:fixed;inset:0;width:100%;height:100%;z-index:70;pointer-events:none}
 @media(max-width:760px){.hero-art[data-glass]>img{left:-12%;top:27%;width:125%;height:44%}.contact-art[data-glass]>img{width:150%;max-width:none;margin-left:-25%}.glass-cursor{display:none}}
 
