@@ -1,33 +1,41 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Ioannis Koupidis, founder and Product Management student at Hyper Island. Research, healthcare experience, and practical product work.">
-  <title>Ioannis Koupidis · Product & perspective</title>
-  <script>try{const t=localStorage.getItem('riso-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script src="motion.js?v=motion-override-1"></script>
-  <link rel="stylesheet" href="styles.css?v=glass-startup-1">
-  <link rel="modulepreload" href="glass.js?v=glass-startup-1">
-  <link rel="modulepreload" href="assets/vendor/three.module.min.js">
-  <link rel="modulepreload" href="assets/vendor/three.core.min.js">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <script src="content.js?v=swedish-copy-1" defer></script>
-  <script src="experience.js?v=glass-startup-1" defer></script>
-  <script src="app.js?v=header-entry-1" defer></script>
-</head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="page-grid" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <header class="masthead">
-    <a class="identity" href="#intro" aria-label="Ioannis Koupidis, home">IOANNIS.K<span aria-hidden="true"><svg viewBox="0 0 32 32" width="24" height="24" focusable="false"><path d="M16 3v26M3 16h26M6.8 6.8l18.4 18.4M6.8 25.2L25.2 6.8" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></span></a>
-    <nav id="navigation" aria-label="Main navigation"></nav>
-    <div class="controls"><nav class="languages" aria-label="Language"></nav><label class="appearance"><span aria-hidden="true">◐</span><span class="sr-only" id="theme-label">Appearance</span><select id="theme" aria-labelledby="theme-label"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div>
-  </header>
-  <main id="main" tabindex="-1"></main>
-  <footer class="hud"><span id="footer-left"></span><span id="stockholm-time"></span><button id="motion-control" type="button"></button><span class="ink-key" aria-hidden="true"><i></i><i></i></span></footer>
-  <div class="reading-progress" aria-hidden="true"><span></span></div>
-  <noscript><section class="no-script"><h1>Ioannis Koupidis</h1><p>Founder and Product Management student at Hyper Island. Thirteen years building healthcare services in Sweden.</p><p><a href="cv/Ioannis-Koupidis-CV-en.pdf">English CV</a> · <a href="cv/Ioannis-Koupidis-CV-sv.pdf?v=swedish-copy-1">Svenskt CV</a> · <a href="cv/Ioannis-Koupidis-CV-el.pdf?v=greek-copy-2">Ελληνικό βιογραφικό</a></p><a href="mailto:gkoupidis@gmail.com">gkoupidis@gmail.com</a></section></noscript>
-</body>
+<html lang="en" data-type="service" data-motion="on">
+  <head>
+    <script>
+      // Preserve older case-study links that used hash-based routing.
+      if (/^#work\/[^/]+/.test(location.hash) || /^(sv|el)$/.test(new URLSearchParams(location.search).get("lang") || "")) {
+        location.replace("./legacy/" + location.search + location.hash);
+      }
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f3f1eb" />
+    <meta
+      name="description"
+      content="Ioannis Koupidis | founder and Product Management student in Stockholm. Selected work across product discovery, UX research and independent software projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ioannis Koupidis | Product Management" />
+    <meta
+      property="og:description"
+      content="I build for people, not assumptions. Founder turned product thinker."
+    />
+    <title>Ioannis Koupidis | Product Management</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <meta name="page-type" content="service" />
+    <meta name="site-kind" content="other" />
+    <link rel="stylesheet" href="./assets/taste-motion/motion.css" />
+    <script>
+      document.documentElement.classList.add("m-enter");
+      setTimeout(
+        () => document.documentElement.classList.add("m-enter-done"),
+        700,
+      );
+    </script>
+  </head>
+  <body data-page="home" data-root="./">
+    <div id="app"></div>
+    <script type="module" src="./app.js"></script>
+  </body>
 </html>

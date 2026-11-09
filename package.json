@@ -1,0 +1,10 @@
+{
+  "name": "cv-port-ik",
+  "private": true,
+  "scripts": {
+    "test": "node tests/site.test.mjs"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.12"
+  }
+}

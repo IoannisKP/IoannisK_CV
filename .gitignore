@@ -4,3 +4,5 @@ AGENTS.md
 CLAUDE.md
 build_cv.py
 tmp/
+.taste-skill/
+node_modules/
