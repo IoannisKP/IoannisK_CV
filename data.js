@@ -33,7 +33,7 @@ export const projects = [
     role:'Research, synthesis, user flows and prioritisation within a student team',
     scope:'Discovery · Prototyping · Usability testing',
     highlight:{num:'10',label:'moderated booking-task participants',qualifier:'Additional staff-oriented and written feedback reviewed separately'},
-    links:[{label:'Explore the prototype',url:'https://book-an-island.lovable.app'}], visual:'hiroom',
+    links:[{label:'Explore the prototype',url:'https://www.hiroom.se'}], visual:'hiroom',
     short:[
       {label:'The challenge',title:'Booking a room should not feel like an investigation.',body:'Our team explored the friction in Hyper Island’s existing Humly booking experience and built a prototype called HIRoom. The goal was to make it easier to find a suitable space, understand availability and manage bookings.'},
       {label:'My work',title:'Turn what people said into decisions.',body:'I worked across interviews, research patterns, user flows, prototype testing and a prioritized Linear backlog. We separated observed problems from proposed improvements and identified what still needed validation.'},
