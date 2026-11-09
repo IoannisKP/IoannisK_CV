@@ -63,7 +63,7 @@ window.PORTFOLIO = {
     "companies": [
       {
         "name": "Konduko AB",
-        "role": "Founder & CEO",
+        "role": "Founder",
         "dates": "2012 to 2025",
         "title": "Connecting the whole service.",
         "body": "Built and led a specialist healthcare staffing company serving Swedish public healthcare. I designed the operating system connecting procurement, physician availability, contracts, schedules, invoicing, and quality control.",
@@ -566,7 +566,7 @@ window.PORTFOLIO = {
     "companies": [
       {
         "name": "Konduko AB",
-        "role": "Grundare & VD",
+        "role": "Grundare",
         "dates": "2012 till 2025",
         "title": "Att få hela tjänsten att hänga ihop.",
         "body": "Byggde och ledde ett bemanningsföretag för specialistläkare inom svensk offentlig vård. Jag utformade verksamhetssystemet som band samman upphandling, läkartillgänglighet, avtal, scheman, fakturering och kvalitetskontroll.",
@@ -1069,7 +1069,7 @@ window.PORTFOLIO = {
     "companies": [
       {
         "name": "Konduko AB",
-        "role": "Ιδρυτής & Διευθύνων Σύμβουλος",
+        "role": "Ιδρυτής",
         "dates": "2012 έως 2025",
         "title": "Από τον διαγωνισμό στην καθημερινή λειτουργία.",
         "body": "Ίδρυσα και διοίκησα εταιρεία στελέχωσης με εξειδικευμένους γιατρούς για το δημόσιο σύστημα υγείας της Σουηδίας. Οργάνωσα τις διαδικασίες που συνέδεαν τους δημόσιους διαγωνισμούς με τη διαθεσιμότητα των γιατρών, τις συμβάσεις, τον προγραμματισμό εργασίας, την τιμολόγηση και τον έλεγχο ποιότητας. Μέσω δημόσιων διαγωνισμών, εξασφαλίσαμε τη δυνατότητα να παρέχουμε υπηρεσίες στελέχωσης σε όλες τις περιφέρειες της Σουηδίας.",
