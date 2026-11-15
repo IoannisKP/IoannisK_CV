@@ -337,7 +337,7 @@ main:focus {
 .art-scribe {
   background: #dbe4ee;
 }
-.art-compass {
+.art-panel {
   background: #e7e4d8;
 }
 .architecture {
@@ -394,7 +394,7 @@ main:focus {
 }
 .secondary-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
 }
 .secondary-project {
@@ -898,7 +898,7 @@ main:focus {
   .art-scribe {
     background: #34424e;
   }
-  .art-compass {
+  .art-panel {
     background: #444538;
   }
   .footer {
