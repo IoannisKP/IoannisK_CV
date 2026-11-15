@@ -15,7 +15,7 @@ const files = [
   "index.html",
   "about/index.html",
   "cv/index.html",
-  ...["hiroom", "scribe", "pm-compass", "agent-x", "radio", "tedx-circles"].map(
+  ...["hiroom", "scribe", "agent-x", "radio", "tedx-circles"].map(
     (id) => `work/${id}/index.html`,
   ),
 ];
@@ -69,7 +69,8 @@ for (const file of files) {
     }
     if (file === "index.html") {
       assert.equal(doc.querySelectorAll(".featured-project").length, 3);
-      assert.equal(doc.querySelectorAll(".secondary-project").length, 3);
+      assert.equal(doc.querySelectorAll(".secondary-project").length, 2);
+      assert(!doc.body.textContent.includes("PM Compass"));
     }
     const menu = doc.querySelector(".menu-toggle"),
       nav = doc.querySelector("#main-navigation");
